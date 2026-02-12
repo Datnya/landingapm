@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-primary: #B2C535;
+        --color-secondary: #171717;
+        --color-accent: #CDCDCD;
+        --font-heading: 'Outfit', sans-serif;
+        --font-body: 'Poppins', sans-serif;
+    }
+
+    body {
+        @apply bg-white text-secondary antialiased;
+        font-family: var(--font-body);
+        line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .brand-font {
+        font-family: var(--font-heading);
+        @apply uppercase tracking-wider;
+        font-weight: 700;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full border-2 border-white;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/40;
+}
