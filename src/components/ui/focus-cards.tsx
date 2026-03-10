@@ -26,6 +26,7 @@ export const Card = React.memo(
             <img
                 src={card.src}
                 alt={card.title}
+                loading="lazy"
                 className="object-cover absolute inset-0 w-full h-full transition-transform duration-700"
                 style={{ transform: hovered === index ? 'scale(1.05)' : 'scale(1)' }}
             />
@@ -64,7 +65,7 @@ export const Card = React.memo(
 
             {/* Default overlay for better text contrast if not hovered */}
             <div className={cn(
-                "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8 transition-opacity duration-300",
+                "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8 transition-opacity duration-300 pointer-events-none",
                 hovered === index ? "opacity-0" : "opacity-100"
             )}>
                 <div className="text-2xl font-black text-white uppercase tracking-tight leading-none mb-2">

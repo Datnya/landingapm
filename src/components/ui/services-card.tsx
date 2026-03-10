@@ -3,13 +3,14 @@
 import * as React from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 // Shadcn UI Carousel Imports
-import useEmblaCarousel, {
-    type EmblaCarouselType,
-    type EmblaOptionsType,
-} from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaCarouselType as EmblaCarouselTypeBase, EmblaOptionsType as EmblaOptionsTypeBase } from "embla-carousel";
+type EmblaCarouselType = EmblaCarouselTypeBase | undefined;
+type EmblaOptionsType = EmblaOptionsTypeBase;
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 // --- Carousel Context ---
@@ -245,10 +246,17 @@ export interface Service {
     icon: React.ElementType;
     gradient: string;
     image: string;
+    href?: string;
 }
 
 // Sub-component for individual cards
 const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
+    // Basic fix to extract translation logic if locale isn't passed down - we know the link has no text from i18n
+    // but we can import it or use a default if it's tricky.
+    // Instead we can just check if we have window.location or import i18n
+    const loc = window.localStorage.getItem("language") || "es";
+    const exploreMore = loc === "en" ? "Explore more" : "Explorar más";
+
     const cardVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -262,45 +270,47 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
     };
 
     return (
-        <motion.div
-            variants={cardVariants}
-            className={cn(
-                "relative flex h-[500px] w-full flex-col justify-between overflow-hidden rounded-[40px] p-10 group cursor-pointer",
-                "bg-secondary/5 border border-white/10"
-            )}
-        >
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className={cn(
-                    "absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-500",
-                    "group-hover:opacity-100",
-                    service.gradient
-                )}></div>
-            </div>
-
-            {/* Card Content */}
-            <div className="z-10 flex flex-col items-start text-left">
-                <span className="mb-8 text-xs font-black font-mono text-white/40 tracking-[0.2em]">
-                    {service.number}
-                </span>
-                <div className="bg-white/10 backdrop-blur-xl p-4 rounded-2xl border border-white/20 mb-auto">
-                    <service.icon className="h-8 w-8 text-primary" />
+        <Link to={service.href || "#"}>
+            <motion.div
+                variants={cardVariants}
+                className={cn(
+                    "relative flex h-[500px] w-full flex-col justify-between overflow-hidden rounded-[40px] p-10 group cursor-pointer transition-shadow duration-500",
+                    "bg-secondary/5 border border-white/10 group-hover:shadow-[0_0_25px_#B2C53580]"
+                )}
+            >
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <img src={service.image} alt={service.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <div className={cn(
+                        "absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20 opacity-90 transition-opacity duration-500",
+                        "group-hover:opacity-40",
+                        service.gradient
+                    )}></div>
                 </div>
-            </div>
 
-            <div className="z-10 mt-auto">
-                <h3 className="mb-3 text-2xl font-black uppercase tracking-wider text-white">
-                    {service.title}
-                </h3>
-                <p className="text-white/70 text-sm font-medium leading-relaxed mb-6 group-hover:text-white transition-colors">
-                    {service.description}
-                </p>
-                <div className="flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                    Explorar más <ArrowRight className="h-4 w-4" />
+                {/* Card Content */}
+                <div className="z-10 flex flex-col items-start text-left">
+                    <span className="mb-8 text-xs font-black font-mono text-white/40 tracking-[0.2em]">
+                        {service.number}
+                    </span>
+                    <div className="bg-white/10 backdrop-blur-xl p-4 rounded-2xl border border-white/20 mb-auto">
+                        <service.icon className="h-8 w-8 text-primary" />
+                    </div>
                 </div>
-            </div>
-        </motion.div>
+
+                <div className="z-10 mt-auto">
+                    <h3 className="mb-3 text-2xl font-black uppercase tracking-wider text-white">
+                        {service.title}
+                    </h3>
+                    <p className="text-white/70 text-sm font-medium leading-relaxed mb-6 group-hover:text-white transition-colors">
+                        {service.description}
+                    </p>
+                    <div className="flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest opacity-0 transform translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                        {exploreMore} <ArrowRight className="h-4 w-4" />
+                    </div>
+                </div>
+            </motion.div>
+        </Link>
     );
 };
 

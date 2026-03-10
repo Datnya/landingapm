@@ -10,3 +10,6 @@ dist
 /task.md
 /implementation_plan.md
 /walkthrough.md
+
+# Local Netlify folder
+.netlify

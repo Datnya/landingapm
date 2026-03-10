@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Search, ChevronDown, Filter, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface FilterProps {
     categories: string[];
@@ -126,13 +127,15 @@ export const ServiceItemCard = ({
     title,
     description,
     duration,
-    image
+    image,
+    href
 }: {
     category: string;
     title: string;
     description: string;
     duration: string;
     image: string;
+    href?: string;
 }) => {
     return (
         <div className="bg-white rounded-[40px] border border-black/5 overflow-hidden transition-all duration-500 hover:translate-y-[-10px] hover:shadow-[0_30px_60px_rgba(0,0,0,0.06)] group">
@@ -143,9 +146,11 @@ export const ServiceItemCard = ({
                 </div>
             </div>
             <div className="p-10 space-y-6">
-                <h4 className="text-2xl font-black uppercase tracking-tight leading-none group-hover:text-primary transition-colors">
-                    {title}
-                </h4>
+                <Link to={href || "#"}>
+                    <h4 className="text-2xl font-black uppercase tracking-tight leading-none group-hover:text-primary transition-colors">
+                        {title}
+                    </h4>
+                </Link>
                 <p className="text-secondary/50 text-sm font-medium leading-relaxed line-clamp-3">
                     {description}
                 </p>
@@ -154,9 +159,11 @@ export const ServiceItemCard = ({
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         {duration}
                     </div>
-                    <button className="text-primary font-black text-[10px] uppercase tracking-widest flex items-center gap-2 hover:translate-x-2 transition-transform">
-                        Saber más <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <Link to={href || "#"}>
+                        <button className="text-primary font-black text-[10px] uppercase tracking-widest flex items-center gap-2 hover:translate-x-2 transition-transform">
+                            Saber más <ArrowRight className="w-4 h-4" />
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

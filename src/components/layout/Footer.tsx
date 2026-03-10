@@ -4,10 +4,10 @@ import { Linkedin, Facebook, Instagram, Youtube } from 'lucide-react';
 
 const Footer = () => {
     const socialLinks = [
-        { icon: <Linkedin size={24} />, href: "https://www.linkedin.com/company/apm-group-peru/" },
-        { icon: <Facebook size={24} />, href: "https://facebook.com" },
-        { icon: <Instagram size={24} />, href: "https://instagram.com" },
-        { icon: <Youtube size={24} />, href: "https://youtube.com" },
+        { icon: <Linkedin size={24} />, href: "https://www.linkedin.com/company/apmgroup-pe/" },
+        { icon: <Facebook size={24} />, href: "https://www.facebook.com/share/1Dg872mbQk/" },
+        { icon: <Instagram size={24} />, href: "https://www.instagram.com/apmgroup.pe/" },
+        { icon: <Youtube size={24} />, href: "https://youtube.com/@apmgroup-consultoria" },
     ];
 
     return (

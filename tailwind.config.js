@@ -11,6 +11,10 @@ export default {
         secondary: "#171717",
         accent: "#CDCDCD",
       },
+      fontFamily: {
+        heading: ['Montserrat', 'sans-serif'],
+        body: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [],

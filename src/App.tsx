@@ -8,6 +8,9 @@ import ServicesPage from './pages/Services';
 import CoursesPage from './pages/Courses';
 import BlogPage from './pages/Blog';
 import Contact from './pages/Contact';
+import Auditoria from './pages/Audit';
+import Consultoria from './pages/Consulting';
+import Formacion from './pages/Training';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -35,6 +38,9 @@ function App() {
                         <Route path="/cursos" element={<CoursesPage />} />
                         <Route path="/blog" element={<BlogPage />} />
                         <Route path="/contacto" element={<Contact />} />
+                        <Route path="/servicios/auditoria" element={<Auditoria />} />
+                        <Route path="/servicios/consultoria" element={<Consultoria />} />
+                        <Route path="/servicios/formacion" element={<Formacion />} />
                     </Routes>
                 </main>
 
