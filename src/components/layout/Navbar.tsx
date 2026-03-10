@@ -372,16 +372,16 @@ const Navbar = () => {
                                             <div className="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-50">
                                                 <div className="bg-white rounded-2xl shadow-2xl border border-black/5 p-4 min-w-[220px]">
                                                     {[
-                                                        { label: "Consultoría", path: "/servicios/consultoria" },
-                                                        { label: "Auditoría", path: "/servicios/auditoria" },
-                                                        { label: "Formación", path: "/servicios/formacion" }
+                                                        { labelEs: "Consultoría", labelEn: "Consulting", path: "/servicios/consultoria" },
+                                                        { labelEs: "Auditoría", labelEn: "Audit", path: "/servicios/auditoria" },
+                                                        { labelEs: "Formación", labelEn: "Training", path: "/servicios/formacion" }
                                                     ].map((item) => (
                                                         <Link
                                                             key={item.path}
                                                             to={item.path}
                                                             className="block px-4 py-3 text-xs font-black uppercase tracking-widest text-secondary hover:text-primary hover:bg-primary/5 rounded-xl transition-all"
                                                         >
-                                                            {item.label}
+                                                            {locale === 'en' ? item.labelEn : item.labelEs}
                                                         </Link>
                                                     ))}
                                                 </div>

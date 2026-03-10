@@ -9,37 +9,43 @@ const ConsultingPage = () => {
         {
             icon: <Target className="w-16 h-16" />,
             titleKey: 'consulting.pillar_quality',
-            items: ["ISO 9001", "ISO/IEC 17025", "BPL", "ISO 21001", "ISO 55001", "Metodología 5's"],
+            itemsEs: ["ISO 9001", "ISO/IEC 17025", "BPL", "ISO 21001", "ISO 55001", "Metodología 5's"],
+            itemsEn: ["ISO 9001", "ISO/IEC 17025", "GLP", "ISO 21001", "ISO 55001", "5S Methodology"],
             image: "/Imágenes/Subservicios/Calidad y excelencia.jpg"
         },
         {
             icon: <RefreshCcw className="w-16 h-16" />,
             titleKey: 'consulting.pillar_food',
-            items: ["ISO 22000", "HACCP", "BPM / BPA", "SQF", "BRC / GFSI"],
+            itemsEs: ["ISO 22000", "HACCP", "BPM / BPA", "SQF", "BRC / GFSI"],
+            itemsEn: ["ISO 22000", "HACCP", "GMP / GAP", "SQF", "BRC / GFSI"],
             image: "/Imágenes/Subservicios/Seguridad alimentaria.jpg"
         },
         {
             icon: <Shield className="w-16 h-16" />,
             titleKey: 'consulting.pillar_anti',
-            items: ["ISO 37001", "ISO 28001 (Supply Chain)", "ISO 37002 (Denuncias)", "Compliance Corporativo"],
+            itemsEs: ["ISO 37001", "ISO 28001 (Supply Chain)", "ISO 37002 (Denuncias)", "Compliance Corporativo"],
+            itemsEn: ["ISO 37001", "ISO 28001 (Supply Chain)", "ISO 37002 (Whistleblowing)", "Corporate Compliance"],
             image: "/Imágenes/Subservicios/Gestión antisoborno.jpg"
         },
         {
             icon: <Leaf className="w-16 h-16" />,
             titleKey: 'consulting.pillar_esg',
-            items: ["ISO 14001 (Ambiental)", "Huella de Carbono", "ISO 26000", "ODS & ESG Reporting"],
+            itemsEs: ["ISO 14001 (Ambiental)", "Huella de Carbono", "ISO 26000", "ODS & ESG Reporting"],
+            itemsEn: ["ISO 14001 (Environmental)", "Carbon Footprint", "ISO 26000", "SDG & ESG Reporting"],
             image: "/Imágenes/Subservicios/Sostenibilidad.jpg"
         },
         {
             icon: <Lock className="w-16 h-16" />,
             titleKey: 'consulting.pillar_cyber',
-            items: ["ISO/IEC 27001", "Gestión de Privacidad (ISO 27701)", "Protección de Datos Personales"],
+            itemsEs: ["ISO/IEC 27001", "Gestión de Privacidad (ISO 27701)", "Protección de Datos Personales"],
+            itemsEn: ["ISO/IEC 27001", "Privacy Management (ISO 27701)", "Personal Data Protection"],
             image: "/Imágenes/Subservicios/Ciberseguridad.jpg"
         },
         {
             icon: <Heart className="w-16 h-16" />,
             titleKey: 'consulting.pillar_health',
-            items: ["ISO 45001 (SST)", "ISO 22320 (Emergencias)", "Igualdad de Género", "Ley 29783"],
+            itemsEs: ["ISO 45001 (SST)", "ISO 22320 (Emergencias)", "Igualdad de Género", "Ley 29783"],
+            itemsEn: ["ISO 45001 (OH&S)", "ISO 22320 (Emergencies)", "Gender Equality", "Law 29783"],
             image: "/Imágenes/Subservicios/Salud y bienestar.jpg"
         }
     ];
@@ -120,7 +126,7 @@ const ConsultingPage = () => {
                                     </div>
                                     <h3 className="text-2xl font-black mb-8 uppercase tracking-tight text-primary transition-colors">{t(pillar.titleKey)}</h3>
                                     <ul className="space-y-4 w-full">
-                                        {pillar.items.map((item, idx) => (
+                                        {(window.localStorage.getItem('language') === 'en' ? pillar.itemsEn : pillar.itemsEs).map((item, idx) => (
                                             <li key={idx} className="flex items-center justify-center gap-3 text-white transition-colors text-sm font-semibold">
                                                 <div className="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_10px_rgba(178,197,53,0.5)]" />
                                                 {item}
@@ -150,7 +156,7 @@ const ConsultingPage = () => {
                             {sectors.map((sec) => (
                                 <div key={sec.nameEs} className="flex items-center gap-3 px-8 py-4 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 text-xs font-black uppercase tracking-widest shadow-sm hover:bg-white transition-all group">
                                     <span className="text-secondary/50 group-hover:text-primary transition-colors">{sec.icon}</span>
-                                    {sec.nameEs}
+                                    {window.localStorage.getItem('language') === 'en' ? sec.nameEn : sec.nameEs}
                                 </div>
                             ))}
                         </div>
