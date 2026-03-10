@@ -283,7 +283,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
                     <img src={service.image} alt={service.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className={cn(
                         "absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20 opacity-90 transition-opacity duration-500",
-                        "group-hover:opacity-40",
+                        "group-hover:opacity-60",
                         service.gradient
                     )}></div>
                 </div>

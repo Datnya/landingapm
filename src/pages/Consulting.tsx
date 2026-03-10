@@ -110,8 +110,8 @@ const ConsultingPage = () => {
                             <div key={i} className="group relative p-12 bg-secondary text-white rounded-[50px] overflow-hidden hover:bg-black transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_30px_#B2C53580] hover:border-primary/50 border border-white/5 flex flex-col items-center text-center">
                                 {/* Background Image */}
                                 <div className="absolute inset-0 z-0">
-                                    <img src={pillar.image} alt={t(pillar.titleKey)} className="w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
-                                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors" />
+                                    <img src={pillar.image} alt={t(pillar.titleKey)} className="w-full h-full object-cover opacity-20 group-hover:opacity-60 transition-opacity duration-700" />
+                                    <div className="absolute inset-0 bg-black/60 transition-colors" />
                                 </div>
 
                                 <div className="relative z-10 flex flex-col items-center w-full">
