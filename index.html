@@ -17,6 +17,22 @@
 
 <body>
     <div id="root"></div>
+
+    <!-- Hidden form for Netlify detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="nombre" />
+        <input type="text" name="cargo" />
+        <input type="email" name="email" />
+        <input type="tel" name="telefono" />
+        <input type="text" name="ciudad" />
+        <input type="text" name="ruc" />
+        <input type="text" name="empresa" />
+        <input type="text" name="industria" />
+        <input type="text" name="servicio" />
+        <input type="text" name="como_se_entero" />
+        <textarea name="mensaje"></textarea>
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
 </body>
 
