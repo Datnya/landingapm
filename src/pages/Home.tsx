@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import SyntheticHero from '../components/ui/synthetic-hero';
 import { useI18n } from '../i18n';
 
 // ── Carousel: P2, P3, P4 — converted from DNG to JPEG for browser compatibility
 const CAROUSEL_IMAGES = [
     {
-        src: '/Imágenes/Carrusel/P2.jpg',
+        src: '/Imágenes/Carrusel/P2.webp',
         alt: 'Webinar APM Group — Sesión 2',
         rotate: 'rotate-90'
     },
     {
-        src: '/Imágenes/Carrusel/P3.jpg',
+        src: '/Imágenes/Carrusel/P3.webp',
         alt: 'Webinar APM Group — Sesión 3',
         rotate: 'rotate-90'
     },
     {
-        src: '/Imágenes/Carrusel/P4.jpg',
+        src: '/Imágenes/Carrusel/P4.webp',
         alt: 'Webinar APM Group — Sesión 4',
         rotate: 'rotate-90'
     },
@@ -132,6 +133,12 @@ const Home = () => {
 
     return (
         <>
+            <Helmet>
+                <title>APM Group | Consultoría, Auditoría y Formación ISO en Perú</title>
+                <meta name="description" content="APM Group potencia tu organización con normas internacionales ISO, sostenibilidad e innovación empresarial. Expertos en consultoría, auditoría y formación." />
+                <link rel="canonical" href="https://apmgroup.pe/" />
+            </Helmet>
+
             {/* ── HERO ─────────────────────────────────────────────────────── */}
             <SyntheticHero
                 title={t('hero.title')}
@@ -197,7 +204,7 @@ const Home = () => {
             {/* ── WEBINAR SECTION ──────────────────────────────────────────── */}
             <section className="bg-secondary text-white py-24 md:py-32 m-8 md:m-16 rounded-[60px] relative overflow-hidden group">
                 <div className="absolute inset-0 z-0">
-                    <img src="/Imágenes/Webinar.jpg" alt="Webinar APM" className="w-full h-full object-cover opacity-20 transition-transform duration-1000 group-hover:scale-105" />
+                    <img src="/Imágenes/Webinar.webp" alt="Webinar APM" className="w-full h-full object-cover opacity-20 transition-transform duration-1000 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/60" />
                 </div>
 
@@ -340,7 +347,7 @@ const Home = () => {
 
                         <div className="lg:w-1/2 relative group">
                             <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border border-white/10 transform lg:rotate-3 group-hover:rotate-0 transition-transform duration-700">
-                                <img src="/Imágenes/Formación.jpg" alt="Campus Virtual APM" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+                                <img src="/Imágenes/Formación.webp" alt="Campus Virtual Corporativo y Entrenamiento en Competencias" loading="lazy" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
                                 <div className="absolute inset-0 bg-secondary/40 flex items-center justify-center scale-0 group-hover:scale-100 transition-transform">
                                     <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-secondary shadow-2xl animate-bounce">
                                         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>

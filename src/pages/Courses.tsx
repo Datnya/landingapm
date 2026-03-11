@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Search, ChevronRight, Play, Monitor, Tablet, Smartphone, Award, Unlock, Clock, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useI18n } from '../i18n';
@@ -16,7 +17,7 @@ const coursesData = [
         durationEn: "40 Hours",
         lessonsEs: "24 Clases",
         lessonsEn: "24 Lessons",
-        image: "/Imágenes/Consultoría.jpg",
+        image: "/Imágenes/Consultoría.webp",
         tagEs: "Bestseller",
         tagEn: "Bestseller"
     },
@@ -32,7 +33,7 @@ const coursesData = [
         durationEn: "32 Hours",
         lessonsEs: "18 Clases",
         lessonsEn: "18 Lessons",
-        image: "/Imágenes/quienes somos fondo.jpg",
+        image: "/Imágenes/quienes somos fondo.webp",
         tagEs: "Certificación",
         tagEn: "Certification"
     },
@@ -48,7 +49,7 @@ const coursesData = [
         durationEn: "35 Hours",
         lessonsEs: "21 Clases",
         lessonsEn: "21 Lessons",
-        image: "/Imágenes/Auditoría.jpg",
+        image: "/Imágenes/Auditoría.webp",
         tagEs: "Nuevo",
         tagEn: "New"
     }
@@ -77,11 +78,16 @@ export default function CoursesPage() {
 
     return (
         <div className="bg-white min-h-screen pt-20 pb-24 text-secondary font-body selection:bg-primary/30">
+            <Helmet>
+                <title>Catálogo de Cursos ISO y Formación Empresarial | APM Group</title>
+                <meta name="description" content="Asciende en tu carrera profesional. Catálogo de cursos orientados a Sistemas de Gestión de Calidad, Ambiental, Seguridad y más." />
+                <link rel="canonical" href="https://apmgroup.pe/cursos" />
+            </Helmet>
 
             {/* Hero */}
             <section className="relative py-24 md:py-32 overflow-hidden bg-secondary">
                 <div className="absolute inset-0 opacity-20">
-                    <img src="/Imágenes/Formación.jpg" alt="Background" className="w-full h-full object-cover grayscale" />
+                    <img src="/Imágenes/Formación.webp" alt="Background" className="w-full h-full object-cover grayscale" />
                     <div className="absolute inset-0 bg-gradient-to-b from-secondary via-transparent to-secondary"></div>
                 </div>
 
@@ -174,7 +180,7 @@ export default function CoursesPage() {
                         {coursesData.map((course) => (
                             <div key={course.id} className="bg-white rounded-[50px] overflow-hidden border border-black/5 shadow-[0_20px_60px_rgba(0,0,0,0.03)] group hover:shadow-2xl transition-all duration-700">
                                 <div className="h-64 relative overflow-hidden">
-                                    <img src={course.image} alt={locale === 'en' ? course.titleEn : course.titleEs} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" />
+                                    <img src={course.image} alt={locale === 'en' ? course.titleEn : course.titleEs} loading="lazy" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" />
                                     <div className="absolute top-6 left-6">
                                         <span className="bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-xl">
                                             {locale === 'en' ? course.tagEn : course.tagEs}

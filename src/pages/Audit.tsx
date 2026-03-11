@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ShieldCheck, CheckCircle2, BarChart, Users, Zap } from 'lucide-react';
 import { useI18n } from '../i18n';
 
@@ -7,6 +8,11 @@ const AuditPage = () => {
 
     return (
         <div className="bg-white min-h-screen pt-20">
+            <Helmet>
+                <title>Auditorías ISO y Evaluaciones de Conformidad | APM Group</title>
+                <meta name="description" content="Servicios de auditoría integral para sistemas de gestión bajo normativas ISO. Asegura el cumplimiento, identifica mejoras y certifica la calidad de tu empresa." />
+                <link rel="canonical" href="https://apmgroup.pe/servicios/auditoria" />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative h-[65vh] flex items-center overflow-hidden bg-black">
                 <div className="absolute inset-0 z-0">
@@ -68,7 +74,7 @@ const AuditPage = () => {
                         </div>
                         <div className="relative">
                             <div className="aspect-square rounded-[60px] overflow-hidden shadow-2xl">
-                                <img src="/Imágenes/quienes somos fondo.jpg" alt="Evaluación técnica" className="w-full h-full object-cover" />
+                                <img src="/Imágenes/quienes somos fondo.webp" alt="Evaluación técnica" loading="lazy" className="w-full h-full object-cover" />
                             </div>
                             <div className="absolute -bottom-10 -left-10 bg-primary p-10 rounded-[40px] shadow-2xl hidden md:block">
                                 <p className="text-secondary font-black text-4xl leading-none mb-2">12+</p>

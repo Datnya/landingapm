@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ServiceCarousel, type Service } from '@/components/ui/services-card';
 import { CatalogFilters, ServiceItemCard } from '@/components/ui/catalog-components';
 import {
@@ -16,7 +17,7 @@ const topServices: Service[] = [
         description: "Maximización del rendimiento y generación de valor sostenible mediante implementación de normas ISO.",
         icon: BarChart3,
         gradient: "from-primary/40 to-primary/10",
-        image: "/Imágenes/Consultoría.jpg",
+        image: "/Imágenes/Consultoría.webp",
         href: "/servicios/consultoria"
     },
     {
@@ -25,7 +26,7 @@ const topServices: Service[] = [
         description: "Servicios diseñados para garantizar transparencia y cumplimiento normativo internacional.",
         icon: ShieldCheck,
         gradient: "from-primary/40 to-primary/10",
-        image: "/Imágenes/Auditoría.jpg",
+        image: "/Imágenes/Auditoría.webp",
         href: "/servicios/auditoria"
     },
     {
@@ -34,7 +35,7 @@ const topServices: Service[] = [
         description: "Programas educativos de vanguardia para el fortalecimiento de capacidades técnicas senior.",
         icon: GraduationCap,
         gradient: "from-primary/40 to-primary/10",
-        image: "/Imágenes/Formación.jpg",
+        image: "/Imágenes/Formación.webp",
         href: "/servicios/formacion"
     }
 ];
@@ -46,7 +47,7 @@ const catalogItems = [
         title: "Calidad y Excelencia",
         description: "ISO 9001, ISO/IEC 17025, BPL y metodologías de mejora continua para la excelencia operativa.",
         duration: "3-6 meses",
-        image: "/Imágenes/Subservicios/Calidad y excelencia.jpg",
+        image: "/Imágenes/Subservicios/Calidad y excelencia.webp",
         sector: "Industrial"
     },
     {
@@ -54,7 +55,7 @@ const catalogItems = [
         title: "Seguridad Alimentaria",
         description: "Implementación de ISO 22000, HACCP y estándares globales BRC/IFS para la industria alimentaria.",
         duration: "4-6 meses",
-        image: "/Imágenes/Subservicios/Seguridad alimentaria.jpg",
+        image: "/Imágenes/Subservicios/Seguridad alimentaria.webp",
         sector: "Alimentos"
     },
     {
@@ -62,7 +63,7 @@ const catalogItems = [
         title: "Gestión Antisoborno",
         description: "ISO 37001 y sistemas de cumplimiento corporativo para garantizar la integridad institucional.",
         duration: "4-5 meses",
-        image: "/Imágenes/Subservicios/Gestión antisoborno.jpg",
+        image: "/Imágenes/Subservicios/Gestión antisoborno.webp",
         sector: "Servicios"
     },
     {
@@ -70,7 +71,7 @@ const catalogItems = [
         title: "Sostenibilidad (ESG)",
         description: "Gestión ambiental ISO 14001, huella de carbono y reportes de sostenibilidad corporativa.",
         duration: "3-6 meses",
-        image: "/Imágenes/Subservicios/Sostenibilidad.jpg",
+        image: "/Imágenes/Subservicios/Sostenibilidad.webp",
         sector: "Minería"
     },
     {
@@ -78,7 +79,7 @@ const catalogItems = [
         title: "Ciberseguridad",
         description: "Protección de activos de información mediante ISO 27001 y gestión de privacidad de datos.",
         duration: "4-8 meses",
-        image: "/Imágenes/Subservicios/Ciberseguridad.jpg",
+        image: "/Imágenes/Subservicios/Ciberseguridad.webp",
         sector: "Tecnología"
     },
     {
@@ -86,7 +87,7 @@ const catalogItems = [
         title: "Salud y Bienestar",
         description: "Sistemas de Seguridad y Salud en el Trabajo ISO 45001 y programas de bienestar laboral.",
         duration: "3-5 meses",
-        image: "/Imágenes/Subservicios/Salud y bienestar.jpg",
+        image: "/Imágenes/Subservicios/Salud y bienestar.webp",
         sector: "Industrial"
     },
     // --- AUDITORÍA ---
@@ -95,7 +96,7 @@ const catalogItems = [
         title: "Auditoría Interna de Sistemas",
         description: "Evaluación exhaustiva de sistemas de gestión para verificar cumplimiento y eficacia operativa.",
         duration: "15-20 días",
-        image: "/Imágenes/Auditoría.jpg",
+        image: "/Imágenes/Auditoría.webp",
         sector: "Servicios"
     },
     {
@@ -103,7 +104,7 @@ const catalogItems = [
         title: "Homologación de Proveedores",
         description: "Validación técnica de socios comerciales para asegurar la calidad en toda la cadena de valor.",
         duration: "Bajo demanda",
-        image: "/Imágenes/Auditoría.jpg",
+        image: "/Imágenes/Auditoría.webp",
         sector: "Retail"
     },
     {
@@ -111,7 +112,7 @@ const catalogItems = [
         title: "Inspección de Estándares",
         description: "Verificación de cumplimiento de normativas específicas y requisitos legales del sector.",
         duration: "Semanal",
-        image: "/Imágenes/Auditoría.jpg",
+        image: "/Imágenes/Auditoría.webp",
         sector: "Minería"
     },
     // --- FORMACIÓN ---
@@ -120,7 +121,7 @@ const catalogItems = [
         title: "Certificación Auditor Jefe",
         description: "Formación de alto nivel para profesionales que buscan liderar procesos de auditoría certificados.",
         duration: "40 horas",
-        image: "/Imágenes/Formación.jpg",
+        image: "/Imágenes/Formación.webp",
         sector: "Industrial"
     },
     {
@@ -128,7 +129,7 @@ const catalogItems = [
         title: "Especialización en Normas ISO",
         description: "Cursos técnicos detallados sobre la interpretación e implementación de normativas internacionales.",
         duration: "24 horas",
-        image: "/Imágenes/Formación.jpg",
+        image: "/Imágenes/Formación.webp",
         sector: "Servicios"
     },
     {
@@ -136,7 +137,7 @@ const catalogItems = [
         title: "Programas In-house",
         description: "Capacitación personalizada diseñada para abordar los desafíos específicos de su organización.",
         duration: "Personalizado",
-        image: "/Imágenes/Formación.jpg",
+        image: "/Imágenes/Formación.webp",
         sector: "Tecnología"
     }
 ];
@@ -153,7 +154,7 @@ export default function ServicesPage() {
             description: t('services.s1_desc'),
             icon: BarChart3,
             gradient: "from-primary/40 to-primary/10",
-            image: "/Imágenes/Consultoría.jpg",
+            image: "/Imágenes/Consultoría.webp",
             href: "/servicios/consultoria"
         },
         {
@@ -162,7 +163,7 @@ export default function ServicesPage() {
             description: t('services.s2_desc'),
             icon: ShieldCheck,
             gradient: "from-primary/40 to-primary/10",
-            image: "/Imágenes/Auditoría.jpg",
+            image: "/Imágenes/Auditoría.webp",
             href: "/servicios/auditoria"
         },
         {
@@ -171,7 +172,7 @@ export default function ServicesPage() {
             description: t('services.s3_desc'),
             icon: GraduationCap,
             gradient: "from-primary/40 to-primary/10",
-            image: "/Imágenes/Formación.jpg",
+            image: "/Imágenes/Formación.webp",
             href: "/servicios/formacion"
         }
     ];
@@ -203,6 +204,11 @@ export default function ServicesPage() {
 
     return (
         <div className="bg-white min-h-screen text-secondary selection:bg-primary/30 font-body overflow-x-hidden">
+            <Helmet>
+                <title>Nuestros Servicios Integrales | APM Group</title>
+                <meta name="description" content="Ofrecemos un portafolio de formación, consultoría y auditoría bajo las principales normas internacionales (ISO, BRC, HACCP, ESG)." />
+                <link rel="canonical" href="https://apmgroup.pe/servicios" />
+            </Helmet>
 
             {/* SECTION 1: TOP HIGHLIGHTS */}
             <section className="bg-secondary pt-40 pb-32 relative overflow-hidden text-white rounded-b-[80px]">

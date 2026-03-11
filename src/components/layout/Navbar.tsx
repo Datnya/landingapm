@@ -349,7 +349,7 @@ const Navbar = () => {
                     <div className="flex items-center gap-8 lg:gap-12 flex-1">
                         {/* Logo */}
                         <Link to="/" className="flex-shrink-0">
-                            <img src="/Imágenes/LOGO APM LETRAS NEGRAS.png" alt="APM Group Logo" className="h-12 md:h-14 w-auto" />
+                            <img src="/Imágenes/LOGO APM LETRAS NEGRAS.webp" alt="APM Group Logo" className="h-12 md:h-14 w-auto" />
                         </Link>
 
                         {/* Nav Links */}

@@ -14,7 +14,7 @@ const Footer = () => {
         <footer className="bg-secondary text-white py-20 pb-10 border-t border-white/5">
             <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
                 <div className="footer-brand">
-                    <img src="/Imágenes/LOGO APM LETRAS NEGRAS.png" alt="APM Group" className="h-14 mb-8 brightness-0 invert" />
+                    <img src="/Imágenes/LOGO APM LETRAS NEGRAS.webp" alt="APM Group" loading="lazy" className="h-14 mb-8 brightness-0 invert" />
                     <p className="text-white/60 leading-relaxed italic font-medium">"Potenciando el éxito empresarial"</p>
                 </div>
                 <div>

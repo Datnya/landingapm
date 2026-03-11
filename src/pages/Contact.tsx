@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Mail, Phone, MapPin, Clock, Send, Linkedin, Facebook, Instagram, Youtube } from 'lucide-react';
 import { useI18n } from '../i18n';
 
@@ -44,10 +45,15 @@ const Contact = () => {
 
     return (
         <div className="pt-20">
+            <Helmet>
+                <title>Contacto y Asesoría ISO | APM Group</title>
+                <meta name="description" content="Contáctanos para evaluar mejoras en tus procesos a través de certificaciones internacionales y sostenibilidad en todo el Perú." />
+                <link rel="canonical" href="https://apmgroup.pe/contacto" />
+            </Helmet>
             {/* ── Hero ─────────────────────────────────────────────────────── */}
             <section className="bg-secondary text-white py-24 md:py-32 relative overflow-hidden">
                 <div className="absolute inset-0">
-                    <img src="/Imágenes/Contact.jpg" alt="Background" className="w-full h-full object-cover object-bottom" />
+                    <img src="/Imágenes/Contact.webp" alt="Background" className="w-full h-full object-cover object-bottom" />
                     <div className="absolute inset-0 bg-black/60" />
                 </div>
                 <div className="container mx-auto px-6 relative z-10 text-center">
@@ -129,9 +135,9 @@ const Contact = () => {
                                         <p className="text-white/50 font-medium text-sm">{t('contact.form_subtitle')}</p>
                                     </div>
 
-                                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" className="space-y-6">
+                                    <form name="contacto-apm" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/exito" className="space-y-6">
                                         {/* Row 1: Nombre + Cargo */}
-                                        <input type="hidden" name="form-name" value="contact" />
+                                        <input type="hidden" name="form-name" value="contacto-apm" />
                                         <p className="hidden"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div>

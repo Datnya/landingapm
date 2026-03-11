@@ -7,28 +7,28 @@ export default function SpecialistsSection() {
         {
             title: "Patricia Romero",
             role: t('about.spec_1_role'),
-            src: "/Imágenes/Especialistas APM/Patricia FINAL 3.png",
+            src: "/Imágenes/Especialistas APM/Patricia FINAL 3.webp",
             description: t('about.spec_1_desc'),
             linkedin: "https://www.linkedin.com/in/patricia-romero-consultora/"
         },
         {
             title: "Juan Fustamante",
             role: t('about.spec_2_role'),
-            src: "/Imágenes/Especialistas APM/Juan Fustamante FINAL 33.png",
+            src: "/Imágenes/Especialistas APM/Juan Fustamante FINAL 33.webp",
             description: t('about.spec_2_desc'),
             linkedin: "https://www.linkedin.com/in/juanfustamante/"
         },
         {
             title: "Rosario Molina",
             role: t('about.spec_3_role'),
-            src: "/Imágenes/Especialistas APM/Rosario Molina FINAL.png",
+            src: "/Imágenes/Especialistas APM/Rosario Molina FINAL.webp",
             description: t('about.spec_3_desc'),
             linkedin: "https://www.linkedin.com/in/rosario-molina-casas-a67181a7/"
         },
         {
             title: "Luiggi Cruz",
             role: t('about.spec_4_role'),
-            src: "/Imágenes/Especialistas APM/Luiggi Cruz FINAL 2.png",
+            src: "/Imágenes/Especialistas APM/Luiggi Cruz FINAL 2.webp",
             description: t('about.spec_4_desc'),
             linkedin: "https://www.linkedin.com/in/luiggi-cesar-cruz-caldas-18b24675/"
         },

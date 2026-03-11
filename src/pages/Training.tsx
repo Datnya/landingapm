@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { GraduationCap, BookOpen, Presentation, Database, ClipboardCheck, Globe2, BookMarked, UserCheck } from 'lucide-react';
 import { useI18n } from '../i18n';
 
@@ -7,6 +8,11 @@ const TrainingPage = () => {
 
     return (
         <div className="bg-white min-h-screen pt-20">
+            <Helmet>
+                <title>Formación y Capacitación ISO | APM Group Learning</title>
+                <meta name="description" content="Campus virtual de formación especializada en normas internacionales, sostenibilidad empresarial, sistemas de gestión ISO y más. Conoce nuestros cursos." />
+                <link rel="canonical" href="https://apmgroup.pe/servicios/formacion" />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative h-[65vh] flex items-center overflow-hidden bg-black">
                 <div className="absolute inset-0 z-0">
@@ -129,7 +135,7 @@ const TrainingPage = () => {
                         </div>
                         <div className="lg:w-1/2 relative group">
                             <div className="aspect-video bg-white/5 backdrop-blur-3xl rounded-[40px] border border-white/10 flex items-center justify-center shadow-2xl relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-700">
-                                <img src="/Imágenes/quienes somos fondo.jpg" alt="Campus APM" className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
+                                <img src="/Imágenes/quienes somos fondo.webp" alt="Campus APM" loading="lazy" className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-secondary shadow-2xl">
                                         <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>

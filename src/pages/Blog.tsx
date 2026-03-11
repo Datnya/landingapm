@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Search, Calendar, User, ChevronRight } from 'lucide-react';
 import { useI18n } from '../i18n';
 
@@ -14,7 +15,7 @@ const blogPosts = [
         dateEs: "15 de Marzo, 2024",
         dateEn: "March 15, 2024",
         author: "Inge. Carlos Méndez",
-        image: "/Imágenes/Consultoría.jpg"
+        image: "/Imágenes/Consultoría.webp"
     },
     {
         id: 2,
@@ -27,7 +28,7 @@ const blogPosts = [
         dateEs: "10 de Marzo, 2024",
         dateEn: "March 10, 2024",
         author: "Dr. Roberto Silva",
-        image: "/Imágenes/quienes somos fondo.jpg"
+        image: "/Imágenes/quienes somos fondo.webp"
     },
     {
         id: 3,
@@ -40,7 +41,7 @@ const blogPosts = [
         dateEs: "02 de Marzo, 2024",
         dateEn: "March 02, 2024",
         author: "MSc. Ana Torres",
-        image: "/Imágenes/Auditoría.jpg"
+        image: "/Imágenes/Auditoría.webp"
     }
 ];
 
@@ -57,6 +58,11 @@ const BlogPage = () => {
 
     return (
         <div className="pt-20">
+            <Helmet>
+                <title>Blog y Noticias ISO | APM Group</title>
+                <meta name="description" content="Mantente actualizado con las últimas tendencias globales en normas ISO, sistemas de gestión y sostenibilidad para tu organización." />
+                <link rel="canonical" href="https://apmgroup.pe/blog" />
+            </Helmet>
             {/* Minimal Hero Header */}
             <section className="bg-white pt-24 pb-12 border-b border-black/5">
                 <div className="container mx-auto px-6">
@@ -88,6 +94,7 @@ const BlogPage = () => {
                                         <img
                                             src={post.image}
                                             alt={locale === 'en' ? post.titleEn : post.titleEs}
+                                            loading="lazy"
                                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                                         />
                                         <div className="absolute top-8 left-8">

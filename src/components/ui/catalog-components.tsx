@@ -140,7 +140,7 @@ export const ServiceItemCard = ({
     return (
         <div className="bg-white rounded-[40px] border border-black/5 overflow-hidden transition-all duration-500 hover:translate-y-[-10px] hover:shadow-[0_30px_60px_rgba(0,0,0,0.06)] group">
             <div className="relative h-64 overflow-hidden">
-                <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute top-6 left-6 bg-primary text-black px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-lg">
                     {category}
                 </div>
@@ -192,7 +192,7 @@ export const CourseItemCard = ({
     return (
         <div className="bg-white rounded-[30px] border border-black/5 overflow-hidden flex flex-col md:flex-row gap-8 p-6 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] group">
             <div className="relative w-full md:w-72 h-56 md:h-auto overflow-hidden rounded-2xl flex-shrink-0">
-                <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 {highlighted && (
                     <div className="absolute top-4 left-4 bg-primary text-black px-3 py-1 rounded-md text-[9px] font-black uppercase tracking-widest shadow-lg">
                         Destacado

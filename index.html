@@ -13,13 +13,37 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    
+    <!-- Schema Markup JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "APM Group",
+      "url": "https://apmgroup.pe/",
+      "logo": "https://apmgroup.pe/Imágenes/LOGO%20APM%20LETRAS%20NEGRAS.webp",
+      "description": "Potenciamos organizaciones con normas internacionales, sostenibilidad e innovación. Expertos en consultoría, auditoría y formación ISO.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle José Gálvez 438",
+        "addressLocality": "Miraflores",
+        "addressRegion": "Lima",
+        "addressCountry": "PE"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+51-967-170-627",
+        "contactType": "customer service"
+      }
+    }
+    </script>
 </head>
 
 <body>
     <div id="root"></div>
 
     <!-- Hidden form for Netlify detection -->
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <form name="contacto-apm" action="/exito" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="nombre" />
         <input type="text" name="cargo" />
         <input type="email" name="email" />

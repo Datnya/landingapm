@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import SpecialistsSection from '../components/sections/specialists-section';
 import { Target, Eye, Heart } from 'lucide-react';
 import { useI18n } from '../i18n';
@@ -8,10 +9,15 @@ const About = () => {
 
     return (
         <div className="pt-20">
+            <Helmet>
+                <title>Quiénes Somos | APM Group</title>
+                <meta name="description" content="Conoce a nuestro equipo de especialistas. En APM Group nos mueve el propósito de transformar organizaciones hacia la excelencia, la sostenibilidad y el crecimiento." />
+                <link rel="canonical" href="https://apmgroup.pe/nosotros" />
+            </Helmet>
             {/* Hero Section */}
             <section className="bg-secondary text-white py-24 md:py-32 relative overflow-hidden">
                 <div className="absolute inset-0">
-                    <img src="/Imágenes/quienes somos fondo.jpg" alt="Background" className="w-full h-full object-cover" />
+                    <img src="/Imágenes/quienes somos fondo.webp" alt="Equipo de Consultores de APM Group en ambiente de trabajo" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/60"></div>
                 </div>
                 <div className="container mx-auto px-6 relative z-10 text-center">
@@ -98,10 +104,10 @@ const About = () => {
                                     aria-hidden={copy === 2 ? true : undefined}
                                 >
                                     {[
-                                        "Logo-grupo-Centenario.png", "Logo_Bureau_Veritas.svg.png", "logo-a-color_Mesa-de-trabajo-1-1-1.png",
-                                        "yanacocha-logo.png", "nxtdried_full_positivo.png", "macropolis_01_180x180.png",
-                                        "logo_alta.png", "logo-grc-risk-web.png", "logo-gomez-yagui-a.png",
-                                        "dc-superlotes-logo.png", "VIHAG-300x122.jpg", "ob1_constructora_logo.jpg", "samitex.jpg", "unnamed.jpg"
+                                        "Logo-grupo-Centenario.webp", "Logo_Bureau_Veritas.svg.webp", "logo-a-color_Mesa-de-trabajo-1-1-1.webp",
+                                        "yanacocha-logo.webp", "nxtdried_full_positivo.webp", "macropolis_01_180x180.webp",
+                                        "logo_alta.webp", "logo-grc-risk-web.webp", "logo-gomez-yagui-a.webp",
+                                        "dc-superlotes-logo.webp", "VIHAG-300x122.webp", "ob1_constructora_logo.webp", "samitex.webp", "unnamed.webp"
                                     ].map((img, i) => (
                                         <div
                                             key={i}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Target, RefreshCcw, Shield, Leaf, Lock, Heart, Factory, Pickaxe, ShoppingBag, Utensils, Briefcase, GraduationCap, Cpu } from 'lucide-react';
 import { useI18n } from '../i18n';
 
@@ -11,42 +12,42 @@ const ConsultingPage = () => {
             titleKey: 'consulting.pillar_quality',
             itemsEs: ["ISO 9001", "ISO/IEC 17025", "BPL", "ISO 21001", "ISO 55001", "Metodología 5's"],
             itemsEn: ["ISO 9001", "ISO/IEC 17025", "GLP", "ISO 21001", "ISO 55001", "5S Methodology"],
-            image: "/Imágenes/Subservicios/Calidad y excelencia.jpg"
+            image: "/Imágenes/Subservicios/Calidad y excelencia.webp"
         },
         {
             icon: <RefreshCcw className="w-16 h-16" />,
             titleKey: 'consulting.pillar_food',
             itemsEs: ["ISO 22000", "HACCP", "BPM / BPA", "SQF", "BRC / GFSI"],
             itemsEn: ["ISO 22000", "HACCP", "GMP / GAP", "SQF", "BRC / GFSI"],
-            image: "/Imágenes/Subservicios/Seguridad alimentaria.jpg"
+            image: "/Imágenes/Subservicios/Seguridad alimentaria.webp"
         },
         {
             icon: <Shield className="w-16 h-16" />,
             titleKey: 'consulting.pillar_anti',
             itemsEs: ["ISO 37001", "ISO 28001 (Supply Chain)", "ISO 37002 (Denuncias)", "Compliance Corporativo"],
             itemsEn: ["ISO 37001", "ISO 28001 (Supply Chain)", "ISO 37002 (Whistleblowing)", "Corporate Compliance"],
-            image: "/Imágenes/Subservicios/Gestión antisoborno.jpg"
+            image: "/Imágenes/Subservicios/Gestión antisoborno.webp"
         },
         {
             icon: <Leaf className="w-16 h-16" />,
             titleKey: 'consulting.pillar_esg',
             itemsEs: ["ISO 14001 (Ambiental)", "Huella de Carbono", "ISO 26000", "ODS & ESG Reporting"],
             itemsEn: ["ISO 14001 (Environmental)", "Carbon Footprint", "ISO 26000", "SDG & ESG Reporting"],
-            image: "/Imágenes/Subservicios/Sostenibilidad.jpg"
+            image: "/Imágenes/Subservicios/Sostenibilidad.webp"
         },
         {
             icon: <Lock className="w-16 h-16" />,
             titleKey: 'consulting.pillar_cyber',
             itemsEs: ["ISO/IEC 27001", "Gestión de Privacidad (ISO 27701)", "Protección de Datos Personales"],
             itemsEn: ["ISO/IEC 27001", "Privacy Management (ISO 27701)", "Personal Data Protection"],
-            image: "/Imágenes/Subservicios/Ciberseguridad.jpg"
+            image: "/Imágenes/Subservicios/Ciberseguridad.webp"
         },
         {
             icon: <Heart className="w-16 h-16" />,
             titleKey: 'consulting.pillar_health',
             itemsEs: ["ISO 45001 (SST)", "ISO 22320 (Emergencias)", "Igualdad de Género", "Ley 29783"],
             itemsEn: ["ISO 45001 (OH&S)", "ISO 22320 (Emergencies)", "Gender Equality", "Law 29783"],
-            image: "/Imágenes/Subservicios/Salud y bienestar.jpg"
+            image: "/Imágenes/Subservicios/Salud y bienestar.webp"
         }
     ];
 
@@ -62,6 +63,11 @@ const ConsultingPage = () => {
 
     return (
         <div className="bg-white min-h-screen pt-20">
+            <Helmet>
+                <title>Consultoría en Normas ISO y Sostenibilidad | APM Group</title>
+                <meta name="description" content="Nuestros servicios de consultoría estratégica y técnica para la obtención de certificaciones ISO 9001, ISO 14001, ISO 37001, ISO 45001 y más." />
+                <link rel="canonical" href="https://apmgroup.pe/servicios/consultoria" />
+            </Helmet>
             {/* Hero Section */}
             <section className="relative h-[65vh] flex items-center overflow-hidden bg-black">
                 <div className="absolute inset-0 z-0">
@@ -116,7 +122,7 @@ const ConsultingPage = () => {
                             <div key={i} className="group relative p-12 bg-secondary text-white rounded-[50px] overflow-hidden hover:bg-black transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_30px_#B2C53580] hover:border-primary/50 border border-white/5 flex flex-col items-center text-center">
                                 {/* Background Image */}
                                 <div className="absolute inset-0 z-0">
-                                    <img src={pillar.image} alt={t(pillar.titleKey)} className="w-full h-full object-cover opacity-20 group-hover:opacity-60 transition-opacity duration-700" />
+                                    <img src={pillar.image} alt={t(pillar.titleKey)} loading="lazy" className="w-full h-full object-cover opacity-20 group-hover:opacity-60 transition-opacity duration-700" />
                                     <div className="absolute inset-0 bg-black/60 transition-colors" />
                                 </div>
 
