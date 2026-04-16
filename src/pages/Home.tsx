@@ -201,6 +201,111 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* ── CHECKLIST ISO 9001 CTA ─────────────────────────────────── */}
+            <section id="checklist-iso" className="py-24 md:py-32 bg-[#FAFBF5] relative overflow-hidden">
+                {/* Background decorations */}
+                <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] translate-y-1/2 translate-x-1/3 pointer-events-none" />
+
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="bg-secondary rounded-[60px] p-10 md:p-16 lg:p-20 relative overflow-hidden group">
+                        {/* Glow effects */}
+                        <div className="absolute top-0 right-0 w-80 h-80 bg-primary/15 rounded-full blur-[100px] -translate-y-1/3 translate-x-1/4 pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-60 h-60 bg-primary/10 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+                        <div className="absolute top-8 left-8 w-2 h-2 bg-primary rounded-full animate-ping opacity-60" />
+
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+
+                            {/* LEFT: Copy */}
+                            <div className="lg:col-span-7 space-y-8">
+                                <div className="flex items-center gap-3 flex-wrap">
+                                    <span className="bg-primary text-black px-5 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest inline-block font-heading">
+                                        {t('checklist_cta.badge')}
+                                    </span>
+                                    <span className="text-white/30 text-[10px] font-bold uppercase tracking-widest">{t('checklist_cta.sub_badge')}</span>
+                                </div>
+
+                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[0.95] uppercase tracking-tight font-heading">
+                                    {t('checklist_cta.title_1')}{' '}
+                                    <span className="text-primary italic">{t('checklist_cta.title_2')}</span>
+                                </h2>
+
+                                <p className="text-white/60 text-lg leading-relaxed max-w-xl font-medium">
+                                    {t('checklist_cta.description')}
+                                </p>
+
+                                {/* Feature pills */}
+                                <div className="flex flex-wrap gap-3">
+                                    {(['checklist_cta.pill_1', 'checklist_cta.pill_3'] as const).map((key, i) => (
+                                        <div key={i} className="flex items-center gap-2 bg-white/5 px-4 py-2.5 rounded-full border border-white/10 text-[10px] font-black uppercase text-white/70 font-heading hover:border-primary/30 transition-all">
+                                            <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                            </svg>
+                                            {t(key)}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* CTA Button */}
+                                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                                    <a
+                                        href="/checklist-iso-9001"
+                                        className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-secondary rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 hover:shadow-[0_20px_40px_rgba(178,197,53,0.5)] transition-all shadow-[0_10px_30px_rgba(178,197,53,0.3)] font-heading group"
+                                    >
+                                        {t('checklist_cta.cta_button')}
+                                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* RIGHT: Visual card */}
+                            <div className="lg:col-span-5 relative">
+                                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-[40px] p-8 md:p-10 border border-white/10 relative overflow-hidden group/card hover:border-primary/30 transition-all duration-700">
+                                    <div className="absolute -top-16 -right-16 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
+
+                                    {/* Checklist icon */}
+                                    <div className="w-20 h-20 bg-primary/20 rounded-3xl flex items-center justify-center mb-8 group-hover/card:bg-primary group-hover/card:scale-110 transition-all duration-500">
+                                        <svg className="w-10 h-10 text-primary group-hover/card:text-black transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                        </svg>
+                                    </div>
+
+                                    <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-3 font-heading">
+                                        {t('checklist_cta.card_title')}
+                                    </h3>
+                                    <p className="text-white/50 font-medium text-sm mb-8 leading-relaxed">
+                                        {t('checklist_cta.card_desc')}
+                                    </p>
+
+                                    {/* Mini checklist preview */}
+                                    <div className="space-y-3">
+                                        {(['checklist_cta.item_1', 'checklist_cta.item_2', 'checklist_cta.item_3', 'checklist_cta.item_4'] as const).map((key, i) => (
+                                            <div key={i} className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5 hover:border-primary/20 transition-all">
+                                                <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                                <span className="text-white/70 text-sm font-medium">{t(key)}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Bottom decoration */}
+                                    <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-primary/80 font-heading">{t('checklist_cta.footer_badge')}</span>
+                                        </div>
+                                        <span className="text-white/30 text-[10px] font-bold uppercase tracking-widest">{t('checklist_cta.footer_sub')}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* ── WEBINAR SECTION ──────────────────────────────────────────── */}
             <section className="bg-secondary text-white py-24 md:py-32 m-8 md:m-16 rounded-[60px] relative overflow-hidden group">
                 <div className="absolute inset-0 z-0">
@@ -243,17 +348,17 @@ const Home = () => {
 
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                                     <div className="bg-white text-secondary rounded-2xl px-6 py-5 text-center flex-shrink-0 shadow-xl">
-                                        <p className="text-[10px] font-black uppercase tracking-wider text-secondary/40 leading-none mb-1 font-heading">MAR</p>
-                                        <p className="text-5xl font-black leading-none font-heading">14</p>
+                                        <p className="text-[10px] font-black uppercase tracking-wider text-secondary/40 leading-none mb-1 font-heading">ABR</p>
+                                        <p className="text-5xl font-black leading-none font-heading">30</p>
                                         <p className="text-[10px] font-black text-secondary/40 mt-1">2026</p>
                                     </div>
 
                                     <div className="flex-1">
                                         <h3 className="text-2xl md:text-3xl font-black text-white leading-tight mb-2 uppercase tracking-tight font-heading">
-                                            {t('webinar.topic_title').split('ISO')[0]}
-                                            <span className="text-primary"> ISO {t('webinar.topic_title').split('ISO')[1]}</span>
+                                            {t('webinar.topic_title')}
                                         </h3>
-                                        <p className="text-white/50 text-sm font-medium mb-4">{t('webinar.topic_desc')}</p>
+                                        <p className="text-white/50 text-sm font-medium mb-2">{t('webinar.topic_desc')}</p>
+                                        <p className="text-primary/80 text-xs font-bold mb-4">{t('webinar.speaker')}</p>
                                         <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-white/40 font-heading">
                                             <span className="flex items-center gap-1.5">
                                                 <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -267,19 +372,15 @@ const Home = () => {
                                     </div>
                                 </div>
 
-                                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                                <div className="mt-8 flex justify-center">
                                     <a
-                                        href="/contacto"
-                                        className="flex-1 sm:flex-none inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-black rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 hover:shadow-[0_20px_40px_rgba(178,197,53,0.5)] transition-all shadow-[0_10px_30px_rgba(178,197,53,0.3)] font-heading"
+                                        href="https://luma.com/y3qw5s2e"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-black rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 hover:shadow-[0_20px_40px_rgba(178,197,53,0.5)] transition-all shadow-[0_10px_30px_rgba(178,197,53,0.3)] font-heading"
                                     >
                                         {t('webinar.cta_register')}
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                                    </a>
-                                    <a
-                                        href="#"
-                                        className="flex-1 sm:flex-none inline-flex items-center justify-center gap-3 px-8 py-5 border border-white/20 text-white/70 rounded-2xl font-bold text-xs uppercase tracking-widest hover:border-primary/60 hover:text-primary transition-all font-heading"
-                                    >
-                                        {t('webinar.cta_calendar')}
                                     </a>
                                 </div>
 
@@ -291,14 +392,14 @@ const Home = () => {
                                 <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-4 font-heading">{t('webinar.also_in')}</p>
                                 <div className="flex gap-5 items-center p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-primary/20 transition-all">
                                     <div className="bg-white/10 text-white w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0">
-                                        <span className="text-[9px] font-black uppercase leading-none mb-0.5 text-white/50 font-heading">MAR</span>
-                                        <span className="text-xl font-black leading-none font-heading">28</span>
+                                        <span className="text-[9px] font-black uppercase leading-none mb-0.5 text-white/50 font-heading">MAY</span>
+                                        <span className="text-xl font-black leading-none font-heading">14</span>
                                     </div>
                                     <div className="flex-1">
                                         <h5 className="font-black text-sm uppercase leading-tight mb-1 font-heading">{t('webinar.session_title')}</h5>
                                         <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">19:00 PM · VIA ZOOM</p>
                                     </div>
-                                    <a href="/contacto" className="text-[10px] font-black text-primary uppercase tracking-widest hover:text-white transition-all flex items-center gap-1 font-heading">
+                                    <a href="https://luma.com/y3qw5s2e" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black text-primary uppercase tracking-widest hover:text-white transition-all flex items-center gap-1 font-heading">
                                         {t('webinar.register')}
                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                                     </a>

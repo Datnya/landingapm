@@ -11,8 +11,8 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-secondary text-white py-20 pb-10 border-t border-white/5">
-            <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+        <footer className="bg-secondary text-white py-12 pb-6 border-t border-white/5">
+            <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="footer-brand">
                     <img src="/Imágenes/LOGO APM LETRAS NEGRAS.webp" alt="APM Group" loading="lazy" className="h-14 mb-8 brightness-0 invert" />
                     <p className="text-white/60 leading-relaxed italic font-medium">"Potenciando el éxito empresarial"</p>
@@ -53,7 +53,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="container mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-center text-white/40 text-[10px] uppercase font-bold tracking-widest">
+            <div className="container mx-auto px-6 mt-8 pt-6 border-t border-white/10 text-center text-white/40 text-[10px] uppercase font-bold tracking-widest">
                 <p>&copy; 2026 APM Group. Todos los derechos reservados.</p>
             </div>
         </footer>

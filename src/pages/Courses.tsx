@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Search, ChevronRight, Play, Monitor, Tablet, Smartphone, Award, Unlock, Clock, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useI18n } from '../i18n';
 
@@ -104,12 +105,12 @@ export default function CoursesPage() {
                             {t('courses.hero_desc')}
                         </p>
                         <div className="flex flex-wrap gap-6">
-                            <button className="bg-primary text-secondary px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-[0_20px_40px_rgba(178,197,53,0.3)]">
+                            <Link to="/campus-mantenimiento" className="bg-primary text-secondary px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-[0_20px_40px_rgba(178,197,53,0.3)]">
                                 {t('courses.hero_cta_1')}
-                            </button>
-                            <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all">
+                            </Link>
+                            <Link to="/campus-mantenimiento" className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all">
                                 {t('courses.hero_cta_2')}
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -207,9 +208,9 @@ export default function CoursesPage() {
                                     <p className="text-secondary/50 text-sm font-medium leading-relaxed mb-8">
                                         {locale === 'en' ? course.descEn : course.descEs}
                                     </p>
-                                    <button className="w-full py-5 bg-[#F9FBE7] text-secondary rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-primary transition-all flex items-center justify-center gap-3 group/btn">
+                                    <Link to="/campus-mantenimiento" className="w-full py-5 bg-[#F9FBE7] text-secondary rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-primary transition-all flex items-center justify-center gap-3 group/btn">
                                         {t('courses.course_cta')} <ArrowRight size={14} className="group-hover/btn:translate-x-2 transition-transform" />
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         ))}
@@ -229,9 +230,9 @@ export default function CoursesPage() {
                     <p className="text-secondary/70 text-lg md:text-xl font-bold max-w-2xl mb-12 relative z-10">
                         {t('courses.promo_desc')}
                     </p>
-                    <button className="bg-secondary text-white px-12 py-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:scale-105 transition-all shadow-2xl relative z-10">
+                    <Link to="/campus-mantenimiento" className="bg-secondary text-white px-12 py-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:scale-105 transition-all shadow-2xl relative z-10">
                         {t('courses.promo_btn')}
-                    </button>
+                    </Link>
                     <p className="mt-8 text-secondary/40 text-[10px] font-black uppercase tracking-widest relative z-10">
                         {t('courses.promo_disclaimer')}
                     </p>
