@@ -121,16 +121,16 @@ export default function CoursesPage() {
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {features.map((feature, i) => (
-                            <div key={i} className="group relative bg-white p-12 rounded-[50px] shadow-[0_20px_60px_rgba(0,0,0,0.03)] border-2 border-transparent hover:border-primary/20 hover:translate-y-[-20px] transition-all duration-700 overflow-hidden text-center">
-                                <div className={cn("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-700", feature.gradient)}></div>
+                            <div key={i} className="group relative bg-[#0a0a0a] p-12 rounded-[50px] shadow-lg border-2 border-[#1a1a1a] hover:border-primary/40 hover:shadow-[0_20px_60px_rgba(178,197,53,0.15)] hover:translate-y-[-20px] transition-all duration-700 overflow-hidden text-center">
+                                <div className={cn("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-700", feature.gradient)}></div>
                                 <div className="relative z-10">
-                                    <div className="w-24 h-24 rounded-3xl bg-[#F9FBE7] text-primary flex items-center justify-center mb-10 mx-auto transform group-hover:rotate-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-secondary transition-all duration-500 shadow-lg">
+                                    <div className="w-24 h-24 rounded-3xl bg-[#F9FBE7] text-primary flex items-center justify-center mb-10 mx-auto transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 shadow-lg">
                                         {feature.icon}
                                     </div>
-                                    <h4 className="text-2xl font-black uppercase tracking-tight mb-6 text-secondary">{t(feature.titleKey)}</h4>
-                                    <p className="text-secondary/60 text-base font-medium leading-relaxed">{t(feature.descKey)}</p>
+                                    <h4 className="text-2xl font-black uppercase tracking-tight mb-6 text-white">{t(feature.titleKey)}</h4>
+                                    <p className="text-white/70 text-base font-medium leading-relaxed">{t(feature.descKey)}</p>
                                 </div>
-                                <div className="absolute top-8 right-8 w-2 h-2 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute top-8 right-8 w-2 h-2 rounded-full bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
                         ))}
                     </div>

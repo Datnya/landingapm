@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SyntheticHero from '../components/ui/synthetic-hero';
 import { useI18n } from '../i18n';
+import { Globe, ThumbsUp, Star, Lightbulb, Users, TrendingUp } from 'lucide-react';
 
 // ── Carousel: P2, P3, P4 — converted from DNG to JPEG for browser compatibility
 const CAROUSEL_IMAGES = [
@@ -164,6 +165,77 @@ const Home = () => {
                     t('hero.micro_3'),
                 ]}
             />
+
+            {/* ── ESTADÍSTICAS / LOGROS ────────────────────────────────────── */}
+            <section className="py-20 bg-white relative z-20 border-b border-gray-100/50">
+                <div className="container mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 max-w-[1400px] mx-auto">
+                        
+                        {/* Stat 1 */}
+                        <div className="flex flex-col items-center text-center group">
+                            <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-6 group-hover:scale-110 shadow-sm">
+                                <Globe strokeWidth={1.5} className="w-24 h-24" />
+                            </div>
+                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                                <span className="text-6xl md:text-7xl tracking-tighter">+30</span>
+                                <span className="text-lg md:text-xl">AÑOS DE EXPERIENCIA EN EL SECTOR</span>
+                            </h3>
+                            <p className="text-gray-500 text-sm font-medium leading-relaxed">
+                                a nivel nacional y LATAM
+                            </p>
+                        </div>
+
+                        {/* Stat 2 */}
+                        <div className="flex flex-col items-center text-center group">
+                            <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:-rotate-6 group-hover:scale-110 shadow-sm relative">
+                                <ThumbsUp strokeWidth={1.5} className="w-20 h-20 mt-4" />
+                                <div className="absolute top-6 right-6 flex gap-1 text-primary group-hover:text-white transition-colors duration-500">
+                                    <Star fill="currentColor" className="w-6 h-6" />
+                                    <Star fill="currentColor" className="w-8 h-8 -mt-4" />
+                                    <Star fill="currentColor" className="w-6 h-6" />
+                                </div>
+                            </div>
+                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                                <span className="text-6xl md:text-7xl tracking-tighter">98%</span>
+                                <span className="text-lg md:text-xl">SATISFACCIÓN DE CLIENTES</span>
+                            </h3>
+                            <p className="text-gray-500 text-sm font-medium leading-relaxed px-2">
+                                Basados en encuestas y testimonios reales de nuestros proyectos
+                            </p>
+                        </div>
+
+                        {/* Stat 3 */}
+                        <div className="flex flex-col items-center text-center group">
+                            <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-6 group-hover:scale-110 shadow-sm relative">
+                                <Lightbulb strokeWidth={1.5} className="w-24 h-24" />
+                                <Users strokeWidth={2} className="w-10 h-10 absolute bottom-6 right-6 text-primary group-hover:text-white transition-colors duration-500" />
+                            </div>
+                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                                <span className="text-6xl md:text-7xl tracking-tighter">+35K</span>
+                                <span className="text-lg md:text-xl">HORAS DE CONSULTORÍA Y AUDITORÍA</span>
+                            </h3>
+                            <p className="text-gray-500 text-sm font-medium leading-relaxed px-2">
+                                Resultados tangibles y soluciones integrales en normas ISO y gestión empresarial
+                            </p>
+                        </div>
+
+                        {/* Stat 4 */}
+                        <div className="flex flex-col items-center text-center group">
+                            <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:-rotate-6 group-hover:scale-110 shadow-sm">
+                                <TrendingUp strokeWidth={1.5} className="w-24 h-24" />
+                            </div>
+                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                                <span className="text-6xl md:text-7xl tracking-tighter">+100</span>
+                                <span className="text-lg md:text-xl">ORGANIZACIONES TRANSFORMADAS</span>
+                            </h3>
+                            <p className="text-gray-500 text-sm font-medium leading-relaxed px-2">
+                                Desde corporaciones líderes en Perú y la región
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
 
             {/* ── PILARES DE SERVICIO ──────────────────────────────────────── */}
             <section id="pilares" className="py-24 md:py-32 bg-white">

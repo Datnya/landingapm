@@ -11,6 +11,12 @@ const MAPS_EMBED_URL =
 const Contact = () => {
     const { t } = useI18n();
     const [agreed, setAgreed] = useState(false);
+    const [selectedNormas, setSelectedNormas] = useState<string[]>([]);
+    const [selectedEtapa, setSelectedEtapa] = useState('');
+
+    const toggleNorma = (norma: string) => {
+        setSelectedNormas(prev => prev.includes(norma) ? prev.filter(n => n !== norma) : [...prev, norma]);
+    };
 
     const contactInfo = [
         {
@@ -245,6 +251,69 @@ const Contact = () => {
                                                         </option>
                                                     ))}
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        {/* Norma - Multi-select checkboxes */}
+                                        <div>
+                                            <label className={labelClass}>{t('contact.field_norma')} *</label>
+                                            <input type="hidden" name="normas_interes" value={selectedNormas.join(', ')} />
+                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+                                                {(['iso9001','iso45001','iso14001','iso27001','iso37001','esg','otro'] as const).map((norma) => (
+                                                    <button
+                                                        key={norma}
+                                                        type="button"
+                                                        onClick={() => toggleNorma(norma)}
+                                                        className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wide transition-all border ${selectedNormas.includes(norma) ? 'bg-primary text-secondary border-primary' : 'bg-white/5 text-white/60 border-white/10 hover:border-primary/40'}`}
+                                                    >
+                                                        {t(`contact.norma_${norma}`)}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Etapa - Radio buttons */}
+                                        <div>
+                                            <label className={labelClass}>{t('contact.field_etapa')} *</label>
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
+                                                {(['explorando','planeando','comprando'] as const).map((etapa) => (
+                                                    <button
+                                                        key={etapa}
+                                                        type="button"
+                                                        onClick={() => setSelectedEtapa(etapa)}
+                                                        className={`px-4 py-3 rounded-xl text-xs font-bold transition-all border flex items-center gap-3 ${selectedEtapa === etapa ? 'bg-primary text-secondary border-primary' : 'bg-white/5 text-white/60 border-white/10 hover:border-primary/40'}`}
+                                                    >
+                                                        <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${selectedEtapa === etapa ? 'border-secondary' : 'border-white/30'}`}>
+                                                            {selectedEtapa === etapa && <span className="w-2 h-2 rounded-full bg-secondary"></span>}
+                                                        </span>
+                                                        {t(`contact.etapa_${etapa}`)}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                            <input type="hidden" name="etapa" value={selectedEtapa} />
+                                        </div>
+
+                                        {/* Trabajadores - Select */}
+                                        <div>
+                                            <label className={labelClass}>{t('contact.field_trabajadores')} *</label>
+                                            <select required name="trabajadores" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
+                                                <option value="" disabled className={selectOptionClass}>{t('contact.select_how').replace('opción', 'rango')}</option>
+                                                {(['50','250','1000','1000plus'] as const).map((val) => (
+                                                    <option key={val} value={val} className={selectOptionClass}>
+                                                        {t(`contact.trabajadores_${val}`)}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        {/* Lead Magnet Banner */}
+                                        <div className="p-5 bg-primary/10 rounded-2xl border border-primary/30 flex items-start gap-4">
+                                            <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                                <Mail className="w-6 h-6 text-primary" />
+                                            </div>
+                                            <div>
+                                                <p className="text-primary font-black text-sm mb-1">{t('contact.lead_magnet_title')}</p>
+                                                <p className="text-white/50 text-xs font-medium leading-relaxed">{t('contact.lead_magnet_desc')}</p>
                                             </div>
                                         </div>
 

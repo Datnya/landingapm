@@ -29,6 +29,25 @@ const ScrollToTop = () => {
     return null;
 };
 
+// Track visitor on first load (sends geolocation to APM email)
+const VisitorTracker = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        const tracked = sessionStorage.getItem('apm_tracked');
+        if (tracked) return;
+        sessionStorage.setItem('apm_tracked', '1');
+
+        fetch('/.netlify/functions/track-visitor', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ page: pathname })
+        }).catch(() => {});
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    return null;
+};
+
 const Layout = () => {
     const location = useLocation();
     const { t } = useI18n();
@@ -39,6 +58,7 @@ const Layout = () => {
     return (
         <div className="min-h-screen bg-white text-secondary selection:bg-primary/30 font-body overflow-x-hidden flex flex-col">
             <ScrollToTop />
+            <VisitorTracker />
             {!hideNavbar && <Navbar />}
 
             <main className="flex-grow">

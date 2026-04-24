@@ -34,14 +34,19 @@ const About = () => {
             {/* Mission / Vision / Values */}
             <section className="py-32 bg-[#F8FAFC]">
                 <div className="container mx-auto px-6">
-                    <div className="text-center max-w-3xl mx-auto mb-20">
-                        <h2 className="text-4xl md:text-5xl font-black text-secondary uppercase tracking-tighter mb-6">
-                            {t('about.mvv_title')} <span className="text-primary italic">{t('about.mvv_title_em')}</span>
+                    <div className="text-center max-w-6xl mx-auto mb-24">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-primary mb-8 font-heading">
+                            En APM Group, transformamos organizaciones y potenciamos personas
                         </h2>
-                        <div className="w-20 h-1.5 bg-primary mx-auto rounded-full mb-8"></div>
-                        <p className="text-secondary/50 font-medium text-lg leading-relaxed">
-                            {t('about.mvv_desc')}
-                        </p>
+                        <h3 className="text-xl md:text-2xl font-black text-secondary mb-10">
+                            Más de 20 años creando valor a nivel nacional y LATAM, con consultorías, auditorías y formación de alto impacto.
+                        </h3>
+                        <div className="space-y-6 text-secondary/70 font-medium text-lg leading-relaxed">
+                            <p>En APM Group creemos en el poder de la gestión estratégica y la innovación para transformar organizaciones.</p>
+                            <p>Durante más de 20 años, hemos acompañado a empresas de diversos sectores a lograr certificaciones internacionales, optimizar procesos y elevar su competitividad, con resultados reales y medibles. Nuestro compromiso es claro: brindar soluciones personalizadas, eficientes y sostenibles, con un equipo altamente especializado, orientado a la excelencia y la innovación.</p>
+                            <p>Vamos más allá; creamos impacto, inspiramos confianza y construimos futuro.</p>
+                            <p className="font-bold text-secondary">APM Group, dónde la estrategia se convierte en acción y los resultados en valor.</p>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -71,6 +76,7 @@ const About = () => {
                     </div>
                 </div>
             </section>
+
 
             {/* Specialists Section */}
             <SpecialistsSection />
@@ -140,6 +146,49 @@ const About = () => {
                         100% { transform: translateX(-50%); }
                     }
                 `}</style>
+            </section>
+
+            {/* Webinar YouTube Section */}
+            <section className="py-24 bg-[#F8FAFC] relative overflow-hidden">
+                <div className="container mx-auto px-6">
+                    <div className="bg-secondary rounded-[40px] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                        
+                        <div className="w-full lg:w-1/2 relative z-10 text-center lg:text-left">
+                            <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight mb-6 font-heading">
+                                Eleva tu nivel con nuestros <span className="text-primary italic">Webinars Gratuitos</span>
+                            </h3>
+                            <p className="text-white/70 text-lg mb-8 leading-relaxed">
+                                Accede a conocimiento técnico de alto valor impartido por nuestros especialistas. Explora nuestro canal de YouTube y descubre sesiones exclusivas sobre normas internacionales, sostenibilidad, excelencia operativa y mucho más, totalmente gratis.
+                            </p>
+                            <a 
+                                href="https://www.youtube.com/@APMGroup-Consultor%C3%ADa" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-secondary rounded-xl font-black uppercase text-sm hover:scale-105 transition-all shadow-[0_10px_30px_rgba(178,197,53,0.3)] font-heading"
+                            >
+                                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.498 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                                Ver todos los Webinars
+                            </a>
+                        </div>
+
+                        <div className="w-full lg:w-1/2 relative z-10">
+                            <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 group relative">
+                                <iframe 
+                                    className="w-full h-full absolute inset-0" 
+                                    src="https://www.youtube.com/embed/8tRCf0Dkr40?si=7110ayRCegAMbSrf" 
+                                    title="Webinar APM Group" 
+                                    frameBorder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerPolicy="strict-origin-when-cross-origin" 
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     );

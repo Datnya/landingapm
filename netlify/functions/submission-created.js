@@ -1,93 +1,146 @@
 /**
  * Netlify Function: submission-created
  * 
- * This function is automatically triggered by Netlify whenever a form submission
- * is received. It sends an email notification to the APM Group team.
+ * Automatically triggered by Netlify on ANY form submission.
+ * Routes to appropriate handler based on form_name.
  * 
- * Netlify automatically provides the built-in email sending capability
- * through the @netlify/emails package, but for simplicity and reliability,
- * we use fetch to call Netlify's built-in notification system.
- * 
- * IMPORTANT: To enable email notifications, go to:
- * Netlify Dashboard > Site > Forms > Form notifications > Add notification > Email notification
- * - Email: consultas@apmgroup.pe
- * - Form: checklist-iso
- * 
- * This function acts as an additional backup and can be customized further.
+ * REQUIRES: SENDGRID_API_KEY environment variable in Netlify Dashboard.
  */
+
+const fs = require('fs');
+const path = require('path');
+
+async function sendEmail(apiKey, payload) {
+    const resp = await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+    if (!resp.ok) {
+        const text = await resp.text();
+        console.error('SendGrid error:', resp.status, text);
+    }
+    return resp;
+}
+
+async function handleContactForm(data, apiKey) {
+    const { nombre, cargo, email, telefono, ciudad, ruc,
+        empresa, industria, servicio, como_se_entero,
+        normas_interes, etapa, trabajadores, mensaje } = data;
+
+    const fecha = new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' });
+
+    // 1) Notify APM team
+    const notifBody = `
+Nuevo Lead - Formulario de Contacto
+
+📌 Nombre: ${nombre || '-'}
+💼 Cargo: ${cargo || '-'}
+📧 Email: ${email || '-'}
+📱 Tel: ${telefono || '-'}
+🏙️ Ciudad: ${ciudad || '-'}
+🔢 RUC: ${ruc || '-'}
+🏢 Empresa: ${empresa || '-'}
+🏭 Industria: ${industria || '-'}
+📋 Servicio: ${servicio || '-'}
+📡 Fuente: ${como_se_entero || '-'}
+
+── CALIFICACIÓN ──
+📐 Normas: ${normas_interes || '-'}
+⏱️ Etapa: ${etapa || '-'}
+👥 Trabajadores: ${trabajadores || '-'}
+
+── MENSAJE ──
+${mensaje || 'Sin mensaje'}
+
+📅 ${fecha}
+🎁 Checklist ISO 9001 enviado automáticamente al lead.
+    `.trim();
+
+    await sendEmail(apiKey, {
+        personalizations: [{ to: [{ email: 'consultas@apmgroup.pe' }], subject: `Nuevo Lead: ${nombre} - ${empresa}` }],
+        from: { email: 'consultas@apmgroup.pe', name: 'APM Group Web' },
+        content: [{ type: 'text/plain', value: notifBody }]
+    });
+
+    // 2) Send checklist PDF to user
+    if (email) {
+        let pdfBase64 = '';
+        try {
+            const pdfPath = path.resolve(__dirname, '..', '..', 'dist', 'Herramientas', 'Checklist descargable.pdf');
+            pdfBase64 = fs.readFileSync(pdfPath).toString('base64');
+        } catch (e) {
+            try {
+                const alt = path.resolve(__dirname, '..', '..', 'public', 'Herramientas', 'Checklist descargable.pdf');
+                pdfBase64 = fs.readFileSync(alt).toString('base64');
+            } catch (e2) { console.error('PDF not found:', e2.message); }
+        }
+
+        const html = `
+<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
+<div style="background:#1a1a2e;padding:40px 30px;text-align:center"><h1 style="color:#B2C535;margin:0">APM Group</h1><p style="color:rgba(255,255,255,0.6);margin:10px 0 0;font-size:14px">Consultoría · Auditoría · Formación</p></div>
+<div style="padding:40px 30px">
+<h2 style="color:#1a1a2e;font-size:22px">Estimado/a ${nombre || 'profesional'},</h2>
+<p style="color:#555;line-height:1.8">Gracias por su interés en <strong style="color:#1a1a2e">APM Group</strong>. Hemos recibido su solicitud y nuestro equipo la revisará a la brevedad.</p>
+<p style="color:#555;line-height:1.8">Como parte de nuestro compromiso, adjuntamos <strong style="color:#B2C535">gratuitamente</strong> nuestro <strong>Checklist de Diagnóstico ISO 9001:2015</strong>, desarrollado por auditores con +50 diagnósticos realizados.</p>
+<div style="background:#f8fbe7;border-left:4px solid #B2C535;padding:20px;border-radius:8px;margin:25px 0"><p style="margin:0;color:#1a1a2e;font-weight:bold">📎 Documento adjunto:</p><p style="margin:5px 0 0;color:#555">Checklist Diagnóstico ISO 9001:2015 (PDF)</p></div>
+<p style="color:#555;line-height:1.8">Un consultor se comunicará con usted en máximo <strong>24 horas hábiles</strong>.</p>
+<p style="color:#555;line-height:1.8;margin-top:25px">Cordialmente,<br><strong style="color:#1a1a2e">El equipo de APM Group</strong><br><span style="color:#B2C535;font-size:13px">consultas@apmgroup.pe · +51 967 170 627</span></p>
+</div>
+<div style="background:#1a1a2e;padding:20px;text-align:center"><p style="color:rgba(255,255,255,0.4);font-size:11px;margin:0">© 2026 APM Group. Todos los derechos reservados.</p></div>
+</div>`;
+
+        const emailPayload = {
+            personalizations: [{ to: [{ email }], subject: 'Checklist diagnóstico 9001 para tu empresa' }],
+            from: { email: 'consultas@apmgroup.pe', name: 'APM Group' },
+            content: [{ type: 'text/html', value: html }]
+        };
+        if (pdfBase64) {
+            emailPayload.attachments = [{ content: pdfBase64, filename: 'Checklist_Diagnostico_ISO9001_APMGroup.pdf', type: 'application/pdf', disposition: 'attachment' }];
+        }
+        await sendEmail(apiKey, emailPayload);
+        console.log(`✅ Checklist sent to ${email}`);
+    }
+}
+
+async function handleChecklistForm(data, apiKey) {
+    const { nombre, email, empresa, cargo } = data;
+    const fecha = new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' });
+
+    await sendEmail(apiKey, {
+        personalizations: [{ to: [{ email: 'consultas@apmgroup.pe' }], subject: `Formulario de Checklist ISO 9001 - ${nombre}` }],
+        from: { email: 'consultas@apmgroup.pe', name: 'APM Group Web' },
+        content: [{ type: 'text/plain', value: `Nuevo lead Checklist ISO\n\n📌 ${nombre}\n📧 ${email}\n🏢 ${empresa}\n💼 ${cargo}\n📅 ${fecha}` }]
+    });
+}
 
 exports.handler = async function(event) {
     try {
         const payload = JSON.parse(event.body).payload;
-        
-        // Only process checklist-iso form submissions
-        if (payload.form_name !== 'checklist-iso') {
-            return { statusCode: 200, body: 'Not a checklist form, skipping.' };
+        const apiKey = process.env.SENDGRID_API_KEY;
+
+        if (!apiKey) {
+            console.warn('⚠️ SENDGRID_API_KEY not set');
+            return { statusCode: 200, body: 'Email service not configured.' };
         }
 
-        const { nombre, email, empresa, cargo } = payload.data || {};
+        const formName = payload.form_name;
+        const data = payload.data || {};
 
-        // Build email body
-        const emailBody = `
-Nuevo lead desde el formulario de Checklist ISO 9001
+        if (formName === 'contacto-apm') {
+            await handleContactForm(data, apiKey);
+        } else if (formName === 'checklist-iso') {
+            await handleChecklistForm(data, apiKey);
+        } else {
+            console.log(`Unknown form: ${formName}`);
+        }
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-DATOS DEL CONTACTO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📌 Nombre:    ${nombre || 'No proporcionado'}
-📧 Email:     ${email || 'No proporcionado'}
-🏢 Empresa:   ${empresa || 'No proporcionado'}
-💼 Cargo:     ${cargo || 'No proporcionado'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📅 Fecha:     ${new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' })}
-🌐 Formulario: Checklist Diagnóstico ISO 9001
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Este lead ha descargado el Checklist de Diagnóstico ISO 9001 gratuito.
-Se recomienda dar seguimiento en un plazo máximo de 24 horas.
-
--- 
-APM Group | Sistema de Notificaciones Web
-        `.trim();
-
-        console.log('📧 Checklist ISO form submission received:');
-        console.log(`   Name: ${nombre}`);
-        console.log(`   Email: ${email}`);
-        console.log(`   Company: ${empresa}`);
-        console.log(`   Position: ${cargo}`);
-        console.log(`   Email body prepared for: consultas@apmgroup.pe`);
-
-        // Note: Netlify's built-in form notification (configured in the dashboard)
-        // will handle the actual email delivery to consultas@apmgroup.pe.
-        // This function logs the submission for monitoring purposes.
-        // 
-        // If you want to use a third-party email service (SendGrid, Mailgun, etc.),
-        // add the API key as an environment variable in Netlify and uncomment below:
-        //
-        // await fetch('https://api.sendgrid.com/v3/mail/send', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Authorization': `Bearer ${process.env.SENDGRID_API_KEY}`,
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         personalizations: [{ to: [{ email: 'consultas@apmgroup.pe' }], subject: 'Formulario de Checklist ISO 9001' }],
-        //         from: { email: 'noreply@apmgroup.pe', name: 'APM Group Web' },
-        //         content: [{ type: 'text/plain', value: emailBody }]
-        //     })
-        // });
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: 'Submission processed successfully' })
-        };
+        return { statusCode: 200, body: JSON.stringify({ message: 'OK' }) };
     } catch (error) {
-        console.error('Error processing submission:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to process submission' })
-        };
+        console.error('Error:', error);
+        return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
     }
 };
