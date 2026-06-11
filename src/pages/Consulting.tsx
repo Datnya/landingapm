@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Target, RefreshCcw, Shield, Leaf, Lock, Heart, Factory, Pickaxe, ShoppingBag, Utensils, Briefcase, GraduationCap, Cpu } from 'lucide-react';
+import { Target, RefreshCcw, Shield, Leaf, Lock, Heart, Factory, Pickaxe, ShoppingBag, Utensils, Briefcase, GraduationCap, Cpu, ArrowRight } from 'lucide-react';
 import { useI18n } from '../i18n';
 
 const ConsultingPage = () => {
@@ -59,6 +59,38 @@ const ConsultingPage = () => {
         { nameEs: "Servicios", nameEn: "Services", icon: <Briefcase size={16} /> },
         { nameEs: "Educación", nameEn: "Education", icon: <GraduationCap size={16} /> },
         { nameEs: "Tecnología", nameEn: "Technology", icon: <Cpu size={16} /> }
+    ];
+
+    const sustainabilityItemsEs = [
+        "ISO 14001 – Sistema de Gestión Ambiental",
+        "ISO 50001 – Sistema de Gestión Energética",
+        "ISO 14067 – Huella de Carbono de Productos",
+        "ISO 14064 – Huella de Carbono de Organizaciones",
+        "ISO 14046 – Huella de Agua",
+        "ISO 20400 – Compras Sostenibles",
+        "ISO 26000 – Guía sobre Responsabilidad Social",
+        "SGE21 – Gestión Ética y Responsabilidad Empresarial",
+        "SA 8000 – Responsabilidad Social Internacional",
+        "Sistemas de Gestión de Igualdad de Género",
+        "ESR – Empresa Socialmente Responsable",
+        "Economía Circular",
+        "ESG y Reporte | Memoria de Sostenibilidad"
+    ];
+
+    const sustainabilityItemsEn = [
+        "ISO 14001 – Environmental Management System",
+        "ISO 50001 – Energy Management System",
+        "ISO 14067 – Carbon Footprint of Products",
+        "ISO 14064 – Carbon Footprint of Organizations",
+        "ISO 14046 – Water Footprint",
+        "ISO 20400 – Sustainable Procurement",
+        "ISO 26000 – Guidance on Social Responsibility",
+        "SGE21 – Ethical and Socially Responsible Management",
+        "SA 8000 – Social Accountability International",
+        "Gender Equality Management Systems",
+        "ESR – Socially Responsible Enterprise",
+        "Circular Economy",
+        "ESG and Reporting | Sustainability Report"
     ];
 
     return (
@@ -142,6 +174,57 @@ const ConsultingPage = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Sustainability Special Panel */}
+            <section className="py-12 bg-white">
+                <div className="container mx-auto px-6">
+                    <div className="bg-[#FAFBF5] rounded-[50px] overflow-hidden flex flex-col lg:flex-row border border-black/5 shadow-[0_20px_60px_rgba(0,0,0,0.03)] group">
+                        {/* Image Side */}
+                        <div className="lg:w-2/5 relative overflow-hidden min-h-[300px] lg:min-h-full">
+                            <img src="/Imágenes/sostenibilidad_nueva.jpg" alt="Sostenibilidad Empresarial" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#FAFBF5] to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#FAFBF5] z-10" />
+                        </div>
+                        
+                        {/* Content Side */}
+                        <div className="lg:w-3/5 p-10 md:p-16 relative z-20 bg-[#FAFBF5] flex flex-col justify-center">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary">
+                                    <Leaf className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-3xl md:text-4xl font-black text-secondary uppercase tracking-tighter">
+                                    {window.localStorage.getItem('language') === 'en' ? 'Sustainability Services' : 'Servicios de Sostenibilidad'}
+                                </h3>
+                            </div>
+                            <p className="text-secondary/60 mb-10 font-medium leading-relaxed max-w-2xl">
+                                {window.localStorage.getItem('language') === 'en' 
+                                    ? 'We guide your organization towards a green and socially responsible transition through recognized international standards.' 
+                                    : 'Guiamos a su organización hacia una transición verde y socialmente responsable a través de estándares internacionales reconocidos.'}
+                            </p>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-10">
+                                {(window.localStorage.getItem('language') === 'en' ? sustainabilityItemsEn : sustainabilityItemsEs).map((item, idx) => (
+                                    <div key={idx} className="flex items-start gap-3">
+                                        <div className="mt-1.5 min-w-[6px] h-[6px] rounded-full bg-primary" />
+                                        <span className="text-sm font-semibold text-secondary/80 leading-snug">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="mt-2">
+                                <a 
+                                    href="/contacto" 
+                                    className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-secondary rounded-xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-md hover:shadow-lg group"
+                                >
+                                    {window.localStorage.getItem('language') === 'en' 
+                                        ? 'Want to implement sustainability? Contact us here' 
+                                        : '¿Quieres implementar sostenibilidad en tu empresa? Contáctanos aquí'}
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

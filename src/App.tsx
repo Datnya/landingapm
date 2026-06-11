@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 import Auditoria from './pages/Audit';
 import Consultoria from './pages/Consulting';
 import Formacion from './pages/Training';
+import OccupationalMedicine from './pages/OccupationalMedicine';
 import Success from './pages/Success';
 import ChecklistISO from './pages/ChecklistISO';
 import ChecklistSuccess from './pages/ChecklistSuccess';
@@ -72,6 +73,7 @@ const Layout = () => {
                     <Route path="/servicios/auditoria" element={<Auditoria />} />
                     <Route path="/servicios/consultoria" element={<Consultoria />} />
                     <Route path="/servicios/formacion" element={<Formacion />} />
+                    <Route path="/servicios/medicina-ocupacional" element={<OccupationalMedicine />} />
                     <Route path="/exito" element={<Success />} />
                     <Route path="/checklist-iso-9001" element={<ChecklistISO />} />
                     <Route path="/exito-checklist" element={<ChecklistSuccess />} />

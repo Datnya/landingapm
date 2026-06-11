@@ -7,6 +7,7 @@ import {
     BarChart3,
     GraduationCap,
     ChevronRight,
+    Search,
 } from 'lucide-react';
 import { useI18n } from '../i18n';
 
@@ -41,111 +42,81 @@ const topServices: Service[] = [
 ];
 
 const catalogItems = [
-    // --- CONSULTORÍA ---
-    {
-        category: "Consultoría",
-        title: "Calidad y Excelencia",
-        description: "ISO 9001, ISO/IEC 17025, BPL y metodologías de mejora continua para la excelencia operativa.",
-        duration: "3-6 meses",
-        image: "/Imágenes/Subservicios/Calidad y excelencia.webp",
-        sector: "Industrial"
-    },
-    {
-        category: "Consultoría",
-        title: "Seguridad Alimentaria",
-        description: "Implementación de ISO 22000, HACCP y estándares globales BRC/IFS para la industria alimentaria.",
-        duration: "4-6 meses",
-        image: "/Imágenes/Subservicios/Seguridad alimentaria.webp",
-        sector: "Alimentos"
-    },
-    {
-        category: "Consultoría",
-        title: "Gestión Antisoborno",
-        description: "ISO 37001 y sistemas de cumplimiento corporativo para garantizar la integridad institucional.",
-        duration: "4-5 meses",
-        image: "/Imágenes/Subservicios/Gestión antisoborno.webp",
-        sector: "Servicios"
-    },
-    {
-        category: "Consultoría",
-        title: "Sostenibilidad (ESG)",
-        description: "Gestión ambiental ISO 14001, huella de carbono y reportes de sostenibilidad corporativa.",
-        duration: "3-6 meses",
-        image: "/Imágenes/Subservicios/Sostenibilidad.webp",
-        sector: "Minería"
-    },
-    {
-        category: "Consultoría",
-        title: "Ciberseguridad",
-        description: "Protección de activos de información mediante ISO 27001 y gestión de privacidad de datos.",
-        duration: "4-8 meses",
-        image: "/Imágenes/Subservicios/Ciberseguridad.webp",
-        sector: "Tecnología"
-    },
-    {
-        category: "Consultoría",
-        title: "Salud y Bienestar",
-        description: "Sistemas de Seguridad y Salud en el Trabajo ISO 45001 y programas de bienestar laboral.",
-        duration: "3-5 meses",
-        image: "/Imágenes/Subservicios/Salud y bienestar.webp",
-        sector: "Industrial"
-    },
-    // --- AUDITORÍA ---
-    {
-        category: "Auditoría",
-        title: "Auditoría Interna de Sistemas",
-        description: "Evaluación exhaustiva de sistemas de gestión para verificar cumplimiento y eficacia operativa.",
-        duration: "15-20 días",
-        image: "/Imágenes/Auditoría.webp",
-        sector: "Servicios"
-    },
-    {
-        category: "Auditoría",
-        title: "Homologación de Proveedores",
-        description: "Validación técnica de socios comerciales para asegurar la calidad en toda la cadena de valor.",
-        duration: "Bajo demanda",
-        image: "/Imágenes/Auditoría.webp",
-        sector: "Retail"
-    },
-    {
-        category: "Auditoría",
-        title: "Inspección de Estándares",
-        description: "Verificación de cumplimiento de normativas específicas y requisitos legales del sector.",
-        duration: "Semanal",
-        image: "/Imágenes/Auditoría.webp",
-        sector: "Minería"
-    },
-    // --- FORMACIÓN ---
-    {
-        category: "Formación",
-        title: "Certificación Auditor Jefe",
-        description: "Formación de alto nivel para profesionales que buscan liderar procesos de auditoría certificados.",
-        duration: "40 horas",
-        image: "/Imágenes/Formación.webp",
-        sector: "Industrial"
-    },
-    {
-        category: "Formación",
-        title: "Especialización en Normas ISO",
-        description: "Cursos técnicos detallados sobre la interpretación e implementación de normativas internacionales.",
-        duration: "24 horas",
-        image: "/Imágenes/Formación.webp",
-        sector: "Servicios"
-    },
-    {
-        category: "Formación",
-        title: "Programas In-house",
-        description: "Capacitación personalizada diseñada para abordar los desafíos específicos de su organización.",
-        duration: "Personalizado",
-        image: "/Imágenes/Formación.webp",
-        sector: "Tecnología"
-    }
+    // --- ÁREA DE CALIDAD | EXCELENCIA | INNOVACIÓN ---
+    { category: "Consultoría", title: "ISO 9001 - Sistema de Gestión de Calidad", description: "Implementación y auditoría de sistemas de gestión de calidad.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Industrial", keywords: "iso 9001, calidad, excelencia, innovacion" },
+    { category: "Consultoría", title: "ISO 22716 - Guía de Buenas Prácticas de Fabricación de Cosméticos", description: "Aseguramiento de calidad en la industria cosmética.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Industrial", keywords: "iso 22716, cosmeticos, bpm, bpf" },
+    { category: "Auditoría", title: "ISO/IEC 17025 - Competencia de Laboratorios", description: "Requisitos generales para la competencia de laboratorios de ensayo y calibración.", duration: "4-6 meses", image: "/Imágenes/Auditoría.webp", sector: "Servicios", keywords: "iso 17025, laboratorios, ensayo, calibracion" },
+    { category: "Consultoría", title: "Metodología 5's", description: "Organización, orden y limpieza en el puesto de trabajo.", duration: "2-3 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Industrial", keywords: "5s, metodologia 5s, orden, limpieza" },
+    { category: "Consultoría", title: "Lean Manufacturing", description: "Optimización de procesos productivos y reducción de desperdicios.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Industrial", keywords: "lean manufacturing, procesos, produccion" },
+    { category: "Consultoría", title: "Metodologías Ágiles | Mejora de Procesos", description: "Implementación de marcos ágiles para la mejora continua organizacional.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Tecnología", keywords: "agiles, scrum, mejora de procesos" },
+    { category: "Consultoría", title: "ISO 56002 - Gestión de la Innovación", description: "Sistematización de los procesos de innovación en la empresa.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Tecnología", keywords: "iso 56002, innovacion, gestion" },
+    { category: "Consultoría", title: "UNE 166002 - Sistema de Gestión de la I+D+i", description: "Gestión eficiente de investigación, desarrollo e innovación tecnológica.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Tecnología", keywords: "une 166002, i+d+i, investigacion, desarrollo" },
+    { category: "Consultoría", title: "UNE 166006 - Vigilancia Tecnológica", description: "Sistemas de vigilancia tecnológica e inteligencia competitiva.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Tecnología", keywords: "une 166006, vigilancia tecnologica, inteligencia" },
+    { category: "Consultoría", title: "ISO 7101 - Gestión de Organizaciones Sanitarias", description: "Calidad en la gestión de centros y organizaciones de salud.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Calidad y excelencia.webp", sector: "Servicios", keywords: "iso 7101, organizaciones sanitarias, salud" },
+
+    // --- ÁREA DE SALUD Y SEGURIDAD ---
+    { category: "Medicina Ocupacional", title: "ISO 45001 - Seguridad y Salud Laboral", description: "Sistemas de Gestión de Seguridad y Salud en el Trabajo.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Industrial", keywords: "iso 45001, salud laboral, seguridad, sst" },
+    { category: "Consultoría", title: "ISO 22320 - Gestión de Emergencias", description: "Requisitos para la respuesta y gestión de emergencias e incidentes.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Servicios", keywords: "iso 22320, emergencias, incidentes" },
+    { category: "Consultoría", title: "ISO 39001 - Seguridad Vial", description: "Sistemas de gestión de la seguridad vial.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Servicios", keywords: "iso 39001, seguridad vial, transito" },
+    { category: "Medicina Ocupacional", title: "Asistencia Técnica en SST", description: "Soporte especializado en seguridad y salud ocupacional.", duration: "Continuo", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Industrial", keywords: "sst, asistencia tecnica, seguridad, salud" },
+    { category: "Auditoría", title: "Evaluación de Riesgos", description: "Identificación de peligros y evaluación integral de riesgos laborales.", duration: "1-2 meses", image: "/Imágenes/Auditoría.webp", sector: "Industrial", keywords: "evaluacion de riesgos, peligros, iperc" },
+    { category: "Consultoría", title: "Planes de Emergencia y Evacuación", description: "Diseño y estructuración de planes de respuesta ante emergencias.", duration: "1-2 meses", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Servicios", keywords: "planes de emergencia, evacuacion" },
+    { category: "Consultoría", title: "Coordinación de Actividades Empresariales", description: "Gestión de riesgos en actividades con terceros y contratistas.", duration: "2-3 meses", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Industrial", keywords: "coordinacion empresarial, contratistas, homologacion" },
+    { category: "Medicina Ocupacional", title: "Estudios de Seguridad y Salud", description: "Análisis especializado y estudios técnicos de higiene y salud.", duration: "Variable", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Industrial", keywords: "estudios, seguridad, salud, higiene" },
+    { category: "Medicina Ocupacional", title: "Planes de Seguridad y Salud", description: "Elaboración e implantación de planes integrales de SST.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Industrial", keywords: "planes, sst, seguridad, salud" },
+    { category: "Consultoría", title: "Informes Técnicos Especializados", description: "Redacción y validación de reportes técnicos de seguridad.", duration: "Variable", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Servicios", keywords: "informes tecnicos, sst" },
+    { category: "Consultoría", title: "Asesoramiento Legal en SST", description: "Leyes Nacionales en materia de Salud Ocupacional y SST.", duration: "Continuo", image: "/Imágenes/Subservicios/Salud y bienestar.webp", sector: "Servicios", keywords: "leyes nacionales, legal, asesoramiento, sst" },
+
+    // --- ÁREA DE SOSTENIBILIDAD Y RESPONSABILIDAD SOCIAL ---
+    { category: "Consultoría", title: "ISO 14001 - Sistema de Gestión Ambiental", description: "Control y mejora del desempeño ambiental organizacional.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Industrial", keywords: "iso 14001, ambiental, medio ambiente, sostenibilidad" },
+    { category: "Consultoría", title: "ISO 50001 - Sistema de Gestión Energética", description: "Mejora de la eficiencia energética y reducción del consumo.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Industrial", keywords: "iso 50001, energetica, energia, eficiencia" },
+    { category: "Consultoría", title: "ISO 14067 - Huella de Carbono de Productos", description: "Cuantificación de emisiones de gases de efecto invernadero por producto.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Industrial", keywords: "iso 14067, huella de carbono, productos" },
+    { category: "Consultoría", title: "ISO 14064 - Huella de Carbono de Organizaciones", description: "Cuantificación y reporte de emisiones de GEI corporativas.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Servicios", keywords: "iso 14064, huella de carbono, organizaciones" },
+    { category: "Consultoría", title: "ISO 14046 - Huella de Agua", description: "Evaluación del impacto del consumo de agua y su gestión.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Industrial", keywords: "iso 14046, huella de agua, hidrica" },
+    { category: "Consultoría", title: "ISO 20400 - Compras Sostenibles", description: "Integración de la sostenibilidad en los procesos de compras.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Servicios", keywords: "iso 20400, compras sostenibles, cadena de suministro" },
+    { category: "Consultoría", title: "ISO 26000 - Responsabilidad Social", description: "Guía para la implementación de estrategias de responsabilidad social.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Servicios", keywords: "iso 26000, responsabilidad social, rse" },
+    { category: "Consultoría", title: "SGE21 - Gestión Ética", description: "Sistema de gestión ética y responsabilidad empresarial.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Servicios", keywords: "sge21, etica, empresarial, rse" },
+    { category: "Consultoría", title: "SA 8000 - Responsabilidad Social Internacional", description: "Certificación internacional de condiciones de trabajo éticas.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Industrial", keywords: "sa 8000, responsabilidad social, internacional" },
+    { category: "Consultoría", title: "Igualdad de Género", description: "Sistemas de Gestión de Igualdad de Género corporativa.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Servicios", keywords: "igualdad de genero, equidad" },
+    { category: "Consultoría", title: "ESR - Empresa Socialmente Responsable", description: "Acompañamiento para la obtención del distintivo ESR.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Servicios", keywords: "esr, empresa socialmente responsable" },
+    { category: "Consultoría", title: "Economía Circular", description: "Transición hacia modelos de producción y consumo circulares.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Industrial", keywords: "economia circular, reciclaje, residuos" },
+    { category: "Consultoría", title: "ESG y Reporte de Sostenibilidad", description: "Elaboración de Memorias de Sostenibilidad bajo estándares internacionales.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Sostenibilidad.webp", sector: "Servicios", keywords: "esg, reporte, memoria, sostenibilidad" },
+
+    // --- ÁREA DE SEGURIDAD ALIMENTARIA ---
+    { category: "Consultoría", title: "ISO 22000 - Seguridad Alimentaria", description: "Sistema de gestión de inocuidad alimentaria.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "iso 22000, seguridad alimentaria, inocuidad" },
+    { category: "Consultoría", title: "BRC - Norma Mundial de Seguridad Alimentaria", description: "Estándar global para garantizar la calidad y seguridad alimentaria.", duration: "4-8 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "brc, seguridad alimentaria, norma mundial" },
+    { category: "Consultoría", title: "IFS - International Food Standard", description: "Norma internacional enfocada en calidad y seguridad alimentaria.", duration: "4-8 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "ifs, food standard, seguridad alimentaria" },
+    { category: "Consultoría", title: "Global GAP", description: "Aseguramiento de buenas prácticas agrícolas.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "global gap, agricola, buenas practicas" },
+    { category: "Consultoría", title: "FSSC 22000 - Certificación Alimentaria", description: "Esquema completo de certificación para sistemas de seguridad alimentaria.", duration: "4-8 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "fssc 22000, certificacion, alimentaria" },
+    { category: "Consultoría", title: "HACCP - Análisis de Peligros", description: "Sistema de Análisis de Peligros y Puntos Críticos de Control.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "haccp, analisis de peligros, puntos criticos" },
+    { category: "Consultoría", title: "Food Defense", description: "Plan de defensa alimentaria contra la contaminación intencionada.", duration: "2-3 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "food defense, defensa alimentaria" },
+    { category: "Consultoría", title: "Buenas Prácticas de Manufactura (BPM)", description: "Implementación de normativas higiénico-sanitarias básicas.", duration: "1-3 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "bpm, buenas practicas, manufactura" },
+    { category: "Consultoría", title: "Buenas Prácticas de Almacenamiento (BPA)", description: "Optimización y seguridad en el almacenamiento de alimentos.", duration: "1-3 meses", image: "/Imágenes/Subservicios/Seguridad alimentaria.webp", sector: "Alimentos", keywords: "bpa, buenas practicas, almacenamiento" },
+    { category: "Auditoría", title: "Evaluación y Desarrollo de Proveedores", description: "Auditoría de calidad e inocuidad en la cadena de suministro alimentaria.", duration: "Continuo", image: "/Imágenes/Auditoría.webp", sector: "Alimentos", keywords: "proveedores, desarrollo, evaluacion, alimentos" },
+
+    // --- ÁREA DE RIESGOS Y CUMPLIMIENTO ---
+    { category: "Consultoría", title: "ISO/IEC 27001 - Seguridad de la Información", description: "Gestión y protección de activos de información.", duration: "4-8 meses", image: "/Imágenes/Subservicios/Ciberseguridad.webp", sector: "Tecnología", keywords: "iso 27001, ciberseguridad, seguridad de la informacion" },
+    { category: "Consultoría", title: "ISO 28000 / 28001 - Cadena de Suministro", description: "Sistemas de gestión para la seguridad de la cadena de suministro.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Ciberseguridad.webp", sector: "Industrial", keywords: "iso 28000, iso 28001, cadena de suministro" },
+    { category: "Consultoría", title: "BASC - Comercio Seguro", description: "Certificación internacional para el control y seguridad en el comercio.", duration: "3-6 meses", image: "/Imágenes/Subservicios/Ciberseguridad.webp", sector: "Industrial", keywords: "basc, comercio seguro, logistica" },
+    { category: "Consultoría", title: "OEA - Operador Económico Autorizado", description: "Acreditación de seguridad aduanera y comercial.", duration: "4-8 meses", image: "/Imágenes/Subservicios/Ciberseguridad.webp", sector: "Servicios", keywords: "oea, operador economico, aduanas" },
+    { category: "Consultoría", title: "ISO 37301 - Gestión de Compliance", description: "Sistema de gestión de cumplimiento normativo y legal.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Gestión antisoborno.webp", sector: "Servicios", keywords: "iso 37301, compliance, cumplimiento legal" },
+    { category: "Consultoría", title: "ISO 37001 - Gestión Antisoborno", description: "Sistemas corporativos para prevenir el soborno institucional.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Gestión antisoborno.webp", sector: "Servicios", keywords: "iso 37001, antisoborno, corrupcion" },
+    { category: "Consultoría", title: "ISO 22301 - Continuidad de Negocio", description: "Preparación ante interrupciones operativas severas.", duration: "4-6 meses", image: "/Imágenes/Subservicios/Ciberseguridad.webp", sector: "Servicios", keywords: "iso 22301, continuidad de negocio, contingencia" },
+    { category: "Consultoría", title: "Protección de Datos", description: "Cumplimiento de Leyes Nacionales en Materia de Protección de Datos.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Ciberseguridad.webp", sector: "Tecnología", keywords: "proteccion de datos, privacidad, pdp" },
+    { category: "Consultoría", title: "ISO 31000 - Gestión del Riesgo", description: "Directrices globales para la gestión de riesgos en las organizaciones.", duration: "3-5 meses", image: "/Imágenes/Subservicios/Gestión antisoborno.webp", sector: "Servicios", keywords: "iso 31000, gestion del riesgo, riesgos" },
+    { category: "Consultoría", title: "Plan de Prevención de Delitos", description: "Modelos de prevención penal y delitos corporativos.", duration: "2-4 meses", image: "/Imágenes/Subservicios/Gestión antisoborno.webp", sector: "Servicios", keywords: "prevencion de delitos, penal, compliance" },
+
+    // --- FORMACIÓN (Transversal) ---
+    { category: "Formación", title: "Certificación Auditor Jefe ISO", description: "Formación de alto nivel para liderar procesos de auditoría en todas las normas.", duration: "40 horas", image: "/Imágenes/Formación.webp", sector: "Servicios", keywords: "certificacion, auditor jefe, formacion, 9001, 14001, 45001, 37001, 27001" },
+    { category: "Formación", title: "Especialización en Normas ISO", description: "Cursos técnicos detallados sobre interpretación e implementación de todas las normas.", duration: "24 horas", image: "/Imágenes/Formación.webp", sector: "Servicios", keywords: "especializacion, normas iso, capacitacion" },
+    { category: "Formación", title: "Programas In-house a Medida", description: "Capacitación personalizada diseñada para las necesidades normativas de su organización.", duration: "Personalizado", image: "/Imágenes/Formación.webp", sector: "Industrial", keywords: "in-house, capacitacion, programas, corporativo" }
 ];
 
 export default function ServicesPage() {
     const { t, locale } = useI18n();
-    const [selectedCategory, setSelectedCategory] = useState(locale === 'en' ? 'Audit' : 'Auditoría');
+    const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedSector, setSelectedSector] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
     const topServices: Service[] = [
         {
@@ -174,6 +145,15 @@ export default function ServicesPage() {
             gradient: "from-primary/40 to-primary/10",
             image: "/Imágenes/Formación.webp",
             href: "/servicios/formacion"
+        },
+        {
+            number: "04",
+            title: t('services_section.medicina_title'),
+            description: t('services_section.medicina_desc'),
+            icon: ShieldCheck, // or any appropriate icon, using ShieldCheck again or importing another
+            gradient: "from-primary/40 to-primary/10",
+            image: "/Imágenes/Consultoría.webp", // Will update image later if needed
+            href: "/servicios/medicina-ocupacional"
         }
     ];
 
@@ -181,21 +161,27 @@ export default function ServicesPage() {
         'Auditoría': 'Auditoría',
         'Consultoría': 'Consultoría',
         'Formación': 'Formación',
+        'Medicina Ocupacional': 'Medicina Ocupacional',
     };
 
     const filteredItems = catalogItems.filter(item => {
         const matchCat = !selectedCategory || item.category === selectedCategory;
         const matchSector = !selectedSector || item.sector === selectedSector;
-        return matchCat && matchSector;
+        const searchLower = searchQuery.toLowerCase();
+        const matchSearch = !searchQuery || 
+            item.title.toLowerCase().includes(searchLower) || 
+            item.description.toLowerCase().includes(searchLower) ||
+            item.keywords?.toLowerCase().includes(searchLower);
+        return matchCat && matchSector && matchSearch;
     });
 
     const catalogCategories = locale === 'en'
-        ? ['Audit', 'Consulting', 'Training']
-        : ['Auditoría', 'Consultoría', 'Formación'];
+        ? ['Audit', 'Consulting', 'Training', 'Occupational Medicine']
+        : ['Auditoría', 'Consultoría', 'Formación', 'Medicina Ocupacional'];
 
     const handleCategoryChange = (cat: string) => {
         if (locale === 'en') {
-            const map: Record<string, string> = { 'Audit': 'Auditoría', 'Consulting': 'Consultoría', 'Training': 'Formación' };
+            const map: Record<string, string> = { 'Audit': 'Auditoría', 'Consulting': 'Consultoría', 'Training': 'Formación', 'Occupational Medicine': 'Medicina Ocupacional' };
             setSelectedCategory(map[cat] || cat);
         } else {
             setSelectedCategory(cat);
@@ -254,7 +240,7 @@ export default function ServicesPage() {
                         <CatalogFilters
                             categories={catalogCategories}
                             selectedCategory={locale === 'en'
-                                ? { 'Auditoría': 'Audit', 'Consultoría': 'Consulting', 'Formación': 'Training' }[selectedCategory] || selectedCategory
+                                ? { 'Auditoría': 'Audit', 'Consultoría': 'Consulting', 'Formación': 'Training', 'Medicina Ocupacional': 'Occupational Medicine' }[selectedCategory] || selectedCategory
                                 : selectedCategory}
                             onCategoryChange={handleCategoryChange}
                             sectors={locale === 'en' ? ['Industrial', 'Technology', 'Services'] : ['Industrial', 'Tecnología', 'Servicios']}
@@ -267,10 +253,28 @@ export default function ServicesPage() {
                         <div className="flex-1">
                             {/* Controls Bar */}
                             <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
-                                <p className="text-sm font-bold text-secondary/40">
-                                    {locale === 'en' ? 'Showing' : 'Mostrando'} <span className="text-secondary font-black">{filteredItems.length}</span> {locale === 'en' ? 'services' : 'servicios'}
-                                </p>
-                                <div className="flex items-center gap-6">
+                                <div className="flex flex-col gap-2 w-full md:w-auto">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-2">
+                                        <Search className="w-3 h-3" />
+                                        {locale === 'en' ? 'Find your service faster here:' : 'Encuentre su servicio más rápido aquí:'}
+                                    </p>
+                                    <div className="flex items-center gap-4">
+                                        <div className="relative w-full max-w-sm">
+                                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black" />
+                                            <input 
+                                                type="text" 
+                                                placeholder={locale === 'en' ? "Search services... (e.g. 37001)" : "Buscar servicios... (ej. 37001)"}
+                                                value={searchQuery}
+                                                onChange={(e) => setSearchQuery(e.target.value)}
+                                                className="w-full bg-white border-[3px] border-black rounded-xl pl-12 pr-4 py-3 font-bold text-black text-sm outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all placeholder:font-medium placeholder:text-black/40"
+                                            />
+                                        </div>
+                                        <p className="text-sm font-bold text-secondary/40 whitespace-nowrap hidden lg:block">
+                                            {locale === 'en' ? 'Showing' : 'Mostrando'} <span className="text-secondary font-black">{filteredItems.length}</span> {locale === 'en' ? 'services' : 'servicios'}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-6 w-full md:w-auto justify-end">
                                     <div className="flex items-center gap-3 text-secondary/40 text-xs font-black uppercase tracking-widest">
                                         {locale === 'en' ? 'Sort by:' : 'Ordenar por:'}
                                         <div className="relative">
@@ -290,7 +294,8 @@ export default function ServicesPage() {
                                     const categoryHrefs: Record<string, string> = {
                                         "Auditoría": "/servicios/auditoria",
                                         "Consultoría": "/servicios/consultoria",
-                                        "Formación": "/servicios/formacion"
+                                        "Formación": "/servicios/formacion",
+                                        "Medicina Ocupacional": "/servicios/medicina-ocupacional"
                                     };
                                     return (
                                         <ServiceItemCard

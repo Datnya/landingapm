@@ -224,6 +224,7 @@ const Contact = () => {
                                                         ['consultoria', 'service_consultoria'],
                                                         ['formacion', 'service_formacion'],
                                                         ['sostenibilidad', 'service_sostenibilidad'],
+                                                        ['medicina_ocupacional', 'service_medicina'],
                                                         ['business', 'service_business'],
                                                     ] as [string, string][]).map(([val, key]) => (
                                                         <option key={val} value={val} className={selectOptionClass}>
@@ -259,7 +260,7 @@ const Contact = () => {
                                             <label className={labelClass}>{t('contact.field_norma')} *</label>
                                             <input type="hidden" name="normas_interes" value={selectedNormas.join(', ')} />
                                             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
-                                                {(['iso9001','iso45001','iso14001','iso27001','iso37001','esg','otro'] as const).map((norma) => (
+                                                {(['iso9001','iso45001','iso14001','iso27001','iso37001','esg','sst','otro'] as const).map((norma) => (
                                                     <button
                                                         key={norma}
                                                         type="button"

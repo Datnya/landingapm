@@ -34,7 +34,9 @@
         "auditoria_title": "Auditoría",
         "auditoria_desc": "Evaluación técnica experta para garantizar el cumplimiento normativo internacional y fomentar una cultura corporativa de excelencia comprobable.",
         "formacion_title": "Formación",
-        "formacion_desc": "Programas académicos de vanguardia diseñados para potenciar el talento humano y transferir conocimientos críticos que impulsan el éxito del negocio."
+        "formacion_desc": "Programas académicos de vanguardia diseñados para potenciar el talento humano y transferir conocimientos críticos que impulsan el éxito del negocio.",
+        "medicina_title": "Medicina Ocupacional y SST",
+        "medicina_desc": "Protegemos la salud integral de su equipo de trabajo, asegurando el bienestar laboral y el estricto cumplimiento de la normativa en Seguridad y Salud en el Trabajo."
     },
     "webinar": {
         "badge": "WEBINARS GRATUITOS",
@@ -120,6 +122,7 @@
         "service_consultoria": "Consultoría",
         "service_formacion": "Formación",
         "service_sostenibilidad": "Sostenibilidad",
+        "service_medicina": "Medicina Ocupacional y SST",
         "service_business": "Business Services",
         "how_linkedin": "LinkedIn",
         "how_google": "Google / Buscador",
@@ -136,6 +139,7 @@
         "norma_iso27001": "ISO 27001",
         "norma_iso37001": "ISO 37001",
         "norma_esg": "ESG",
+        "norma_sst": "Medicina Ocupacional y SST",
         "norma_otro": "Otro",
         "field_etapa": "¿En qué etapa estás?",
         "etapa_explorando": "Explorando",
@@ -275,7 +279,11 @@
         "spec_3_role": "Auditoría y Procesos",
         "spec_3_desc": "Ingeniera Química especializada en Sistemas ISO. Auditora Líder certificada por IRCA y PECB en múltiples normas internacionales de gestión.",
         "spec_4_role": "Expert Consultor",
-        "spec_4_desc": "Ingeniero Químico y Auditor Líder con experiencia en +20 normas internacionales. Consultor senior en sectores de energía, minería y construcción."
+        "spec_4_desc": "Ingeniero Químico y Auditor Líder con experiencia en +20 normas internacionales. Consultor senior en sectores de energía, minería y construcción.",
+        "spec_5_role": "Especialista ISO y Compliance",
+        "spec_5_desc": "<ul class='list-disc pl-4 space-y-1 text-left'><li>+10 años en sistemas de gestión, riesgos y mejora de procesos.</li><li>Especialista en ISO 9001, ISO 37001 (antisoborno) y BASC.</li><li>Trayectoria en Migraciones y la ONPE en gestión y control institucional.</li></ul>",
+        "spec_6_role": "Director de Auditoría y Finanzas",
+        "spec_6_desc": "<ul class='list-disc pl-4 space-y-1 text-left'><li>+40 años en auditoría, finanzas y gestión empresarial.</li><li>Director en Deloitte, liderando Proyectos Especiales y Control de Operaciones.</li><li>Alta dirección como Gerente de Auditoría, Finanzas y Contralor en sectores minero y corporativo.</li></ul>"
     },
     "blog": {
         "hero_label": "Recursos Técnicos",

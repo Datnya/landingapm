@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SyntheticHero from '../components/ui/synthetic-hero';
 import { useI18n } from '../i18n';
-import { Globe, ThumbsUp, Star, Lightbulb, Users, TrendingUp } from 'lucide-react';
+import { Globe, ThumbsUp, Star, Lightbulb, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // ── Carousel: P2, P3, P4 — converted from DNG to JPEG for browser compatibility
 const CAROUSEL_IMAGES = [
@@ -110,6 +110,14 @@ const IconBadge = (props: React.SVGProps<SVGSVGElement>) => <svg {...props} fill
 
 const Home = () => {
     const { t } = useI18n();
+    const carouselRef = React.useRef<HTMLDivElement>(null);
+
+    const scrollCarousel = (direction: 'left' | 'right') => {
+        if (carouselRef.current) {
+            const scrollAmount = direction === 'left' ? -carouselRef.current.offsetWidth / 2 : carouselRef.current.offsetWidth / 2;
+            carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
 
     const pilares = [
         {
@@ -129,6 +137,12 @@ const Home = () => {
             titleKey: 'services_section.formacion_title',
             descKey: 'services_section.formacion_desc',
             href: '/servicios/formacion',
+        },
+        {
+            icon: <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>,
+            titleKey: 'services_section.medicina_title',
+            descKey: 'services_section.medicina_desc',
+            href: '/servicios/medicina-ocupacional',
         },
     ];
 
@@ -249,29 +263,46 @@ const Home = () => {
                     </h2>
                     <div className="w-24 h-1.5 bg-primary mx-auto mb-20 rounded-full" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-4">
+                    <div className="flex justify-center gap-8 max-w-7xl mx-auto px-4 mb-10">
+                        <button onClick={() => scrollCarousel('left')} className="w-16 h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
+                            <ChevronLeft className="w-8 h-8" />
+                        </button>
+                        <button onClick={() => scrollCarousel('right')} className="w-16 h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
+                            <ChevronRight className="w-8 h-8" />
+                        </button>
+                    </div>
+
+                    <div ref={carouselRef} className="flex overflow-x-auto snap-x snap-mandatory gap-6 max-w-7xl mx-auto px-4 pb-16 pt-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                         {pilares.map((p, i) => (
-                            <div key={i} className="bg-white p-12 rounded-[50px] shadow-[0_10px_60px_rgba(0,0,0,0.03)] border-2 border-primary/80 hover:translate-y-[-20px] hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] transition-all duration-700 flex flex-col items-center group relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-0" />
-                                <div className="relative z-10 flex flex-col items-center">
-                                    <div className="w-24 h-24 bg-[#F9FBE7] rounded-3xl flex items-center justify-center mb-10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-6 group-hover:scale-110">
-                                        {p.icon}
+                            <div key={i} className="bg-white p-8 md:p-10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.04)] border-2 border-primary/20 hover:border-primary/80 hover:-translate-y-2 transition-all duration-500 flex flex-col group relative overflow-hidden w-[85vw] md:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] snap-center shrink-0">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0 transition-transform duration-700 group-hover:scale-150" />
+                                <div className="relative z-10 flex flex-col items-start w-full h-full">
+                                    <div className="w-16 h-16 bg-[#F9FBE7] rounded-2xl flex items-center justify-center mb-8 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                                        <div className="scale-75">{p.icon}</div>
                                     </div>
-                                    <h3 className="text-2xl font-black mb-6 uppercase tracking-tight text-secondary font-heading">
+                                    <h3 className="text-xl md:text-2xl font-black mb-4 uppercase tracking-tight text-secondary font-heading pr-8">
                                         {t(p.titleKey)}
                                     </h3>
-                                    <p className="text-gray-500 leading-relaxed mb-10 text-base font-medium text-center">
+                                    <p className="text-gray-500 leading-relaxed mb-8 text-sm md:text-base font-medium text-left">
                                         {t(p.descKey)}
                                     </p>
-                                    <a href={p.href} className="text-primary font-black uppercase tracking-widest flex items-center gap-3 hover:translate-x-2 transition-all text-xs font-heading">
-                                        {t('services_section.learn_more')} <IconArrow />
-                                    </a>
+                                    <div className="mt-auto pt-6 border-t border-black/5 w-full">
+                                        <a href={p.href} className="text-primary font-black uppercase tracking-widest flex items-center gap-3 hover:translate-x-2 transition-all text-[10px] md:text-xs font-heading">
+                                            {t('services_section.learn_more')} <IconArrow />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
+            {/* Custom scrollbar hiding styles for WebKit */}
+            <style dangerouslySetInnerHTML={{__html: `
+                #pilares .flex::-webkit-scrollbar {
+                    display: none;
+                }
+            `}} />
 
             {/* ── CHECKLIST ISO 9001 CTA ─────────────────────────────────── */}
             <section id="checklist-iso" className="py-24 md:py-32 bg-[#FAFBF5] relative overflow-hidden">

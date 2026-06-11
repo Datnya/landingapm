@@ -58,9 +58,10 @@ export const Card = React.memo(
                     )}
                 </div>
 
-                <div className="text-white/80 text-sm md:text-base leading-relaxed font-medium line-clamp-6">
-                    {card.description}
-                </div>
+                <div 
+                    className="text-white/80 text-sm md:text-base leading-relaxed font-medium"
+                    dangerouslySetInnerHTML={{ __html: card.description }}
+                />
             </div>
 
             {/* Default overlay for better text contrast if not hovered */}
@@ -86,14 +87,14 @@ type CardData = {
     role: string;
     src: string;
     description: string;
-    linkedin: string;
+    linkedin?: string;
 };
 
 export function FocusCards({ cards }: { cards: CardData[] }) {
     const [hovered, setHovered] = useState<number | null>(null);
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[1400px] mx-auto px-6 w-full pb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto px-6 w-full pb-20">
             {cards.map((card, index) => (
                 <Card
                     key={card.title}

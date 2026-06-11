@@ -239,6 +239,14 @@ const SEARCH_KEYS = [
         descEn: "Design and execution of Environmental Action Plans adapted to complex corporate realities.",
         path: "/servicios/formacion"
     },
+    // --- MEDICINA OCUPACIONAL Y SST ---
+    {
+        labelEs: "Medicina Ocupacional y SST",
+        labelEn: "Occupational Medicine & OHS",
+        descEs: "Protegemos la salud integral de su equipo de trabajo, asegurando el bienestar laboral y el estricto cumplimiento de la normativa en Seguridad y Salud en el Trabajo.",
+        descEn: "We protect the comprehensive health of your team, ensuring occupational well-being and strict compliance with Occupational Health and Safety regulations.",
+        path: "/servicios/medicina-ocupacional"
+    },
 ];
 
 // Flag SVGs
@@ -374,7 +382,8 @@ const Navbar = () => {
                                                     {[
                                                         { labelEs: "Consultoría", labelEn: "Consulting", path: "/servicios/consultoria" },
                                                         { labelEs: "Auditoría", labelEn: "Audit", path: "/servicios/auditoria" },
-                                                        { labelEs: "Formación", labelEn: "Training", path: "/servicios/formacion" }
+                                                        { labelEs: "Formación", labelEn: "Training", path: "/servicios/formacion" },
+                                                        { labelEs: "Medicina Ocupacional y SST", labelEn: "Occupational Medicine & OHS", path: "/servicios/medicina-ocupacional" }
                                                     ].map((item) => (
                                                         <Link
                                                             key={item.path}

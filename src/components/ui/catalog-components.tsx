@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Search, ChevronDown, Filter, ArrowRight } from 'lucide-react';
+import { Search, ChevronDown, Filter, ArrowRight, Eraser } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface FilterProps {
@@ -30,9 +30,9 @@ export const CatalogFilters = ({
                 </h3>
                 <button
                     onClick={onClear}
-                    className="text-[10px] font-bold text-primary uppercase tracking-widest hover:underline"
+                    className="flex items-center gap-2 px-4 py-2 bg-primary/10 border-2 border-primary text-primary rounded-xl text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-sm"
                 >
-                    Limpiar
+                    <Eraser className="w-4 h-4" /> Limpiar
                 </button>
             </div>
 

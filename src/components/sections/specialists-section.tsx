@@ -32,6 +32,18 @@ export default function SpecialistsSection() {
             description: t('about.spec_4_desc'),
             linkedin: "https://www.linkedin.com/in/luiggi-cesar-cruz-caldas-18b24675/"
         },
+        {
+            title: "Gonzalo Campos",
+            role: t('about.spec_5_role'),
+            src: "/Imágenes/Equipo/Gonzalo Campos.png",
+            description: t('about.spec_5_desc')
+        },
+        {
+            title: "Luis Gonzáles",
+            role: t('about.spec_6_role'),
+            src: "/Imágenes/Equipo/Luis Gonzáles.png",
+            description: t('about.spec_6_desc')
+        },
     ];
 
     return (

@@ -34,7 +34,9 @@
         "auditoria_title": "Audit",
         "auditoria_desc": "Expert technical evaluation to ensure international regulatory compliance and foster a corporate culture of proven excellence.",
         "formacion_title": "Training",
-        "formacion_desc": "Cutting-edge academic programs designed to strengthen human talent and transfer critical knowledge that drives business success."
+        "formacion_desc": "Cutting-edge academic programs designed to strengthen human talent and transfer critical knowledge that drives business success.",
+        "medicina_title": "Occupational Medicine & OHS",
+        "medicina_desc": "We protect the comprehensive health of your team, ensuring occupational well-being and strict compliance with Occupational Health and Safety regulations."
     },
     "webinar": {
         "badge": "FREE WEBINARS",
@@ -120,6 +122,7 @@
         "service_consultoria": "Consulting",
         "service_formacion": "Training",
         "service_sostenibilidad": "Sustainability",
+        "service_medicina": "Occupational Medicine & OHS",
         "service_business": "Business Services",
         "how_linkedin": "LinkedIn",
         "how_google": "Google / Search Engine",
@@ -136,6 +139,7 @@
         "norma_iso27001": "ISO 27001",
         "norma_iso37001": "ISO 37001",
         "norma_esg": "ESG",
+        "norma_sst": "Occupational Medicine & OHS",
         "norma_otro": "Other",
         "field_etapa": "What stage are you at?",
         "etapa_explorando": "Exploring",
@@ -275,7 +279,11 @@
         "spec_3_role": "Audit and Processes",
         "spec_3_desc": "Chemical Engineer specializing in ISO Systems. Lead Auditor certified by IRCA and PECB in multiple international management standards.",
         "spec_4_role": "Expert Consultant",
-        "spec_4_desc": "Chemical Engineer and Lead Auditor with experience in 20+ international standards. Senior consultant in energy, mining, and construction sectors."
+        "spec_4_desc": "Chemical Engineer and Lead Auditor with experience in 20+ international standards. Senior consultant in energy, mining, and construction sectors.",
+        "spec_5_role": "ISO & Compliance Specialist",
+        "spec_5_desc": "<ul class='list-disc pl-4 space-y-1 text-left'><li>10+ years in management systems, risk and process improvement.</li><li>Specialist in ISO 9001, ISO 37001 (anti-bribery) and BASC.</li><li>Track record at Migraciones and ONPE in management and institutional control.</li></ul>",
+        "spec_6_role": "Audit & Finance Director",
+        "spec_6_desc": "<ul class='list-disc pl-4 space-y-1 text-left'><li>40+ years in auditing, finance and business management.</li><li>Director at Deloitte, leading Special Projects and Operations Control.</li><li>Senior roles as Audit Manager, Finance Manager and Controller in mining and corporate sectors.</li></ul>"
     },
     "blog": {
         "hero_label": "Technical Resources",
