@@ -263,12 +263,12 @@ const Home = () => {
                     </h2>
                     <div className="w-24 h-1.5 bg-primary mx-auto mb-20 rounded-full" />
 
-                    <div className="flex justify-center gap-8 max-w-7xl mx-auto px-4 mb-10">
-                        <button onClick={() => scrollCarousel('left')} className="w-16 h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
-                            <ChevronLeft className="w-8 h-8" />
+                    <div className="flex justify-center gap-6 md:gap-8 max-w-7xl mx-auto px-4 mb-10">
+                        <button onClick={() => scrollCarousel('left')} className="w-12 h-12 md:w-16 md:h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
+                            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
                         </button>
-                        <button onClick={() => scrollCarousel('right')} className="w-16 h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
-                            <ChevronRight className="w-8 h-8" />
+                        <button onClick={() => scrollCarousel('right')} className="w-12 h-12 md:w-16 md:h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
+                            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
                         </button>
                     </div>
 
