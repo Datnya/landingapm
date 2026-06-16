@@ -95,41 +95,101 @@ const OccupationalMedicinePage = () => {
                 </div>
             </section>
 
+            {/* Conceptos Section */}
+            <section className="py-16 bg-[#FAFBF5]">
+                <div className="container mx-auto px-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            { title: window.localStorage.getItem('language') === 'en' ? "Health Surveillance" : "Vigilancia de la salud", icon: <Activity className="w-8 h-8" /> },
+                            { title: window.localStorage.getItem('language') === 'en' ? "Risk Mgt. & Prevention" : "Gestión de riesgos y prevención", icon: <ShieldCheck className="w-8 h-8" /> },
+                            { title: window.localStorage.getItem('language') === 'en' ? "Training & Promotion" : "Capacitación y promoción", icon: <Users className="w-8 h-8" /> },
+                            { title: window.localStorage.getItem('language') === 'en' ? "Administration & Compliance" : "Administración y cumplimiento legal", icon: <FileText className="w-8 h-8" /> }
+                        ].map((concept, i) => (
+                            <div key={i} className="bg-black p-6 sm:p-8 rounded-[30px] border border-white/10 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-row items-center gap-6">
+                                <div className="flex-shrink-0 w-20 h-20 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                    <div className="scale-125">{concept.icon}</div>
+                                </div>
+                                <h4 className="text-base sm:text-lg font-black text-white uppercase tracking-tighter leading-tight">
+                                    {concept.title}
+                                </h4>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Especialista, Misión y Visión */}
             <section className="py-24 bg-[#FAFBF5]">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                         
-                        {/* Panel Especialista (Left Side) */}
-                        <div className="lg:col-span-7 bg-white rounded-[40px] border border-black/5 p-6 sm:p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.05)] flex flex-col md:flex-row items-center md:items-stretch text-center md:text-left gap-6 sm:gap-8 h-full">
-                            <div className="w-40 sm:w-56 md:w-64 flex-shrink-0 aspect-[3/4] rounded-2xl overflow-hidden border-4 border-primary/20 shadow-xl relative group">
-                                <img src="/Imágenes/Alicia%20Torres.png" alt="Dra. Alicia Torres" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
-                                <div className="absolute inset-0 border-[6px] border-primary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-105" />
-                            </div>
-                            <div className="flex-1 space-y-6 flex flex-col justify-center">
-                                <div>
-                                    <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest mb-4">
-                                        {window.localStorage.getItem('language') === 'en' ? 'Specialist in Charge' : 'Especialista a Cargo'}
-                                    </div>
-                                    <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-secondary mb-4">
-                                        Dra. Alicia Torres
-                                    </h3>
-                                    <p className="text-secondary/70 font-medium leading-relaxed text-sm md:text-base">
-                                        {window.localStorage.getItem('language') === 'en'
-                                            ? 'Medical Surgeon with double Master\'s degree in Occupational and Environmental Health, and Specialization in Medical Auditing. Over 10 years of experience leading prevention strategies, medical surveillance, and occupational risk control.'
-                                            : 'Médico Cirujano con doble Maestría en Salud Ocupacional y Ambiental, y Especialización en Auditoría Médica. Con más de 10 años de trayectoria liderando estrategias de prevención, vigilancia médica y control de riesgos laborales.'}
-                                    </p>
+                        {/* Especialistas (Left Side) */}
+                        <div className="lg:col-span-7 flex flex-col gap-8 h-full">
+                            {/* Panel Dra. Alicia */}
+                            <div className="bg-white rounded-[40px] border border-black/5 p-6 sm:p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.05)] flex flex-col md:flex-row items-center md:items-stretch text-center md:text-left gap-6 sm:gap-8 flex-1">
+                                <div className="w-40 sm:w-56 md:w-64 flex-shrink-0 aspect-[3/4] rounded-2xl overflow-hidden border-4 border-primary/20 shadow-xl relative group">
+                                    <img src="/Imágenes/Alicia%20Torres.png" alt="Dra. Alicia Torres" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute inset-0 border-[6px] border-primary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-105" />
                                 </div>
-                                <div className="mt-auto md:mt-0 flex justify-center md:justify-start">
-                                    <a 
-                                        href="https://www.linkedin.com/in/alicia-e-torres-diaz-a67513243/" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        aria-label="Perfil en LinkedIn"
-                                        className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white border-[3px] border-primary text-primary rounded-full hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-md"
-                                    >
-                                        <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
-                                    </a>
+                                <div className="flex-1 space-y-6 flex flex-col justify-center">
+                                    <div>
+                                        <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest mb-4">
+                                            {window.localStorage.getItem('language') === 'en' ? 'Specialist in Charge' : 'Especialista a Cargo'}
+                                        </div>
+                                        <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-secondary mb-4">
+                                            Dra. Alicia Torres
+                                        </h3>
+                                        <p className="text-secondary/70 font-medium leading-relaxed text-sm md:text-base">
+                                            {window.localStorage.getItem('language') === 'en'
+                                                ? 'Medical Surgeon with Master\'s degree in Occupational and Environmental Health, and Specialization in Medical Auditing. Over 10 years of experience leading prevention strategies, medical surveillance, and occupational risk control.'
+                                                : 'Médico Cirujano con Maestría en Salud Ocupacional y Ambiental, y Especialización en Auditoría Médica. Con más de 10 años de trayectoria liderando estrategias de prevención, vigilancia médica y control de riesgos laborales.'}
+                                        </p>
+                                    </div>
+                                    <div className="mt-auto md:mt-0 flex justify-center md:justify-start">
+                                        <a 
+                                            href="https://www.linkedin.com/in/alicia-e-torres-diaz-a67513243/" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            aria-label="Perfil en LinkedIn"
+                                            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white border-[3px] border-primary text-primary rounded-full hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-md"
+                                        >
+                                            <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Panel Dra. María */}
+                            <div className="bg-white rounded-[40px] border border-black/5 p-6 sm:p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.05)] flex flex-col md:flex-row items-center md:items-stretch text-center md:text-left gap-6 sm:gap-8 flex-1">
+                                <div className="w-40 sm:w-56 md:w-64 flex-shrink-0 aspect-[3/4] rounded-2xl overflow-hidden border-4 border-primary/20 shadow-xl relative group">
+                                    <img src="/Imágenes/Maria_Andreina.jpg" alt="Dra. María Andreina Silva Reyes" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute inset-0 border-[6px] border-primary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-105" />
+                                </div>
+                                <div className="flex-1 space-y-6 flex flex-col justify-center">
+                                    <div>
+                                        <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest mb-4">
+                                            {window.localStorage.getItem('language') === 'en' ? 'Specialist in Charge' : 'Especialista a Cargo'}
+                                        </div>
+                                        <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-secondary mb-4">
+                                            Dra. María Andreina Silva
+                                        </h3>
+                                        <p className="text-secondary/70 font-medium leading-relaxed text-sm md:text-base">
+                                            {window.localStorage.getItem('language') === 'en'
+                                                ? 'Medical Surgeon with Master\'s degree in Occupational and Environmental Health and Specialization in Medical Auditing. 5 years of experience managing occupational health, leading prevention strategies, medical surveillance, and committed to the integral well-being of every worker.'
+                                                : 'Médico Cirujano • Maestría en Medicina Ocupacional y del Medio Ambiente • Especialización en Auditoría Médica. Con 5 años de trayectoria gestionando la salud ocupacional, liderando estrategias de prevención, vigilancia médica y comprometida con el bienestar integral de cada trabajador.'}
+                                        </p>
+                                    </div>
+                                    <div className="mt-auto md:mt-0 flex justify-center md:justify-start">
+                                        <a 
+                                            href="https://www.linkedin.com/in/maria-andreina-silva-reyes-a28a20394/" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            aria-label="Perfil en LinkedIn"
+                                            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-white border-[3px] border-primary text-primary rounded-full hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-md"
+                                        >
+                                            <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +233,7 @@ const OccupationalMedicinePage = () => {
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-20">
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-secondary uppercase tracking-tighter mb-6">
-                            {window.localStorage.getItem('language') === 'en' ? 'Main' : 'Principales'} <span className="text-primary italic">{window.localStorage.getItem('language') === 'en' ? 'Subservices' : 'Subservicios'}</span>
+                            {window.localStorage.getItem('language') === 'en' ? 'Main' : 'Principales'} <span className="text-primary italic">{window.localStorage.getItem('language') === 'en' ? 'Services' : 'Servicios'}</span>
                         </h2>
                         <p className="text-secondary/60 max-w-2xl mx-auto font-medium px-4 text-sm sm:text-base">
                             {window.localStorage.getItem('language') === 'en'

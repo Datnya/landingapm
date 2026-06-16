@@ -8,51 +8,19 @@ import { useI18n } from '../i18n';
 const coursesData = [
     {
         id: 1,
-        titleEs: "Especialista en Sistemas de Gestión ISO 9001",
-        titleEn: "ISO 9001 Quality Management Systems Specialist",
-        descEs: "Domina la norma de calidad más reconocida a nivel mundial y aprende a implementarla desde cero.",
-        descEn: "Master the world's most recognized quality standard and learn to implement it from scratch.",
+        titleEs: "Domina el ISO 37001: Blindaje Anticorrupción para tu Organización",
+        titleEn: "Master ISO 37001: Anti-Bribery Shield for Your Organization",
+        descEs: "Aprende a diseñar, implementar y auditar un Sistema de Gestión Antisoborno bajo la norma ISO 37001. Protege la reputación de tu empresa y fortalece la cultura de integridad corporativa.",
+        descEn: "Learn to design, implement, and audit an Anti-Bribery Management System under ISO 37001. Protect your company's reputation and strengthen the culture of corporate integrity.",
         categoryEs: "Gestión Estratégica",
         categoryEn: "Strategic Management",
-        durationEs: "40 Horas",
-        durationEn: "40 Hours",
-        lessonsEs: "24 Clases",
-        lessonsEn: "24 Lessons",
-        image: "/Imágenes/Consultoría.webp",
-        tagEs: "Bestseller",
-        tagEn: "Bestseller"
-    },
-    {
-        id: 2,
-        titleEs: "Auditor Interno ISO 14001: Gestión Ambiental",
-        titleEn: "ISO 14001 Internal Auditor: Environmental Management",
-        descEs: "Certifícate para evaluar el cumplimiento ambiental y liderar la sostenibilidad organizacional.",
-        descEn: "Get certified to assess environmental compliance and lead organizational sustainability.",
-        categoryEs: "Operaciones",
-        categoryEn: "Operations",
-        durationEs: "32 Horas",
-        durationEn: "32 Hours",
-        lessonsEs: "18 Clases",
-        lessonsEn: "18 Lessons",
-        image: "/Imágenes/quienes somos fondo.webp",
-        tagEs: "Certificación",
-        tagEn: "Certification"
-    },
-    {
-        id: 3,
-        titleEs: "Seguridad y Salud Ocupacional ISO 45001",
-        titleEn: "ISO 45001 Occupational Health and Safety",
-        descEs: "Protege a tu equipo y cumple con los estándares globales de seguridad en el trabajo.",
-        descEn: "Protect your team and comply with global workplace safety standards.",
-        categoryEs: "Seguridad",
-        categoryEn: "Safety",
-        durationEs: "35 Horas",
-        durationEn: "35 Hours",
-        lessonsEs: "21 Clases",
-        lessonsEn: "21 Lessons",
-        image: "/Imágenes/Auditoría.webp",
-        tagEs: "Nuevo",
-        tagEn: "New"
+        durationEs: "8 Horas",
+        durationEn: "8 Hours",
+        lessonsEs: "4 Clases",
+        lessonsEn: "4 Lessons",
+        image: "/Imágenes/ISO_37001_curso.jpg",
+        tagEs: "Próximamente",
+        tagEn: "Coming Soon"
     }
 ];
 

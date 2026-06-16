@@ -152,7 +152,7 @@ export default function ServicesPage() {
             description: t('services_section.medicina_desc'),
             icon: ShieldCheck, // or any appropriate icon, using ShieldCheck again or importing another
             gradient: "from-primary/40 to-primary/10",
-            image: "/Imágenes/Consultoría.webp", // Will update image later if needed
+            image: "/Imágenes/medicina_ocupacional.jpg", // Medicina Ocupacional image
             href: "/servicios/medicina-ocupacional"
         }
     ];

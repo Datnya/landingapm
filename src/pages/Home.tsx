@@ -125,24 +125,28 @@ const Home = () => {
             titleKey: 'services_section.consultoria_title',
             descKey: 'services_section.consultoria_desc',
             href: '/servicios/consultoria',
+            image: '/Imágenes/Consultoría.webp',
         },
         {
             icon: <IconCheck />,
             titleKey: 'services_section.auditoria_title',
             descKey: 'services_section.auditoria_desc',
             href: '/servicios/auditoria',
+            image: '/Imágenes/Auditoría.webp',
         },
         {
             icon: <IconGrad />,
             titleKey: 'services_section.formacion_title',
             descKey: 'services_section.formacion_desc',
             href: '/servicios/formacion',
+            image: '/Imágenes/Formación.webp',
         },
         {
             icon: <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>,
             titleKey: 'services_section.medicina_title',
             descKey: 'services_section.medicina_desc',
             href: '/servicios/medicina-ocupacional',
+            image: '/Imágenes/medicina_ocupacional.jpg',
         },
     ];
 
@@ -183,14 +187,14 @@ const Home = () => {
             {/* ── ESTADÍSTICAS / LOGROS ────────────────────────────────────── */}
             <section className="py-20 bg-white relative z-20 border-b border-gray-100/50">
                 <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 max-w-[1400px] mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-8 lg:gap-0 max-w-[1400px] mx-auto">
                         
                         {/* Stat 1 */}
-                        <div className="flex flex-col items-center text-center group">
+                        <div className="flex flex-col items-center text-center group lg:col-span-1">
                             <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-6 group-hover:scale-110 shadow-sm">
                                 <Globe strokeWidth={1.5} className="w-24 h-24" />
                             </div>
-                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                            <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">+30</span>
                                 <span className="text-lg md:text-xl">AÑOS DE EXPERIENCIA EN EL SECTOR</span>
                             </h3>
@@ -199,8 +203,13 @@ const Home = () => {
                             </p>
                         </div>
 
+                        {/* Divider 1 */}
+                        <div className="hidden lg:flex items-center justify-center lg:col-span-1">
+                            <div className="w-[3px] h-40 bg-primary rounded-full" />
+                        </div>
+
                         {/* Stat 2 */}
-                        <div className="flex flex-col items-center text-center group">
+                        <div className="flex flex-col items-center text-center group lg:col-span-1">
                             <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:-rotate-6 group-hover:scale-110 shadow-sm relative">
                                 <ThumbsUp strokeWidth={1.5} className="w-20 h-20 mt-4" />
                                 <div className="absolute top-6 right-6 flex gap-1 text-primary group-hover:text-white transition-colors duration-500">
@@ -209,7 +218,7 @@ const Home = () => {
                                     <Star fill="currentColor" className="w-6 h-6" />
                                 </div>
                             </div>
-                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                            <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">98%</span>
                                 <span className="text-lg md:text-xl">SATISFACCIÓN DE CLIENTES</span>
                             </h3>
@@ -218,13 +227,18 @@ const Home = () => {
                             </p>
                         </div>
 
+                        {/* Divider 2 */}
+                        <div className="hidden lg:flex items-center justify-center lg:col-span-1">
+                            <div className="w-[3px] h-40 bg-primary rounded-full" />
+                        </div>
+
                         {/* Stat 3 */}
-                        <div className="flex flex-col items-center text-center group">
+                        <div className="flex flex-col items-center text-center group lg:col-span-1">
                             <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-6 group-hover:scale-110 shadow-sm relative">
                                 <Lightbulb strokeWidth={1.5} className="w-24 h-24" />
                                 <Users strokeWidth={2} className="w-10 h-10 absolute bottom-6 right-6 text-primary group-hover:text-white transition-colors duration-500" />
                             </div>
-                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                            <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">+35K</span>
                                 <span className="text-lg md:text-xl">HORAS DE CONSULTORÍA Y AUDITORÍA</span>
                             </h3>
@@ -233,12 +247,17 @@ const Home = () => {
                             </p>
                         </div>
 
+                        {/* Divider 3 */}
+                        <div className="hidden lg:flex items-center justify-center lg:col-span-1">
+                            <div className="w-[3px] h-40 bg-primary rounded-full" />
+                        </div>
+
                         {/* Stat 4 */}
-                        <div className="flex flex-col items-center text-center group">
+                        <div className="flex flex-col items-center text-center group lg:col-span-1">
                             <div className="w-40 h-40 mb-10 rounded-full bg-[#F9FBE7] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:-rotate-6 group-hover:scale-110 shadow-sm">
                                 <TrendingUp strokeWidth={1.5} className="w-24 h-24" />
                             </div>
-                            <h3 className="font-black text-primary mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
+                            <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">+100</span>
                                 <span className="text-lg md:text-xl">ORGANIZACIONES TRANSFORMADAS</span>
                             </h3>
@@ -263,33 +282,32 @@ const Home = () => {
                     </h2>
                     <div className="w-24 h-1.5 bg-primary mx-auto mb-20 rounded-full" />
 
-                    <div className="flex justify-center gap-6 md:gap-8 max-w-7xl mx-auto px-4 mb-10">
-                        <button onClick={() => scrollCarousel('left')} className="w-12 h-12 md:w-16 md:h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
-                            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
-                        </button>
-                        <button onClick={() => scrollCarousel('right')} className="w-12 h-12 md:w-16 md:h-16 rounded-full border-[3px] border-primary bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:scale-110 transition-all shadow-lg">
-                            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
-                        </button>
-                    </div>
-
-                    <div ref={carouselRef} className="flex overflow-x-auto snap-x snap-mandatory gap-6 max-w-7xl mx-auto px-4 pb-16 pt-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto px-4 pb-16 pt-4">
                         {pilares.map((p, i) => (
-                            <div key={i} className="bg-white p-8 md:p-10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.04)] border-2 border-primary/20 hover:border-primary/80 hover:-translate-y-2 transition-all duration-500 flex flex-col group relative overflow-hidden w-[85vw] md:w-[calc(50%-12px)] lg:w-[calc(50%-12px)] snap-center shrink-0">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0 transition-transform duration-700 group-hover:scale-150" />
-                                <div className="relative z-10 flex flex-col items-start w-full h-full">
-                                    <div className="w-16 h-16 bg-[#F9FBE7] rounded-2xl flex items-center justify-center mb-8 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
-                                        <div className="scale-75">{p.icon}</div>
-                                    </div>
-                                    <h3 className="text-xl md:text-2xl font-black mb-4 uppercase tracking-tight text-secondary font-heading pr-8">
-                                        {t(p.titleKey)}
-                                    </h3>
-                                    <p className="text-gray-500 leading-relaxed mb-8 text-sm md:text-base font-medium text-left">
-                                        {t(p.descKey)}
-                                    </p>
-                                    <div className="mt-auto pt-6 border-t border-black/5 w-full">
-                                        <a href={p.href} className="text-primary font-black uppercase tracking-widest flex items-center gap-3 hover:translate-x-2 transition-all text-[10px] md:text-xs font-heading">
-                                            {t('services_section.learn_more')} <IconArrow />
-                                        </a>
+                            <div key={i} className="bg-white rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.04)] border-2 border-primary/20 hover:border-primary/80 hover:-translate-y-2 transition-all duration-500 flex flex-row group relative overflow-hidden">
+                                {/* Image on the left */}
+                                <div className="w-48 md:w-56 flex-shrink-0 relative overflow-hidden rounded-l-[38px]">
+                                    <img src={p.image} alt={t(p.titleKey)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
+                                </div>
+                                {/* Content on the right */}
+                                <div className="flex-1 p-8 md:p-10 flex flex-col items-start text-left relative">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0 transition-transform duration-700 group-hover:scale-150" />
+                                    <div className="relative z-10 flex flex-col items-start w-full h-full">
+                                        <div className="w-14 h-14 bg-[#F9FBE7] rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                                            <div className="scale-75">{p.icon}</div>
+                                        </div>
+                                        <h3 className="text-xl md:text-2xl font-black mb-4 uppercase tracking-tight text-secondary font-heading pr-8">
+                                            {t(p.titleKey)}
+                                        </h3>
+                                        <p className="text-gray-500 leading-relaxed mb-8 text-sm md:text-base font-medium">
+                                            {t(p.descKey)}
+                                        </p>
+                                        <div className="mt-auto pt-6 border-t border-black/5 w-full">
+                                            <a href={p.href} className="text-primary font-black uppercase tracking-widest flex items-center gap-3 hover:translate-x-2 transition-all text-[10px] md:text-xs font-heading">
+                                                {t('services_section.learn_more')} <IconArrow />
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
