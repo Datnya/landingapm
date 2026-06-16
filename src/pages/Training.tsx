@@ -16,12 +16,10 @@ const TrainingPage = () => {
             {/* Hero Section */}
             <section className="relative h-[65vh] flex items-center overflow-hidden bg-black">
                 <div className="absolute inset-0 z-0">
-                    <iframe
-                        src="https://www.youtube.com/embed/mvSC9uad5mE?autoplay=1&mute=1&loop=1&playlist=mvSC9uad5mE&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playsinline=1"
-                        className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-60"
-                        frameBorder="0"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
+                    <img
+                        src="/Imágenes/hero_formacion.jpg"
+                        className="w-full h-full object-cover opacity-60"
+                        alt="Formación"
                     />
                     <div className="absolute inset-0 bg-black/50" />
                 </div>
