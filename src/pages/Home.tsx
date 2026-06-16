@@ -287,7 +287,7 @@ const Home = () => {
                             <div key={i} className="bg-white rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.04)] border-2 border-primary/20 hover:border-primary/80 hover:-translate-y-2 transition-all duration-500 flex flex-row group relative overflow-hidden">
                                 {/* Image on the left */}
                                 <div className="w-48 md:w-56 flex-shrink-0 relative overflow-hidden rounded-l-[38px]">
-                                    <img src={p.image} alt={t(p.titleKey)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                    <img src={p.image} alt={t(p.titleKey)} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
                                 </div>
                                 {/* Content on the right */}
@@ -430,7 +430,7 @@ const Home = () => {
             {/* ── WEBINAR SECTION ──────────────────────────────────────────── */}
             <section className="bg-secondary text-white py-24 md:py-32 m-8 md:m-16 rounded-[60px] relative overflow-hidden group">
                 <div className="absolute inset-0 z-0">
-                    <img src="/Imágenes/Webinar.webp" alt="Webinar APM" className="w-full h-full object-cover opacity-20 transition-transform duration-1000 group-hover:scale-105" />
+                    <img src="/Imágenes/Webinar.webp" alt="Webinar APM" loading="lazy" className="w-full h-full object-cover opacity-20 transition-transform duration-1000 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/60" />
                 </div>
 

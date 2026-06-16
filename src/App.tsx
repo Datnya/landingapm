@@ -4,20 +4,20 @@ import { HelmetProvider } from 'react-helmet-async';
 import { useI18n } from './i18n';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import ServicesPage from './pages/Services';
-import CoursesPage from './pages/Courses';
-import BlogPage from './pages/Blog';
-import Contact from './pages/Contact';
-import Auditoria from './pages/Audit';
-import Consultoria from './pages/Consulting';
-import Formacion from './pages/Training';
-import OccupationalMedicine from './pages/OccupationalMedicine';
-import Success from './pages/Success';
-import ChecklistISO from './pages/ChecklistISO';
-import ChecklistSuccess from './pages/ChecklistSuccess';
-import CampusMaintenance from './pages/CampusMaintenance';
+const Home = React.lazy(() => import('./pages/Home'));
+const About = React.lazy(() => import('./pages/About'));
+const ServicesPage = React.lazy(() => import('./pages/Services'));
+const CoursesPage = React.lazy(() => import('./pages/Courses'));
+const BlogPage = React.lazy(() => import('./pages/Blog'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const Auditoria = React.lazy(() => import('./pages/Audit'));
+const Consultoria = React.lazy(() => import('./pages/Consulting'));
+const Formacion = React.lazy(() => import('./pages/Training'));
+const OccupationalMedicine = React.lazy(() => import('./pages/OccupationalMedicine'));
+const Success = React.lazy(() => import('./pages/Success'));
+const ChecklistISO = React.lazy(() => import('./pages/ChecklistISO'));
+const ChecklistSuccess = React.lazy(() => import('./pages/ChecklistSuccess'));
+const CampusMaintenance = React.lazy(() => import('./pages/CampusMaintenance'));
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -63,22 +63,24 @@ const Layout = () => {
             {!hideNavbar && <Navbar />}
 
             <main className="flex-grow">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/nosotros" element={<About />} />
-                    <Route path="/servicios" element={<ServicesPage />} />
-                    <Route path="/cursos" element={<CoursesPage />} />
-                    <Route path="/blog" element={<BlogPage />} />
-                    <Route path="/contacto" element={<Contact />} />
-                    <Route path="/servicios/auditoria" element={<Auditoria />} />
-                    <Route path="/servicios/consultoria" element={<Consultoria />} />
-                    <Route path="/servicios/formacion" element={<Formacion />} />
-                    <Route path="/servicios/medicina-ocupacional" element={<OccupationalMedicine />} />
-                    <Route path="/exito" element={<Success />} />
-                    <Route path="/checklist-iso-9001" element={<ChecklistISO />} />
-                    <Route path="/exito-checklist" element={<ChecklistSuccess />} />
-                    <Route path="/campus-mantenimiento" element={<CampusMaintenance />} />
-                </Routes>
+                <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div></div>}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/nosotros" element={<About />} />
+                        <Route path="/servicios" element={<ServicesPage />} />
+                        <Route path="/cursos" element={<CoursesPage />} />
+                        <Route path="/blog" element={<BlogPage />} />
+                        <Route path="/contacto" element={<Contact />} />
+                        <Route path="/servicios/auditoria" element={<Auditoria />} />
+                        <Route path="/servicios/consultoria" element={<Consultoria />} />
+                        <Route path="/servicios/formacion" element={<Formacion />} />
+                        <Route path="/servicios/medicina-ocupacional" element={<OccupationalMedicine />} />
+                        <Route path="/exito" element={<Success />} />
+                        <Route path="/checklist-iso-9001" element={<ChecklistISO />} />
+                        <Route path="/exito-checklist" element={<ChecklistSuccess />} />
+                        <Route path="/campus-mantenimiento" element={<CampusMaintenance />} />
+                    </Routes>
+                </React.Suspense>
             </main>
 
             <Footer />
