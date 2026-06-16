@@ -120,13 +120,12 @@ const SyntheticHero = ({
         >
             {/* Video Background */}
             <div className="absolute inset-0 z-0">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover"
-                    src="/Videos/FONDO INICIO VID.mp4"
+                <iframe
+                    src="https://www.youtube.com/embed/Jl44uP6c6wM?autoplay=1&mute=1&loop=1&playlist=Jl44uP6c6wM&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playsinline=1"
+                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
                 />
                 {/* Black overlay at 50% opacity */}
                 <div className="absolute inset-0 bg-black/50" />
