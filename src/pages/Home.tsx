@@ -197,10 +197,10 @@ const Home = () => {
                             </div>
                             <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">+30</span>
-                                <span className="text-lg md:text-xl">AÑOS DE EXPERIENCIA EN EL SECTOR</span>
+                                <span className="text-lg md:text-xl">{t('stats.years_title')}</span>
                             </h3>
                             <p className="text-gray-500 text-sm font-medium leading-relaxed">
-                                a nivel nacional y LATAM
+                                {t('stats.years_desc')}
                             </p>
                         </div>
 
@@ -221,10 +221,10 @@ const Home = () => {
                             </div>
                             <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">98%</span>
-                                <span className="text-lg md:text-xl">SATISFACCIÓN DE CLIENTES</span>
+                                <span className="text-lg md:text-xl">{t('stats.satisfaction_title')}</span>
                             </h3>
                             <p className="text-gray-500 text-sm font-medium leading-relaxed px-2">
-                                Basados en encuestas y testimonios reales de nuestros proyectos
+                                {t('stats.satisfaction_desc')}
                             </p>
                         </div>
 
@@ -241,10 +241,10 @@ const Home = () => {
                             </div>
                             <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">+35K</span>
-                                <span className="text-lg md:text-xl">HORAS DE CONSULTORÍA Y AUDITORÍA</span>
+                                <span className="text-lg md:text-xl">{t('stats.hours_title')}</span>
                             </h3>
                             <p className="text-gray-500 text-sm font-medium leading-relaxed px-2">
-                                Resultados tangibles y soluciones integrales en normas ISO y gestión empresarial
+                                {t('stats.hours_desc')}
                             </p>
                         </div>
 
@@ -260,10 +260,10 @@ const Home = () => {
                             </div>
                             <h3 className="font-black text-black mb-4 uppercase leading-tight font-heading flex flex-col gap-2">
                                 <span className="text-6xl md:text-7xl tracking-tighter">+100</span>
-                                <span className="text-lg md:text-xl">ORGANIZACIONES TRANSFORMADAS</span>
+                                <span className="text-lg md:text-xl">{t('stats.orgs_title')}</span>
                             </h3>
                             <p className="text-gray-500 text-sm font-medium leading-relaxed px-2">
-                                Desde corporaciones líderes en Perú y la región
+                                {t('stats.orgs_desc')}
                             </p>
                         </div>
 
@@ -496,7 +496,7 @@ const Home = () => {
 
                                 <div className="mt-8 flex justify-center">
                                     <a
-                                        href="https://luma.com/y3qw5s2e"
+                                        href="https://luma.com/srb0dkax"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-black rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 hover:shadow-[0_20px_40px_rgba(178,197,53,0.5)] transition-all shadow-[0_10px_30px_rgba(178,197,53,0.3)] font-heading"
@@ -521,7 +521,7 @@ const Home = () => {
                                         <h5 className="font-black text-sm uppercase leading-tight mb-1 font-heading">{t('webinar.session_title')}</h5>
                                         <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">19:00 PM · VIA ZOOM</p>
                                     </div>
-                                    <a href="https://luma.com/y3qw5s2e" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black text-primary uppercase tracking-widest hover:text-white transition-all flex items-center gap-1 font-heading">
+                                    <a href="https://luma.com/srb0dkax" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black text-primary uppercase tracking-widest hover:text-white transition-all flex items-center gap-1 font-heading">
                                         {t('webinar.register')}
                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                                     </a>

@@ -24,6 +24,16 @@
         "micro_2": "Mejora Continua",
         "micro_3": "Estrategia de Negocio"
     },
+    "stats": {
+        "years_title": "AÑOS DE EXPERIENCIA EN EL SECTOR",
+        "years_desc": "a nivel nacional y LATAM",
+        "satisfaction_title": "SATISFACCIÓN DE CLIENTES",
+        "satisfaction_desc": "Basados en encuestas y testimonios reales de nuestros proyectos",
+        "hours_title": "HORAS DE CONSULTORÍA Y AUDITORÍA",
+        "hours_desc": "Resultados tangibles y soluciones integrales en normas ISO y gestión empresarial",
+        "orgs_title": "ORGANIZACIONES TRANSFORMADAS",
+        "orgs_desc": "Desde corporaciones líderes en Perú y la región"
+    },
     "services_section": {
         "label": "Excelencia en Soluciones",
         "title_1": "Nuestros Pilares de",

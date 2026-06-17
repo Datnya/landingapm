@@ -76,7 +76,7 @@ const OccupationalMedicinePage = () => {
             </Helmet>
 
             {/* Hero Section */}
-            <section className="relative py-32 overflow-hidden bg-cover bg-center rounded-b-[60px]" style={{ backgroundImage: "url('/ImÃ¡genes/medicina%20imagen.jpg')" }}>
+            <section className="relative py-32 overflow-hidden bg-cover bg-center rounded-b-[60px]" style={{ backgroundImage: "url('/Im%C3%A1genes/medicina%20imagen.jpg')" }}>
                 <div className="absolute inset-0 bg-black/60" />
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl">
@@ -134,7 +134,7 @@ const OccupationalMedicinePage = () => {
                         {/* Panel Dra. Alicia */}
                         <div className="bg-white rounded-[40px] border border-black/5 p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.05)] flex flex-col sm:flex-row items-center sm:items-stretch text-center sm:text-left gap-6">
                             <div className="w-36 sm:w-44 flex-shrink-0 aspect-[3/4] rounded-2xl overflow-hidden border-4 border-primary/20 shadow-xl relative group">
-                                <img src="/ImÃ¡genes/Alicia%20Torres.png" alt="Dra. Alicia Torres" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
+                                <img src="/Im%C3%A1genes/Alicia%20Torres.png" alt="Dra. Alicia Torres" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
                                 <div className="absolute inset-0 border-[6px] border-primary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-105" />
                             </div>
                             <div className="flex-1 space-y-4 flex flex-col justify-center">
@@ -168,7 +168,7 @@ const OccupationalMedicinePage = () => {
                         {/* Panel Dra. MarÃ­a */}
                         <div className="bg-white rounded-[40px] border border-black/5 p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.05)] flex flex-col sm:flex-row items-center sm:items-stretch text-center sm:text-left gap-6">
                             <div className="w-36 sm:w-44 flex-shrink-0 aspect-[3/4] rounded-2xl overflow-hidden border-4 border-primary/20 shadow-xl relative group">
-                                <img src="/ImÃ¡genes/Maria_Andreina.jpg" alt="Dra. MarÃ­a Andreina Silva Reyes" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
+                                <img src="/Im%C3%A1genes/Maria_Andreina.jpg" alt="Dra. María Andreina Silva Reyes" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
                                 <div className="absolute inset-0 border-[6px] border-primary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-105" />
                             </div>
                             <div className="flex-1 space-y-4 flex flex-col justify-center">

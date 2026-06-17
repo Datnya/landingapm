@@ -24,6 +24,16 @@
         "micro_2": "Continuous Improvement",
         "micro_3": "Business Strategy"
     },
+    "stats": {
+        "years_title": "YEARS OF INDUSTRY EXPERIENCE",
+        "years_desc": "nationwide and LATAM",
+        "satisfaction_title": "CLIENT SATISFACTION",
+        "satisfaction_desc": "Based on real surveys and testimonials from our projects",
+        "hours_title": "HOURS OF CONSULTING AND AUDITING",
+        "hours_desc": "Tangible results and comprehensive solutions in ISO standards and business management",
+        "orgs_title": "ORGANIZATIONS TRANSFORMED",
+        "orgs_desc": "From leading corporations in Peru and the region"
+    },
     "services_section": {
         "label": "Excellence in Solutions",
         "title_1": "Our Service",
