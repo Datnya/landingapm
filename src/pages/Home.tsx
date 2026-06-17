@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SyntheticHero from '../components/ui/synthetic-hero';
 import { useI18n } from '../i18n';
 import { Globe, ThumbsUp, Star, Lightbulb, Users, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
+import WebinarPopup from '../components/ui/webinar-popup';
 
 // ── Carousel: P2, P3, P4 — converted from DNG to JPEG for browser compatibility
 const CAROUSEL_IMAGES = [
@@ -428,7 +429,7 @@ const Home = () => {
             </section>
 
             {/* ── WEBINAR SECTION ──────────────────────────────────────────── */}
-            <section className="bg-secondary text-white py-24 md:py-32 m-8 md:m-16 rounded-[60px] relative overflow-hidden group">
+            <section id="webinar-section" className="bg-secondary text-white py-16 md:py-20 mx-4 md:mx-8 mb-16 rounded-[40px] relative overflow-hidden group">
                 <div className="absolute inset-0 z-0">
                     <img src="/Imágenes/Webinar.webp" alt="Webinar APM" loading="lazy" className="w-full h-full object-cover opacity-20 transition-transform duration-1000 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/60" />
@@ -469,8 +470,8 @@ const Home = () => {
 
                                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                                     <div className="bg-white text-secondary rounded-2xl px-6 py-5 text-center flex-shrink-0 shadow-xl">
-                                        <p className="text-[10px] font-black uppercase tracking-wider text-secondary/40 leading-none mb-1 font-heading">ABR</p>
-                                        <p className="text-5xl font-black leading-none font-heading">30</p>
+                                        <p className="text-[10px] font-black uppercase tracking-wider text-secondary/40 leading-none mb-1 font-heading">JUN</p>
+                                        <p className="text-5xl font-black leading-none font-heading">18</p>
                                         <p className="text-[10px] font-black text-secondary/40 mt-1">2026</p>
                                     </div>
 
@@ -581,6 +582,8 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            {/* Webinar Popup */}
+            <WebinarPopup />
         </>
     );
 };

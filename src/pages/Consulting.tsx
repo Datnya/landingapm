@@ -1,94 +1,95 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Target, RefreshCcw, Shield, Leaf, Lock, Heart, Factory, Pickaxe, ShoppingBag, Utensils, Briefcase, GraduationCap, Cpu, ArrowRight } from 'lucide-react';
 import { useI18n } from '../i18n';
 
 const ConsultingPage = () => {
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
+    const isEn = locale === 'en';
 
     const pillars = [
         {
             icon: <Target className="w-16 h-16" />,
             titleKey: 'consulting.pillar_quality',
-            itemsEs: ["ISO 9001", "ISO/IEC 17025", "BPL", "ISO 21001", "ISO 55001", "Metodología 5's"],
+            itemsEs: ["ISO 9001", "ISO/IEC 17025", "BPL", "ISO 21001", "ISO 55001", "MetodologÃ­a 5's"],
             itemsEn: ["ISO 9001", "ISO/IEC 17025", "GLP", "ISO 21001", "ISO 55001", "5S Methodology"],
-            image: "/Imágenes/Subservicios/Calidad y excelencia.webp"
+            image: "/ImÃ¡genes/Subservicios/Calidad y excelencia.webp"
         },
         {
             icon: <RefreshCcw className="w-16 h-16" />,
             titleKey: 'consulting.pillar_food',
             itemsEs: ["ISO 22000", "HACCP", "BPM / BPA", "SQF", "BRC / GFSI"],
             itemsEn: ["ISO 22000", "HACCP", "GMP / GAP", "SQF", "BRC / GFSI"],
-            image: "/Imágenes/Subservicios/Seguridad alimentaria.webp"
+            image: "/ImÃ¡genes/Subservicios/Seguridad alimentaria.webp"
         },
         {
             icon: <Shield className="w-16 h-16" />,
             titleKey: 'consulting.pillar_anti',
             itemsEs: ["ISO 37001", "ISO 28001 (Supply Chain)", "ISO 37002 (Denuncias)", "Compliance Corporativo"],
             itemsEn: ["ISO 37001", "ISO 28001 (Supply Chain)", "ISO 37002 (Whistleblowing)", "Corporate Compliance"],
-            image: "/Imágenes/Subservicios/Gestión antisoborno.webp"
+            image: "/ImÃ¡genes/Subservicios/GestiÃ³n antisoborno.webp"
         },
         {
             icon: <Leaf className="w-16 h-16" />,
             titleKey: 'consulting.pillar_esg',
             itemsEs: ["ISO 14001 (Ambiental)", "Huella de Carbono", "ISO 26000", "ODS & ESG Reporting"],
             itemsEn: ["ISO 14001 (Environmental)", "Carbon Footprint", "ISO 26000", "SDG & ESG Reporting"],
-            image: "/Imágenes/Subservicios/Sostenibilidad.webp"
+            image: "/ImÃ¡genes/Subservicios/Sostenibilidad.webp"
         },
         {
             icon: <Lock className="w-16 h-16" />,
             titleKey: 'consulting.pillar_cyber',
-            itemsEs: ["ISO/IEC 27001", "Gestión de Privacidad (ISO 27701)", "Protección de Datos Personales"],
+            itemsEs: ["ISO/IEC 27001", "GestiÃ³n de Privacidad (ISO 27701)", "ProtecciÃ³n de Datos Personales"],
             itemsEn: ["ISO/IEC 27001", "Privacy Management (ISO 27701)", "Personal Data Protection"],
-            image: "/Imágenes/Subservicios/Ciberseguridad.webp"
+            image: "/ImÃ¡genes/Subservicios/Ciberseguridad.webp"
         },
         {
             icon: <Heart className="w-16 h-16" />,
             titleKey: 'consulting.pillar_health',
-            itemsEs: ["ISO 45001 (SST)", "ISO 22320 (Emergencias)", "Igualdad de Género", "Ley 29783"],
+            itemsEs: ["ISO 45001 (SST)", "ISO 22320 (Emergencias)", "Igualdad de GÃ©nero", "Ley 29783"],
             itemsEn: ["ISO 45001 (OH&S)", "ISO 22320 (Emergencies)", "Gender Equality", "Law 29783"],
-            image: "/Imágenes/Subservicios/Salud y bienestar.webp"
+            image: "/ImÃ¡genes/Subservicios/Salud y bienestar.webp"
         }
     ];
 
     const sectors = [
         { nameEs: "Industria", nameEn: "Industry", icon: <Factory size={16} /> },
-        { nameEs: "Minería", nameEn: "Mining", icon: <Pickaxe size={16} /> },
+        { nameEs: "MinerÃ­a", nameEn: "Mining", icon: <Pickaxe size={16} /> },
         { nameEs: "Retail", nameEn: "Retail", icon: <ShoppingBag size={16} /> },
         { nameEs: "Alimentos", nameEn: "Food", icon: <Utensils size={16} /> },
         { nameEs: "Servicios", nameEn: "Services", icon: <Briefcase size={16} /> },
-        { nameEs: "Educación", nameEn: "Education", icon: <GraduationCap size={16} /> },
-        { nameEs: "Tecnología", nameEn: "Technology", icon: <Cpu size={16} /> }
+        { nameEs: "EducaciÃ³n", nameEn: "Education", icon: <GraduationCap size={16} /> },
+        { nameEs: "TecnologÃ­a", nameEn: "Technology", icon: <Cpu size={16} /> }
     ];
 
     const sustainabilityItemsEs = [
-        "ISO 14001 – Sistema de Gestión Ambiental",
-        "ISO 50001 – Sistema de Gestión Energética",
-        "ISO 14067 – Huella de Carbono de Productos",
-        "ISO 14064 – Huella de Carbono de Organizaciones",
-        "ISO 14046 – Huella de Agua",
-        "ISO 20400 – Compras Sostenibles",
-        "ISO 26000 – Guía sobre Responsabilidad Social",
-        "SGE21 – Gestión Ética y Responsabilidad Empresarial",
-        "SA 8000 – Responsabilidad Social Internacional",
-        "Sistemas de Gestión de Igualdad de Género",
-        "ESR – Empresa Socialmente Responsable",
-        "Economía Circular",
+        "ISO 14001 â€“ Sistema de GestiÃ³n Ambiental",
+        "ISO 50001 â€“ Sistema de GestiÃ³n EnergÃ©tica",
+        "ISO 14067 â€“ Huella de Carbono de Productos",
+        "ISO 14064 â€“ Huella de Carbono de Organizaciones",
+        "ISO 14046 â€“ Huella de Agua",
+        "ISO 20400 â€“ Compras Sostenibles",
+        "ISO 26000 â€“ GuÃ­a sobre Responsabilidad Social",
+        "SGE21 â€“ GestiÃ³n Ã‰tica y Responsabilidad Empresarial",
+        "SA 8000 â€“ Responsabilidad Social Internacional",
+        "Sistemas de GestiÃ³n de Igualdad de GÃ©nero",
+        "ESR â€“ Empresa Socialmente Responsable",
+        "EconomÃ­a Circular",
         "ESG y Reporte | Memoria de Sostenibilidad"
     ];
 
     const sustainabilityItemsEn = [
-        "ISO 14001 – Environmental Management System",
-        "ISO 50001 – Energy Management System",
-        "ISO 14067 – Carbon Footprint of Products",
-        "ISO 14064 – Carbon Footprint of Organizations",
-        "ISO 14046 – Water Footprint",
-        "ISO 20400 – Sustainable Procurement",
-        "ISO 26000 – Guidance on Social Responsibility",
-        "SGE21 – Ethical and Socially Responsible Management",
-        "SA 8000 – Social Accountability International",
+        "ISO 14001 â€“ Environmental Management System",
+        "ISO 50001 â€“ Energy Management System",
+        "ISO 14067 â€“ Carbon Footprint of Products",
+        "ISO 14064 â€“ Carbon Footprint of Organizations",
+        "ISO 14046 â€“ Water Footprint",
+        "ISO 20400 â€“ Sustainable Procurement",
+        "ISO 26000 â€“ Guidance on Social Responsibility",
+        "SGE21 â€“ Ethical and Socially Responsible Management",
+        "SA 8000 â€“ Social Accountability International",
         "Gender Equality Management Systems",
-        "ESR – Socially Responsible Enterprise",
+        "ESR â€“ Socially Responsible Enterprise",
         "Circular Economy",
         "ESG and Reporting | Sustainability Report"
     ];
@@ -96,17 +97,17 @@ const ConsultingPage = () => {
     return (
         <div className="bg-white min-h-screen pt-20">
             <Helmet>
-                <title>Consultoría en Normas ISO y Sostenibilidad | APM Group</title>
-                <meta name="description" content="Nuestros servicios de consultoría estratégica y técnica para la obtención de certificaciones ISO 9001, ISO 14001, ISO 37001, ISO 45001 y más." />
+                <title>ConsultorÃ­a en Normas ISO y Sostenibilidad | APM Group</title>
+                <meta name="description" content="Nuestros servicios de consultorÃ­a estratÃ©gica y tÃ©cnica para la obtenciÃ³n de certificaciones ISO 9001, ISO 14001, ISO 37001, ISO 45001 y mÃ¡s." />
                 <link rel="canonical" href="https://apmgroup.pe/servicios/consultoria" />
             </Helmet>
             {/* Hero Section */}
             <section className="relative h-[65vh] flex items-center overflow-hidden bg-black">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/Imágenes/hero_consultoria.jpg"
+                        src="/ImÃ¡genes/hero_consultoria.jpg"
                         className="w-full h-full object-cover opacity-60"
-                        alt="Consultoría"
+                        alt="ConsultorÃ­a"
                     />
                     <div className="absolute inset-0 bg-black/50" />
                 </div>
@@ -161,7 +162,7 @@ const ConsultingPage = () => {
                                     </div>
                                     <h3 className="text-2xl font-black mb-8 uppercase tracking-tight text-primary transition-colors">{t(pillar.titleKey)}</h3>
                                     <ul className="space-y-4 w-full">
-                                        {(window.localStorage.getItem('language') === 'en' ? pillar.itemsEn : pillar.itemsEs).map((item, idx) => (
+                                        {(locale === 'en' ? pillar.itemsEn : pillar.itemsEs).map((item, idx) => (
                                             <li key={idx} className="flex items-center justify-center gap-3 text-white transition-colors text-sm font-semibold">
                                                 <div className="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_10px_rgba(178,197,53,0.5)]" />
                                                 {item}
@@ -181,7 +182,7 @@ const ConsultingPage = () => {
                     <div className="bg-[#FAFBF5] rounded-[50px] overflow-hidden flex flex-col lg:flex-row border border-black/5 shadow-[0_20px_60px_rgba(0,0,0,0.03)] group">
                         {/* Image Side */}
                         <div className="lg:w-2/5 relative overflow-hidden min-h-[300px] lg:min-h-full">
-                            <img src="/Imágenes/sostenibilidad_nueva.jpg" alt="Sostenibilidad Empresarial" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                            <img src="/ImÃ¡genes/sostenibilidad_nueva.jpg" alt="Sostenibilidad Empresarial" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#FAFBF5] to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#FAFBF5] z-10" />
                         </div>
                         
@@ -192,17 +193,17 @@ const ConsultingPage = () => {
                                     <Leaf className="w-6 h-6" />
                                 </div>
                                 <h3 className="text-3xl md:text-4xl font-black text-secondary uppercase tracking-tighter">
-                                    {window.localStorage.getItem('language') === 'en' ? 'Sustainability Services' : 'Servicios de Sostenibilidad'}
+                                    {locale === 'en' ? 'Sustainability Services' : 'Servicios de Sostenibilidad'}
                                 </h3>
                             </div>
                             <p className="text-secondary/60 mb-10 font-medium leading-relaxed max-w-2xl">
-                                {window.localStorage.getItem('language') === 'en' 
+                                {locale === 'en' 
                                     ? 'We guide your organization towards a green and socially responsible transition through recognized international standards.' 
-                                    : 'Guiamos a su organización hacia una transición verde y socialmente responsable a través de estándares internacionales reconocidos.'}
+                                    : 'Guiamos a su organizaciÃ³n hacia una transiciÃ³n verde y socialmente responsable a travÃ©s de estÃ¡ndares internacionales reconocidos.'}
                             </p>
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-10">
-                                {(window.localStorage.getItem('language') === 'en' ? sustainabilityItemsEn : sustainabilityItemsEs).map((item, idx) => (
+                                {(locale === 'en' ? sustainabilityItemsEn : sustainabilityItemsEs).map((item, idx) => (
                                     <div key={idx} className="flex items-start gap-3">
                                         <div className="mt-1.5 min-w-[6px] h-[6px] rounded-full bg-primary" />
                                         <span className="text-sm font-semibold text-secondary/80 leading-snug">{item}</span>
@@ -215,9 +216,9 @@ const ConsultingPage = () => {
                                     href="/contacto" 
                                     className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-secondary rounded-xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-md hover:shadow-lg group"
                                 >
-                                    {window.localStorage.getItem('language') === 'en' 
+                                    {locale === 'en' 
                                         ? 'Want to implement sustainability? Contact us here' 
-                                        : '¿Quieres implementar sostenibilidad en tu empresa? Contáctanos aquí'}
+                                        : 'Â¿Quieres implementar sostenibilidad en tu empresa? ContÃ¡ctanos aquÃ­'}
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </a>
                             </div>
@@ -242,7 +243,7 @@ const ConsultingPage = () => {
                             {sectors.map((sec) => (
                                 <div key={sec.nameEs} className="flex items-center gap-3 px-8 py-4 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 text-xs font-black uppercase tracking-widest shadow-sm hover:bg-white transition-all group">
                                     <span className="text-secondary/50 group-hover:text-primary transition-colors">{sec.icon}</span>
-                                    {window.localStorage.getItem('language') === 'en' ? sec.nameEn : sec.nameEs}
+                                    {locale === 'en' ? sec.nameEn : sec.nameEs}
                                 </div>
                             ))}
                         </div>
@@ -269,3 +270,4 @@ const ConsultingPage = () => {
 };
 
 export default ConsultingPage;
+

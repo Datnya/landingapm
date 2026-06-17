@@ -2,12 +2,15 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { CheckCircle, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useI18n } from '../i18n';
 
 const Success = () => {
+    const { locale } = useI18n();
+    const isEn = locale === 'en';
     return (
         <div className="pt-20 min-h-screen flex items-center justify-center bg-[#F8F9FA] relative overflow-hidden">
             <Helmet>
-                <title>Mensaje Enviado | APM Group</title>
+                <title>{isEn ? 'Message Sent | APM Group' : 'Mensaje Enviado | APM Group'}</title>
                 <meta name="robots" content="noindex, nofollow" />
             </Helmet>
             {/* Background elements */}
@@ -21,11 +24,14 @@ const Success = () => {
                     </div>
 
                     <h1 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tight text-secondary font-heading line-clamp-2">
-                        ¡Mensaje enviado con éxito!
+                        {isEn ? 'Message sent successfully!' : '¡Mensaje enviado con éxito!'}
                     </h1>
 
                     <p className="text-secondary/70 text-lg md:text-xl font-medium leading-relaxed mb-10 max-w-xl mx-auto font-body">
-                        Gracias por contactar a <span className="text-primary font-bold">APM Group</span>. Nuestro equipo de especialistas revisará tu solicitud y te contactará en breve.
+                        {isEn
+                            ? <>Thank you for contacting <span className="text-primary font-bold">APM Group</span>. Our team of specialists will review your request and get back to you shortly.</>
+                            : <>Gracias por contactar a <span className="text-primary font-bold">APM Group</span>. Nuestro equipo de especialistas revisará tu solicitud y te contactará en breve.</>
+                        }
                     </p>
 
                     <Link
@@ -33,7 +39,7 @@ const Success = () => {
                         className="inline-flex items-center gap-3 px-10 py-5 bg-secondary text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 hover:bg-primary transition-all shadow-[0_10px_30px_rgba(0,0,0,0.1)] font-heading group"
                     >
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                        Volver al inicio
+                        {isEn ? 'Back to home' : 'Volver al inicio'}
                     </Link>
                 </div>
             </div>
