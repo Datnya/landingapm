@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Heart, Activity, Stethoscope, ShieldCheck, FileText, CalendarCheck, Users, Brain, Eye, Ear, Smile, Linkedin } from 'lucide-react';
 import { useI18n } from '../i18n';
@@ -8,65 +8,65 @@ const OccupationalMedicinePage = () => {
 
     const subservicios = [
         {
-            title: locale === 'en' ? "Health Technical Report" : "Informe TÃ©cnico de Salud",
-            description: locale === 'en' ? "Preparation and presentation of reports on workers' health status, medical surveillance results, and preventive recommendations." : "ElaboraciÃ³n y presentaciÃ³n de informes sobre el estado de salud de los trabajadores, resultados de vigilancia mÃ©dica y recomendaciones preventivas.",
+            title: locale === 'en' ? "Health Technical Report" : "Informe Técnico de Salud",
+            description: locale === 'en' ? "Preparation and presentation of reports on workers' health status, medical surveillance results, and preventive recommendations." : "Elaboración y presentación de informes sobre el estado de salud de los trabajadores, resultados de vigilancia médica y recomendaciones preventivas.",
             icon: <FileText className="w-8 h-8" />
         },
         {
             title: locale === 'en' ? "Annual Plan and Schedule" : "Plan Anual y Cronograma",
-            description: locale === 'en' ? "Formulation of the annual occupational health plan with scheduled activities for the whole year, objectives, responsible parties, and indicators." : "FormulaciÃ³n del plan anual de salud ocupacional con actividades programadas para todo el aÃ±o, objetivos, responsables e indicadores.",
+            description: locale === 'en' ? "Formulation of the annual occupational health plan with scheduled activities for the whole year, objectives, responsible parties, and indicators." : "Formulación del plan anual de salud ocupacional con actividades programadas para todo el año, objetivos, responsables e indicadores.",
             icon: <CalendarCheck className="w-8 h-8" />
         },
         {
             title: locale === 'en' ? "Disease Control" : "Control de Enfermedades",
-            description: locale === 'en' ? "Preventive and control measures against communicable diseases at work through awareness actions and surveillance." : "Medidas preventivas y de control frente a enfermedades transmisibles en el trabajo mediante acciones de sensibilizaciÃ³n y vigilancia.",
+            description: locale === 'en' ? "Preventive and control measures against communicable diseases at work through awareness actions and surveillance." : "Medidas preventivas y de control frente a enfermedades transmisibles en el trabajo mediante acciones de sensibilización y vigilancia.",
             icon: <Activity className="w-8 h-8" />
         },
         {
-            title: locale === 'en' ? "Immunization Program" : "Programa de InmunizaciÃ³n",
-            description: locale === 'en' ? "Protection against preventable diseases through vaccination campaigns and preventive guidance." : "ProtecciÃ³n frente a enfermedades prevenibles mediante campaÃ±as de vacunaciÃ³n y orientaciÃ³n preventiva.",
+            title: locale === 'en' ? "Immunization Program" : "Programa de Inmunización",
+            description: locale === 'en' ? "Protection against preventable diseases through vaccination campaigns and preventive guidance." : "Protección frente a enfermedades prevenibles mediante campañas de vacunación y orientación preventiva.",
             icon: <ShieldCheck className="w-8 h-8" />
         },
         {
             title: locale === 'en' ? "Nutritional Health & Healthy Lifestyle" : "Salud Nutricional y Vida Saludable",
-            description: locale === 'en' ? "Anthropometric evaluation, nutritional counseling, and promotion of healthy lifestyles." : "EvaluaciÃ³n antropomÃ©trica, consejerÃ­a nutricional y promociÃ³n de estilos de vida saludables.",
+            description: locale === 'en' ? "Anthropometric evaluation, nutritional counseling, and promotion of healthy lifestyles." : "Evaluación antropométrica, consejería nutricional y promoción de estilos de vida saludables.",
             icon: <Heart className="w-8 h-8" />
         },
         {
-            title: locale === 'en' ? "Psychosocial Prevention" : "PrevenciÃ³n Psicosocial",
-            description: locale === 'en' ? "Identification and reduction of occupational stress factors, overload, and inadequate organizational climate." : "IdentificaciÃ³n y reducciÃ³n de factores de estrÃ©s laboral, sobrecarga y clima organizacional inadecuado.",
+            title: locale === 'en' ? "Psychosocial Prevention" : "Prevención Psicosocial",
+            description: locale === 'en' ? "Identification and reduction of occupational stress factors, overload, and inadequate organizational climate." : "Identificación y reducción de factores de estrés laboral, sobrecarga y clima organizacional inadecuado.",
             icon: <Brain className="w-8 h-8" />
         },
         {
             title: locale === 'en' ? "Pregnant Women & Lactation" : "Gestantes y Lactancia",
-            description: locale === 'en' ? "Comprehensive protection through risk assessment, monitoring, and inspection of lactation conditions." : "ProtecciÃ³n integral a travÃ©s de evaluaciÃ³n de riesgos, seguimiento e inspecciÃ³n de condiciones para la lactancia.",
+            description: locale === 'en' ? "Comprehensive protection through risk assessment, monitoring, and inspection of lactation conditions." : "Protección integral a través de evaluación de riesgos, seguimiento e inspección de condiciones para la lactancia.",
             icon: <Users className="w-8 h-8" />
         },
         {
-            title: locale === 'en' ? "Hearing Protection" : "ProtecciÃ³n Auditiva",
-            description: locale === 'en' ? "Prevention of noise-induced hearing loss through evaluations, medical surveillance, and control measures." : "PrevenciÃ³n de pÃ©rdida auditiva por ruido mediante evaluaciones, vigilancia mÃ©dica y medidas de control.",
+            title: locale === 'en' ? "Hearing Protection" : "Protección Auditiva",
+            description: locale === 'en' ? "Prevention of noise-induced hearing loss through evaluations, medical surveillance, and control measures." : "Prevención de pérdida auditiva por ruido mediante evaluaciones, vigilancia médica y medidas de control.",
             icon: <Ear className="w-8 h-8" />
         },
         {
             title: locale === 'en' ? "Visual Health" : "Salud Visual",
-            description: locale === 'en' ? "Early detection of visual alterations with medical follow-up and timely referral." : "DetecciÃ³n temprana de alteraciones visuales con seguimiento mÃ©dico y derivaciÃ³n oportuna.",
+            description: locale === 'en' ? "Early detection of visual alterations with medical follow-up and timely referral." : "Detección temprana de alteraciones visuales con seguimiento médico y derivación oportuna.",
             icon: <Eye className="w-8 h-8" />
         },
         {
             title: locale === 'en' ? "Active Breaks" : "Pausas Activas",
-            description: locale === 'en' ? "Movement routines to prevent musculoskeletal disorders, fatigue, and stress at work." : "Rutinas de movimiento para prevenir trastornos musculoesquelÃ©ticos, fatiga y estrÃ©s en el trabajo.",
+            description: locale === 'en' ? "Movement routines to prevent musculoskeletal disorders, fatigue, and stress at work." : "Rutinas de movimiento para prevenir trastornos musculoesqueléticos, fatiga y estrés en el trabajo.",
             icon: <Smile className="w-8 h-8" />
         },
         {
             title: locale === 'en' ? "First Aid" : "Primeros Auxilios",
-            description: locale === 'en' ? "Training, first aid kit inspection, and preparation to handle basic emergencies." : "CapacitaciÃ³n, inspecciÃ³n de botiquines y preparaciÃ³n para atender emergencias bÃ¡sicas.",
+            description: locale === 'en' ? "Training, first aid kit inspection, and preparation to handle basic emergencies." : "Capacitación, inspección de botiquines y preparación para atender emergencias básicas.",
             icon: <Stethoscope className="w-8 h-8" />
         }
     ];
 
     const valores = locale === 'en' 
         ? ["Prevention", "Responsibility", "Confidentiality", "Commitment", "Integrity", "Continuous Improvement", "Worker Orientation"]
-        : ["PrevenciÃ³n", "Responsabilidad", "Confidencialidad", "Compromiso", "Integridad", "Mejora continua", "OrientaciÃ³n al trabajador"];
+        : ["Prevención", "Responsabilidad", "Confidencialidad", "Compromiso", "Integridad", "Mejora continua", "Orientación al trabajador"];
 
     return (
         <div className="bg-[#FAFBF5] min-h-screen pt-20">
@@ -222,7 +222,7 @@ const OccupationalMedicinePage = () => {
                         <p className="text-secondary/60 max-w-2xl mx-auto font-medium px-4 text-sm sm:text-base">
                             {locale === 'en'
                                 ? 'Programs and plans designed for the comprehensive care of the collaborator throughout their working life.'
-                                : 'Programas y planes diseÃ±ados para el cuidado integral del colaborador durante toda su vida laboral.'}
+                                : 'Programas y planes diseñados para el cuidado integral del colaborador durante toda su vida laboral.'}
                         </p>
                     </div>
 
@@ -262,12 +262,12 @@ const OccupationalMedicinePage = () => {
                                     "Strengthening of self-care culture.",
                                     "Increased efficiency in OSH management."
                                 ] : [
-                                    "ReducciÃ³n de riesgos ocupacionales y accidentes.",
+                                    "Reducción de riesgos ocupacionales y accidentes.",
                                     "Mejora del control documental y cumplimiento normativo.",
-                                    "Mayor participaciÃ³n de los trabajadores en prevenciÃ³n.",
-                                    "DetecciÃ³n temprana de condiciones de salud.",
+                                    "Mayor participación de los trabajadores en prevención.",
+                                    "Detección temprana de condiciones de salud.",
                                     "Fortalecimiento de la cultura de autocuidado.",
-                                    "Incremento de eficiencia en la gestiÃ³n de SST."
+                                    "Incremento de eficiencia en la gestión de SST."
                                 ]).map((item, i) => (
                                     <li key={i} className="flex items-start gap-4 text-white/80 font-medium text-sm sm:text-base">
                                         <div className="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0 shadow-[0_0_10px_#B2C535]" />
@@ -278,16 +278,16 @@ const OccupationalMedicinePage = () => {
                         </div>
                         <div className="bg-white/5 p-8 sm:p-12 rounded-[30px] sm:rounded-[40px] border border-white/10 backdrop-blur-md">
                             <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter mb-8">
-                                {locale === 'en' ? 'Conclusion' : 'ConclusiÃ³n'}
+                                {locale === 'en' ? 'Conclusion' : 'Conclusión'}
                             </h3>
                             <p className="text-white/70 leading-relaxed font-medium text-sm sm:text-base">
                                 {locale === 'en'
                                     ? 'The Occupational Medicine and OSH service plays a strategic role within the organization, as it protects workers\' health, prevents adverse events, and contributes to compliance with applicable regulations. The implementation of its subservices consolidates a preventive, orderly management focused on the integral well-being of the personnel.'
-                                    : 'El servicio de Medicina Ocupacional y SST cumple un rol estratÃ©gico dentro de la organizaciÃ³n, ya que protege la salud de los trabajadores, previene eventos adversos y contribuye al cumplimiento de la normativa aplicable. La implementaciÃ³n de sus subservicios permite consolidar una gestiÃ³n preventiva, ordenada y orientada al bienestar integral del personal.'}
+                                    : 'El servicio de Medicina Ocupacional y SST cumple un rol estratégico dentro de la organización, ya que protege la salud de los trabajadores, previene eventos adversos y contribuye al cumplimiento de la normativa aplicable. La implementación de sus subservicios permite consolidar una gestión preventiva, ordenada y orientada al bienestar integral del personal.'}
                             </p>
                             <div className="mt-12 text-center lg:text-left">
                                 <a href="/contacto" className="inline-block bg-primary text-black px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-black uppercase tracking-widest text-[10px] hover:scale-105 transition-transform">
-                                    {locale === 'en' ? 'Request Consulting' : 'Solicitar AsesorÃ­a'}
+                                    {locale === 'en' ? 'Request Consulting' : 'Solicitar Asesoría'}
                                 </a>
                             </div>
                         </div>
@@ -299,4 +299,5 @@ const OccupationalMedicinePage = () => {
 };
 
 export default OccupationalMedicinePage;
+
 
