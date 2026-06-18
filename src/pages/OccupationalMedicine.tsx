@@ -81,7 +81,7 @@ const OccupationalMedicinePage = () => {
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl">
                         <span className="text-primary font-black text-[10px] uppercase tracking-[0.5em] mb-8 block drop-shadow-md">
-                            {locale === 'en' ? 'Comprehensive Protection' : 'ProtecciÃ³n Integral'}
+                            {locale === 'en' ? 'Comprehensive Protection' : 'Protección Integral'}
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-7xl font-black leading-[0.85] mb-12 uppercase tracking-tighter text-white drop-shadow-sm">
                             {locale === 'en' ? 'Occupational' : 'Medicina'} <br /> <span className="text-primary italic drop-shadow-md">{locale === 'en' ? 'Medicine' : 'Ocupacional'}</span> & SST
@@ -101,9 +101,9 @@ const OccupationalMedicinePage = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
                             { title: locale === 'en' ? "Health Surveillance" : "Vigilancia de la salud", icon: <Activity className="w-8 h-8" /> },
-                            { title: locale === 'en' ? "Risk Mgt. & Prevention" : "GestiÃ³n de riesgos y prevenciÃ³n", icon: <ShieldCheck className="w-8 h-8" /> },
-                            { title: locale === 'en' ? "Training & Promotion" : "CapacitaciÃ³n y promociÃ³n", icon: <Users className="w-8 h-8" /> },
-                            { title: locale === 'en' ? "Administration & Compliance" : "AdministraciÃ³n y cumplimiento legal", icon: <FileText className="w-8 h-8" /> }
+                            { title: locale === 'en' ? "Risk Mgt. & Prevention" : "Gestión de riesgos y prevención", icon: <ShieldCheck className="w-8 h-8" /> },
+                            { title: locale === 'en' ? "Training & Promotion" : "Capacitación y promoción", icon: <Users className="w-8 h-8" /> },
+                            { title: locale === 'en' ? "Administration & Compliance" : "Administración y cumplimiento legal", icon: <FileText className="w-8 h-8" /> }
                         ].map((concept, i) => (
                             <div key={i} className="bg-black p-6 sm:p-8 rounded-[30px] border border-white/10 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-row items-center gap-6">
                                 <div className="flex-shrink-0 w-20 h-20 rounded-full bg-primary/10 text-primary flex items-center justify-center">
@@ -148,7 +148,7 @@ const OccupationalMedicinePage = () => {
                                     <p className="text-secondary/70 font-medium leading-relaxed text-xs sm:text-sm">
                                         {locale === 'en'
                                             ? 'Medical Surgeon with Master\'s in Occupational & Environmental Health, and Specialization in Medical Auditing. Over 10 years leading prevention strategies and medical surveillance.'
-                                            : 'MÃ©dico Cirujano con MaestrÃ­a en Salud Ocupacional y Ambiental, y EspecializaciÃ³n en AuditorÃ­a MÃ©dica. Con mÃ¡s de 10 aÃ±os liderando estrategias de prevenciÃ³n y vigilancia mÃ©dica.'}
+                                            : 'Médico Cirujano con Maestría en Salud Ocupacional y Ambiental, y Especialización en Auditoría Médica. Con más de 10 años liderando estrategias de prevención y vigilancia médica.'}
                                     </p>
                                 </div>
                                 <div className="flex justify-center sm:justify-start">
@@ -165,7 +165,7 @@ const OccupationalMedicinePage = () => {
                             </div>
                         </div>
 
-                        {/* Panel Dra. MarÃ­a */}
+                        {/* Panel Dra. María */}
                         <div className="bg-white rounded-[40px] border border-black/5 p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.05)] flex flex-col sm:flex-row items-center sm:items-stretch text-center sm:text-left gap-6">
                             <div className="w-36 sm:w-44 flex-shrink-0 aspect-[3/4] rounded-2xl overflow-hidden border-4 border-primary/20 shadow-xl relative group">
                                 <img src="/Im%C3%A1genes/Maria_Andreina.jpg" alt="Dra. María Andreina Silva Reyes" className="w-full h-full object-cover object-[center_top] group-hover:scale-110 transition-transform duration-700" />
@@ -177,12 +177,12 @@ const OccupationalMedicinePage = () => {
                                         {locale === 'en' ? 'Specialist in Charge' : 'Especialista a Cargo'}
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tighter text-secondary mb-3">
-                                        Dra. MarÃ­a Andreina Silva
+                                        Dra. María Andreina Silva
                                     </h3>
                                     <p className="text-secondary/70 font-medium leading-relaxed text-xs sm:text-sm">
                                         {locale === 'en'
                                             ? 'Medical Surgeon with Master\'s in Occupational Medicine and Specialization in Medical Auditing. 5 years of experience managing occupational health, committed to the integral well-being of every worker.'
-                                            : 'MÃ©dico Cirujano â€¢ MaestrÃ­a en Medicina Ocupacional y del Medio Ambiente â€¢ EspecializaciÃ³n en AuditorÃ­a MÃ©dica. Con 5 aÃ±os gestionando la salud ocupacional, comprometida con el bienestar integral de cada trabajador.'}
+                                            : 'Médico Cirujano • Maestría en Medicina Ocupacional y del Medio Ambiente • Especialización en Auditoría Médica. Con 5 años gestionando la salud ocupacional, comprometida con el bienestar integral de cada trabajador.'}
                                     </p>
                                 </div>
                                 <div className="flex justify-center sm:justify-start">
