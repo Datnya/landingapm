@@ -1,12 +1,17 @@
-﻿import React from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Heart, Activity, Stethoscope, ShieldCheck, FileText, CalendarCheck, Users, Brain, Eye, Ear, Smile, Linkedin } from 'lucide-react';
+import { Heart, Activity, Stethoscope, ShieldCheck, FileText, CalendarCheck, Users, Brain, Eye, Ear, Smile, Linkedin, GraduationCap } from 'lucide-react';
 import { useI18n } from '../i18n';
 
 const OccupationalMedicinePage = () => {
     const { t, locale } = useI18n();
 
     const subservicios = [
+        {
+            title: locale === 'en' ? "Training" : "Capacitaciones",
+            description: locale === 'en' ? "Specialized training programs in occupational health, workplace safety, and regulatory compliance. We develop competencies in risk prevention, emergency response, ergonomics, and self-care culture for all organizational levels." : "Programas de formación especializada en salud ocupacional, seguridad laboral y cumplimiento normativo. Desarrollamos competencias en prevención de riesgos, respuesta ante emergencias, ergonomía y cultura de autocuidado para todos los niveles de la organización.",
+            icon: <GraduationCap className="w-8 h-8" />
+        },
         {
             title: locale === 'en' ? "Health Technical Report" : "Informe Técnico de Salud",
             description: locale === 'en' ? "Preparation and presentation of reports on workers' health status, medical surveillance results, and preventive recommendations." : "Elaboración y presentación de informes sobre el estado de salud de los trabajadores, resultados de vigilancia médica y recomendaciones preventivas.",

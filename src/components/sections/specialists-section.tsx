@@ -39,9 +39,9 @@ export default function SpecialistsSection() {
             description: t('about.spec_5_desc')
         },
         {
-            title: "Luis Gonzáles",
+            title: "Luis González",
             role: t('about.spec_6_role'),
-            src: "/Imágenes/Equipo/Luis Gonzáles.png",
+            src: "/Imágenes/Equipo/Luis González.png",
             description: t('about.spec_6_desc')
         },
     ];
