@@ -18,6 +18,7 @@ const Success = React.lazy(() => import('./pages/Success'));
 const ChecklistISO = React.lazy(() => import('./pages/ChecklistISO'));
 const ChecklistSuccess = React.lazy(() => import('./pages/ChecklistSuccess'));
 const CampusMaintenance = React.lazy(() => import('./pages/CampusMaintenance'));
+const Privacy = React.lazy(() => import('./pages/Privacy'));
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -79,6 +80,7 @@ const Layout = () => {
                         <Route path="/checklist-iso-9001" element={<ChecklistISO />} />
                         <Route path="/exito-checklist" element={<ChecklistSuccess />} />
                         <Route path="/campus-mantenimiento" element={<CampusMaintenance />} />
+                        <Route path="/politica-privacidad" element={<Privacy />} />
                     </Routes>
                 </React.Suspense>
             </main>

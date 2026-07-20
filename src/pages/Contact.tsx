@@ -1,61 +1,349 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Mail, Phone, MapPin, Clock, Send, Linkedin, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, Linkedin, Facebook, Instagram, Youtube, Briefcase, Shield, GraduationCap, Heart } from 'lucide-react';
 import { useI18n } from '../i18n';
+import Privacy from './Privacy';
 
-// ── Google Maps embed URL for: Calle José Gálvez 438, Miraflores, Lima, Perú ─
-// Coordinates: -12.1189, -77.0323
-const MAPS_EMBED_URL =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.9213!2d-77.03456!3d-12.11892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c82b6e7d5e4b%3A0xa2f4b22a4c5d6789!2sCalle%20Jos%C3%A9%20G%C3%A1lvez%20438%2C%20Miraflores%2C%20Lima%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1740000000000";
+const MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.9213!2d-77.03456!3d-12.11892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c82b6e7d5e4b%3A0xa2f4b22a4c5d6789!2sCalle%20Jos%C3%A9%20G%C3%A1lvez%20438%2C%20Miraflores%2C%20Lima%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1740000000000";
+
+type ServiceType = 'consultoria' | 'auditoria' | 'formacion' | 'medicina' | '';
 
 const Contact = () => {
     const { t } = useI18n();
+
+    // ── State ────────────────────────────────────────────────────────────
+    const [selectedService, setSelectedService] = useState<ServiceType>('');
     const [agreed, setAgreed] = useState(false);
-    const [selectedNormas, setSelectedNormas] = useState<string[]>([]);
+    const [showPrivacy, setShowPrivacy] = useState(false);
+
+    // Consultoría / Auditoría
+    const [normaInteres, setNormaInteres] = useState('');
+    const [otroNormaInteres, setOtroNormaInteres] = useState('');
     const [selectedEtapa, setSelectedEtapa] = useState('');
 
-    const toggleNorma = (norma: string) => {
-        setSelectedNormas(prev => prev.includes(norma) ? prev.filter(n => n !== norma) : [...prev, norma]);
+    // Formación
+    const [normaFormacion, setNormaFormacion] = useState('');
+    const [otroNormaFormacion, setOtroNormaFormacion] = useState('');
+    const [selectedObjetivos, setSelectedObjetivos] = useState<string[]>([]);
+    const [otroObjetivo, setOtroObjetivo] = useState('');
+    const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
+    const [otroArea, setOtroArea] = useState('');
+    const [selectedModalidad, setSelectedModalidad] = useState('');
+    const [sistemaGestion, setSistemaGestion] = useState('');
+    const [sistemaGestionCual, setSistemaGestionCual] = useState('');
+
+    // ── Helpers ──────────────────────────────────────────────────────────
+    const handleServiceChange = (service: ServiceType) => {
+        setSelectedService(service);
+        setAgreed(false);
     };
 
+    const toggleItem = (item: string, setter: React.Dispatch<React.SetStateAction<string[]>>) => {
+        setter(prev => prev.includes(item) ? prev.filter(i => i !== item) : [...prev, item]);
+    };
+
+    const normasOptions = [
+        'ISO 9001', 'ISO 14001', 'ISO 45001', 'ISO 22000', 'ISO 37001', 'ISO 27001',
+        'HACCP', 'BPM', 'Sostenibilidad / ESG', 'Auditor Interno',
+        'Seguridad y Salud en el Trabajo', 'otro'
+    ];
+
     const contactInfo = [
-        {
-            icon: <Mail className="text-primary w-6 h-6" />,
-            titleKey: 'contact.info_email',
-            value: "consultas@apmgroup.pe",
-            link: "mailto:consultas@apmgroup.pe"
-        },
-        {
-            icon: <Phone className="text-primary w-6 h-6" />,
-            titleKey: 'contact.info_phone',
-            value: "+51 967 170 627",
-            link: "https://wa.me/51967170627"
-        },
-        {
-            icon: <MapPin className="text-primary w-6 h-6" />,
-            titleKey: 'contact.info_location',
-            value: "Calle José Gálvez 438, Miraflores, Lima",
-            link: "https://maps.google.com/?q=Calle+José+Gálvez+438,+Miraflores,+Lima"
-        },
-        {
-            icon: <Clock className="text-primary w-6 h-6" />,
-            titleKey: 'contact.info_schedule',
-            value: "Lunes a Viernes: 9:00 AM - 6:00 PM",
-            link: "#"
-        }
+        { icon: <Mail className="text-primary w-6 h-6" />, titleKey: 'contact.info_email', value: "consultas@apmgroup.pe", link: "mailto:consultas@apmgroup.pe" },
+        { icon: <Phone className="text-primary w-6 h-6" />, titleKey: 'contact.info_phone', value: "+51 967 170 627", link: "https://wa.me/51967170627" },
+        { icon: <MapPin className="text-primary w-6 h-6" />, titleKey: 'contact.info_location', value: "Calle José Gálvez 438, Miraflores, Lima", link: "https://maps.google.com/?q=Calle+José+Gálvez+438,+Miraflores,+Lima" },
+        { icon: <Clock className="text-primary w-6 h-6" />, titleKey: 'contact.info_schedule', value: "Lunes a Viernes: 9:00 AM - 6:00 PM", link: "#" }
+    ];
+
+    const serviceCards: { id: ServiceType; icon: JSX.Element; labelKey: string }[] = [
+        { id: 'consultoria', icon: <Briefcase className="w-8 h-8" />, labelKey: 'contact.service_consultoria' },
+        { id: 'auditoria', icon: <Shield className="w-8 h-8" />, labelKey: 'contact.service_auditoria' },
+        { id: 'formacion', icon: <GraduationCap className="w-8 h-8" />, labelKey: 'contact.service_formacion' },
+        { id: 'medicina', icon: <Heart className="w-8 h-8" />, labelKey: 'contact.service_medicina' }
     ];
 
     const inputClass = "w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/25 focus:outline-none focus:border-primary focus:bg-white/10 transition-all text-sm font-medium font-body";
     const labelClass = "text-xs font-black uppercase tracking-widest text-primary/90 ml-1 mb-1.5 block font-heading";
     const selectOptionClass = "bg-[#171717] text-white";
 
+    // ═══════════════════════════════════════════════════════════════════
+    // ── RENDER: Consultoría / Auditoría specific fields ───────────────
+    // ═══════════════════════════════════════════════════════════════════
+    const renderConsultoriaAuditoriaFields = () => (
+        <>
+            <div>
+                <label className={labelClass}>{t('contact.field_norma')} *</label>
+                <select
+                    required
+                    name="normas_interes"
+                    value={normaInteres}
+                    onChange={(e) => {
+                        setNormaInteres(e.target.value);
+                        if (e.target.value !== 'otro') setOtroNormaInteres('');
+                    }}
+                    className={`${inputClass} cursor-pointer appearance-none`}
+                >
+                    <option value="" disabled className={selectOptionClass}>{t('contact.select_norma_formacion')}</option>
+                    {normasOptions.map((opt) => (
+                        <option key={opt} value={opt} className={selectOptionClass}>
+                            {opt === 'otro' ? t('contact.norma_otro') : opt}
+                        </option>
+                    ))}
+                </select>
+                {normaInteres === 'otro' && (
+                    <input
+                        type="text"
+                        name="normas_interes_otro"
+                        value={otroNormaInteres}
+                        onChange={(e) => setOtroNormaInteres(e.target.value)}
+                        placeholder={t('contact.placeholder_otro_norma')}
+                        className={`${inputClass} mt-3`}
+                        required
+                    />
+                )}
+            </div>
+
+            {/* Etapa - Radio buttons */}
+            <div>
+                <label className={labelClass}>{t('contact.field_etapa')} *</label>
+                <input type="hidden" name="etapa" value={selectedEtapa} />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
+                    {[
+                        { value: 'explorando', labelKey: 'contact.etapa_explorando' },
+                        { value: 'proximos_3_meses', labelKey: 'contact.etapa_planeando' },
+                        { value: 'proximos_6_meses', labelKey: 'contact.etapa_comprando' }
+                    ].map((etapa) => (
+                        <button
+                            key={etapa.value}
+                            type="button"
+                            onClick={() => setSelectedEtapa(etapa.value)}
+                            className={`px-4 py-3 rounded-xl text-xs font-bold tracking-wide transition-all border text-left ${selectedEtapa === etapa.value ? 'bg-primary text-secondary border-primary' : 'bg-white/5 text-white/60 border-white/10 hover:border-primary/40'}`}
+                        >
+                            {t(etapa.labelKey)}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Mensaje */}
+            <div>
+                <label className={labelClass}>{t('contact.field_mensaje_medicina')} </label>
+                <textarea
+                    name="mensaje"
+                    rows={4}
+                    placeholder={t('contact.placeholder_mensaje_medicina')}
+                    className={inputClass}
+                />
+            </div>
+        </>
+    );
+
+    // ═══════════════════════════════════════════════════════════════════
+    // ── RENDER: Formación specific fields ─────────────────────────────
+    // ═══════════════════════════════════════════════════════════════════
+    const renderFormacionFields = () => (
+        <>
+            <div>
+                <label className={labelClass}>{t('contact.field_norma_formacion')} *</label>
+                <select
+                    required
+                    name="normas_interes"
+                    value={normaFormacion}
+                    onChange={(e) => {
+                        setNormaFormacion(e.target.value);
+                        if (e.target.value !== 'otro') setOtroNormaFormacion('');
+                    }}
+                    className={`${inputClass} cursor-pointer appearance-none`}
+                >
+                    <option value="" disabled className={selectOptionClass}>{t('contact.select_norma_formacion')}</option>
+                    {normasOptions.map((opt) => (
+                        <option key={opt} value={opt} className={selectOptionClass}>
+                            {opt === 'otro' ? t('contact.norma_otro') : opt}
+                        </option>
+                    ))}
+                </select>
+                {normaFormacion === 'otro' && (
+                    <input
+                        type="text"
+                        name="normas_interes_otro"
+                        value={otroNormaFormacion}
+                        onChange={(e) => setOtroNormaFormacion(e.target.value)}
+                        placeholder={t('contact.placeholder_otro_norma')}
+                        className={`${inputClass} mt-3`}
+                        required
+                    />
+                )}
+            </div>
+
+            {/* Objetivos */}
+            <div>
+                <label className={labelClass}>{t('contact.field_objetivo')} *</label>
+                <input type="hidden" name="objetivos" value={selectedObjetivos.join(', ')} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    {['implementar', 'auditoria', 'certificar', 'actualizar', 'cliente', 'legal', 'competencias', 'otro'].map((obj) => (
+                        <label key={obj} className="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" className="hidden" checked={selectedObjetivos.includes(obj)} onChange={() => toggleItem(obj, setSelectedObjetivos)} />
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedObjetivos.includes(obj) ? 'bg-primary border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {selectedObjetivos.includes(obj) && (
+                                    <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                )}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{t(`contact.obj_${obj}`)}</span>
+                        </label>
+                    ))}
+                </div>
+                {selectedObjetivos.includes('otro') && (
+                    <input type="text" name="objetivo_otro" value={otroObjetivo} onChange={(e) => setOtroObjetivo(e.target.value)} placeholder={t('contact.placeholder_otro_objetivo')} className={`${inputClass} mt-3`} required />
+                )}
+            </div>
+
+            {/* Áreas de formación */}
+            <div>
+                <label className={labelClass}>{t('contact.field_areas')} *</label>
+                <input type="hidden" name="areas_formacion" value={selectedAreas.join(', ')} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    {['gerencia', 'calidad', 'sst', 'produccion', 'rrhh', 'operaciones', 'logistica', 'mantenimiento', 'comercial', 'todas', 'otro'].map((area) => (
+                        <label key={area} className="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" className="hidden" checked={selectedAreas.includes(area)} onChange={() => toggleItem(area, setSelectedAreas)} />
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedAreas.includes(area) ? 'bg-primary border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {selectedAreas.includes(area) && (
+                                    <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                )}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{t(`contact.area_${area}`)}</span>
+                        </label>
+                    ))}
+                </div>
+                {selectedAreas.includes('otro') && (
+                    <input type="text" name="area_otro" value={otroArea} onChange={(e) => setOtroArea(e.target.value)} placeholder={t('contact.placeholder_otro_area')} className={`${inputClass} mt-3`} required />
+                )}
+            </div>
+
+            {/* Modalidad */}
+            <div>
+                <label className={labelClass}>{t('contact.field_modalidad')} *</label>
+                <input type="hidden" name="modalidad" value={selectedModalidad} />
+                <div className="flex flex-col gap-3 mt-2">
+                    {['virtual_vivo', 'virtual_grabada', 'presencial', 'hibrida'].map((mod) => (
+                        <label key={mod} className="flex items-center gap-3 cursor-pointer group" onClick={() => setSelectedModalidad(mod)}>
+                            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${selectedModalidad === mod ? 'border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {selectedModalidad === mod && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{t(`contact.mod_${mod}`)}</span>
+                        </label>
+                    ))}
+                </div>
+            </div>
+
+            {/* Sistema de gestión */}
+            <div>
+                <label className={labelClass}>{t('contact.field_sistema_gestion')} *</label>
+                <input type="hidden" name="sistema_gestion" value={sistemaGestion} />
+                <div className="flex flex-col gap-3 mt-2">
+                    {['si', 'no', 'en_proceso'].map((sg) => (
+                        <label key={sg} className="flex items-center gap-3 cursor-pointer group" onClick={() => setSistemaGestion(sg)}>
+                            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${sistemaGestion === sg ? 'border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {sistemaGestion === sg && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{t(`contact.sg_${sg}`)}</span>
+                        </label>
+                    ))}
+                </div>
+                {sistemaGestion === 'si' && (
+                    <input type="text" name="sistema_gestion_cual" value={sistemaGestionCual} onChange={(e) => setSistemaGestionCual(e.target.value)} placeholder={t('contact.placeholder_sg_cual')} className={`${inputClass} mt-3`} />
+                )}
+            </div>
+
+            {/* Requisitos */}
+            <div>
+                <label className={labelClass}>{t('contact.field_requisitos')} </label>
+                <textarea
+                    name="requisitos_especificos"
+                    rows={4}
+                    placeholder={t('contact.placeholder_requisitos')}
+                    className={inputClass}
+                />
+            </div>
+        </>
+    );
+
+    // ═══════════════════════════════════════════════════════════════════
+    // ── RENDER: Medicina Ocupacional specific fields ──────────────────
+    // ═══════════════════════════════════════════════════════════════════
+    const renderMedicinaFields = () => (
+        <div>
+            <label className={labelClass}>{t('contact.field_mensaje_medicina')}</label>
+            <textarea
+                name="mensaje_medicina"
+                rows={4}
+                placeholder={t('contact.placeholder_mensaje_medicina')}
+                className={inputClass}
+            />
+        </div>
+    );
+
+    // ═══════════════════════════════════════════════════════════════════
+    // ── RENDER: Privacy checkbox + Submit ─────────────────────────────
+    // ═══════════════════════════════════════════════════════════════════
+    const renderPrivacyAndSubmit = () => (
+        <>
+            {/* Privacy checkbox */}
+            <div className="flex items-start gap-4 p-5 bg-white/5 rounded-2xl border border-white/10">
+                <button
+                    type="button"
+                    role="checkbox"
+                    aria-checked={agreed}
+                    onClick={() => setAgreed(v => !v)}
+                    className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all mt-0.5 ${agreed ? 'bg-primary border-primary' : 'border-white/30 hover:border-primary/60'}`}
+                >
+                    {agreed && (
+                        <svg className="w-3.5 h-3.5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                    )}
+                </button>
+                <p className="text-white/50 text-sm font-medium leading-relaxed">
+                    {t('contact.privacy').split('<a>')[0]}
+                    <button type="button" onClick={() => { setShowPrivacy(true); window.scrollTo(0, 0); }} className="text-primary font-bold hover:underline">
+                        {t('contact.privacy').split('<a>')[1]?.split('</a>')[0]}
+                    </button>
+                    {t('contact.privacy').split('</a>')[1]}
+                </p>
+            </div>
+
+            {/* Submit */}
+            <button
+                type="submit"
+                disabled={!agreed}
+                className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-4 group transition-all shadow-[0_20px_50px_rgba(178,197,53,0.3)] font-heading ${agreed ? 'bg-primary text-secondary hover:bg-white hover:scale-[1.02] cursor-pointer' : 'bg-white/10 text-white/30 cursor-not-allowed'}`}
+            >
+                {t('contact.submit')}
+                <Send size={16} className={agreed ? "group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" : ""} />
+            </button>
+
+            <p className="text-center text-white/20 text-[10px] font-bold uppercase tracking-widest font-heading">
+                {t('contact.disclaimer')}
+            </p>
+        </>
+    );
+
+    // ═══════════════════════════════════════════════════════════════════
+    // ── MAIN RENDER ──────────────────────────────────────────────────
+    // ═══════════════════════════════════════════════════════════════════
     return (
+        <>
+        <div style={{ display: showPrivacy ? 'none' : 'block' }}>
         <div className="pt-20">
             <Helmet>
                 <title>Contacto y Asesoría ISO | APM Group</title>
                 <meta name="description" content="Contáctanos para evaluar mejoras en tus procesos a través de certificaciones internacionales y sostenibilidad en todo el Perú." />
                 <link rel="canonical" href="https://apmgroup.pe/contacto" />
             </Helmet>
+
             {/* ── Hero ─────────────────────────────────────────────────────── */}
             <section className="bg-secondary text-white py-24 md:py-32 relative overflow-hidden">
                 <div className="absolute inset-0">
@@ -141,233 +429,156 @@ const Contact = () => {
                                         <p className="text-white/50 font-medium text-sm">{t('contact.form_subtitle')}</p>
                                     </div>
 
-                                    <form name="contacto-apm" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/exito" className="space-y-6">
-                                        {/* Row 1: Nombre + Cargo */}
-                                        <input type="hidden" name="form-name" value="contacto-apm" />
-                                        <p className="hidden"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_name')} *</label>
-                                                <input required type="text" name="nombre" placeholder={t('contact.placeholder_name')} className={inputClass} />
-                                            </div>
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_cargo')} *</label>
-                                                <input required type="text" name="cargo" placeholder={t('contact.placeholder_cargo')} className={inputClass} />
-                                            </div>
+                                    {/* Service selector */}
+                                    <div className="mb-10">
+                                        <h4 className="text-sm font-black uppercase tracking-widest text-white mb-5 font-heading">
+                                            {t('contact.service_question')}
+                                        </h4>
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                            {serviceCards.map((service) => (
+                                                <button
+                                                    key={service.id}
+                                                    type="button"
+                                                    onClick={() => handleServiceChange(service.id)}
+                                                    className={`relative p-5 rounded-2xl border-2 transition-all duration-300 flex flex-col items-center gap-3 text-center group/card ${
+                                                        selectedService === service.id
+                                                            ? 'bg-primary/15 border-primary text-primary shadow-[0_0_30px_rgba(178,197,53,0.15)]'
+                                                            : 'bg-white/5 border-white/10 text-white/50 hover:border-primary/40 hover:bg-white/10 hover:text-white/70'
+                                                    }`}
+                                                >
+                                                    <div className={`transition-transform duration-300 ${selectedService === service.id ? 'scale-110' : 'group-hover/card:scale-105'}`}>
+                                                        {service.icon}
+                                                    </div>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest font-heading leading-tight">
+                                                        {t(service.labelKey)}
+                                                    </span>
+                                                    {selectedService === service.id && (
+                                                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-full" />
+                                                    )}
+                                                </button>
+                                            ))}
                                         </div>
+                                    </div>
 
-                                        {/* Row 2: Email + Teléfono */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_email')} *</label>
-                                                <input required type="email" name="email" placeholder={t('contact.placeholder_email')} className={inputClass} />
-                                            </div>
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_phone')} *</label>
-                                                <input required type="tel" name="telefono" placeholder={t('contact.placeholder_phone')} className={inputClass} />
-                                            </div>
-                                        </div>
+                                    {/* ── Dynamic Form ───────────────────────────── */}
+                                    {selectedService && (
+                                        <form name="contacto-apm" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/exito" className="space-y-6">
+                                            <input type="hidden" name="form-name" value="contacto-apm" />
+                                            <input type="hidden" name="servicio_requerido" value={selectedService} />
+                                            <p className="hidden"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
 
-                                        {/* Row 3: Ciudad + RUC */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_city')} *</label>
-                                                <input required type="text" name="ciudad" placeholder={t('contact.placeholder_city')} className={inputClass} />
+                                            {/* Row 1: Nombre + Cargo */}
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_name')} *</label>
+                                                    <input required type="text" name="nombre" placeholder={t('contact.placeholder_name')} className={inputClass} />
+                                                </div>
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_cargo')} *</label>
+                                                    <input required type="text" name="cargo" placeholder={t('contact.placeholder_cargo')} className={inputClass} />
+                                                </div>
                                             </div>
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_ruc')} *</label>
-                                                <input required type="text" name="ruc" placeholder={t('contact.placeholder_ruc')} maxLength={11} className={inputClass} />
+
+                                            {/* Row 2: Email + Teléfono */}
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_email')} *</label>
+                                                    <input required type="email" name="email" placeholder={t('contact.placeholder_email')} className={inputClass} />
+                                                </div>
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_phone')} *</label>
+                                                    <input required type="tel" name="telefono" placeholder={t('contact.placeholder_phone')} className={inputClass} />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        {/* Row 4: Empresa + Industria */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_company')} *</label>
-                                                <input required type="text" name="empresa" placeholder={t('contact.placeholder_company')} className={inputClass} />
+                                            {/* Row 3: Ciudad + RUC */}
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_city')} *</label>
+                                                    <input required type="text" name="ciudad" placeholder={t('contact.placeholder_city')} className={inputClass} />
+                                                </div>
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_ruc')} *</label>
+                                                    <input required type="text" name="ruc" placeholder={t('contact.placeholder_ruc')} maxLength={11} className={inputClass} />
+                                                </div>
                                             </div>
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_industry')} *</label>
-                                                <select required name="industria" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
-                                                    <option value="" disabled className={selectOptionClass}>{t('contact.select_industry')}</option>
-                                                    {([
-                                                        ['manufactura', 'industry_manufactura'],
-                                                        ['construccion', 'industry_construccion'],
-                                                        ['mineria', 'industry_mineria'],
-                                                        ['energia', 'industry_energia'],
-                                                        ['retail', 'industry_retail'],
-                                                        ['logistica', 'industry_logistica'],
-                                                        ['salud', 'industry_salud'],
-                                                        ['educacion', 'industry_educacion'],
-                                                        ['financiero', 'industry_financiero'],
-                                                        ['tecnologia', 'industry_tecnologia'],
-                                                        ['agroindustria', 'industry_agroindustria'],
-                                                        ['publico', 'industry_publico'],
-                                                        ['otro', 'industry_otro'],
-                                                    ] as [string, string][]).map(([val, key]) => (
-                                                        <option key={val} value={val} className={selectOptionClass}>
-                                                            {t(`contact.${key}`)}
-                                                        </option>
-                                                    ))}
-                                                </select>
+
+                                            {/* Row 4: Empresa + Industria */}
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_company')} *</label>
+                                                    <input required type="text" name="empresa" placeholder={t('contact.placeholder_company')} className={inputClass} />
+                                                </div>
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_industry')} *</label>
+                                                    <select required name="industria" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
+                                                        <option value="" disabled className={selectOptionClass}>{t('contact.select_industry')}</option>
+                                                        {([
+                                                            ['manufactura', 'industry_manufactura'],
+                                                            ['construccion', 'industry_construccion'],
+                                                            ['mineria', 'industry_mineria'],
+                                                            ['energia', 'industry_energia'],
+                                                            ['retail', 'industry_retail'],
+                                                            ['logistica', 'industry_logistica'],
+                                                            ['salud', 'industry_salud'],
+                                                            ['educacion', 'industry_educacion'],
+                                                            ['tecnologia', 'industry_tecnologia'],
+                                                            ['servicios', 'industry_servicios'],
+                                                            ['alimentos', 'industry_alimentos'],
+                                                            ['agroindustria', 'industry_agroindustria'],
+                                                            ['financiero', 'industry_financiero'],
+                                                            ['otro', 'industry_otro']
+                                                        ] as const).map(([value, labelKey]) => (
+                                                            <option key={value} value={value} className={selectOptionClass}>
+                                                                {t(`contact.${labelKey}`)}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        {/* Row 5: Línea de Servicio + Cómo se enteró */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_service')} *</label>
-                                                <select required name="servicio" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
-                                                    <option value="" disabled className={selectOptionClass}>{t('contact.select_service')}</option>
-                                                    {([
-                                                        ['auditoria', 'service_auditoria'],
-                                                        ['consultoria', 'service_consultoria'],
-                                                        ['formacion', 'service_formacion'],
-                                                        ['sostenibilidad', 'service_sostenibilidad'],
-                                                        ['medicina_ocupacional', 'service_medicina'],
-                                                        ['business', 'service_business'],
-                                                    ] as [string, string][]).map(([val, key]) => (
-                                                        <option key={val} value={val} className={selectOptionClass}>
-                                                            {t(`contact.${key}`)}
-                                                        </option>
-                                                    ))}
-                                                </select>
+                                            {/* Row 5: ¿Cómo se enteró? + Trabajadores */}
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_source')} *</label>
+                                                    <select required name="como_se_entero" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
+                                                        <option value="" disabled className={selectOptionClass}>{t('contact.select_source')}</option>
+                                                        {([
+                                                            ['recomendacion', 'how_recomendacion'],
+                                                            ['google', 'how_google'],
+                                                            ['linkedin', 'how_linkedin'],
+                                                            ['redes', 'how_redes'],
+                                                            ['webinar', 'how_webinar'],
+                                                            ['evento', 'how_evento'],
+                                                            ['email', 'how_email'],
+                                                            ['otro', 'how_otro']
+                                                        ] as const).map(([value, labelKey]) => (
+                                                            <option key={value} value={value} className={selectOptionClass}>
+                                                                {t(`contact.${labelKey}`)}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label className={labelClass}>{t('contact.field_trabajadores')} *</label>
+                                                    <select required name="trabajadores" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
+                                                        <option value="" disabled className={selectOptionClass}>{t('contact.select_trabajadores')}</option>
+                                                        {['1-10', '11-50', '51-200', '201-500', '500+'].map((rango) => (
+                                                            <option key={rango} value={rango} className={selectOptionClass}>{rango}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <label className={labelClass}>{t('contact.field_how')} *</label>
-                                                <select required name="como_se_entero" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
-                                                    <option value="" disabled className={selectOptionClass}>{t('contact.select_how')}</option>
-                                                    {([
-                                                        ['linkedin', 'how_linkedin'],
-                                                        ['google', 'how_google'],
-                                                        ['recomendacion', 'how_recomendacion'],
-                                                        ['webinar', 'how_webinar'],
-                                                        ['redes', 'how_redes'],
-                                                        ['evento', 'how_evento'],
-                                                        ['email', 'how_email'],
-                                                        ['otro', 'how_otro'],
-                                                    ] as [string, string][]).map(([val, key]) => (
-                                                        <option key={val} value={val} className={selectOptionClass}>
-                                                            {t(`contact.${key}`)}
-                                                        </option>
-                                                    ))}
-                                                </select>
-                                            </div>
-                                        </div>
 
-                                        {/* Norma - Multi-select checkboxes */}
-                                        <div>
-                                            <label className={labelClass}>{t('contact.field_norma')} *</label>
-                                            <input type="hidden" name="normas_interes" value={selectedNormas.join(', ')} />
-                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
-                                                {(['iso9001','iso45001','iso14001','iso27001','iso37001','esg','sst','otro'] as const).map((norma) => (
-                                                    <button
-                                                        key={norma}
-                                                        type="button"
-                                                        onClick={() => toggleNorma(norma)}
-                                                        className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wide transition-all border ${selectedNormas.includes(norma) ? 'bg-primary text-secondary border-primary' : 'bg-white/5 text-white/60 border-white/10 hover:border-primary/40'}`}
-                                                    >
-                                                        {t(`contact.norma_${norma}`)}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
+                                            {/* ── Service-specific fields ───────────────── */}
+                                            {(selectedService === 'consultoria' || selectedService === 'auditoria') && renderConsultoriaAuditoriaFields()}
+                                            {selectedService === 'formacion' && renderFormacionFields()}
+                                            {selectedService === 'medicina' && renderMedicinaFields()}
 
-                                        {/* Etapa - Radio buttons */}
-                                        <div>
-                                            <label className={labelClass}>{t('contact.field_etapa')} *</label>
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
-                                                {(['explorando','planeando','comprando'] as const).map((etapa) => (
-                                                    <button
-                                                        key={etapa}
-                                                        type="button"
-                                                        onClick={() => setSelectedEtapa(etapa)}
-                                                        className={`px-4 py-3 rounded-xl text-xs font-bold transition-all border flex items-center gap-3 ${selectedEtapa === etapa ? 'bg-primary text-secondary border-primary' : 'bg-white/5 text-white/60 border-white/10 hover:border-primary/40'}`}
-                                                    >
-                                                        <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${selectedEtapa === etapa ? 'border-secondary' : 'border-white/30'}`}>
-                                                            {selectedEtapa === etapa && <span className="w-2 h-2 rounded-full bg-secondary"></span>}
-                                                        </span>
-                                                        {t(`contact.etapa_${etapa}`)}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                            <input type="hidden" name="etapa" value={selectedEtapa} />
-                                        </div>
-
-                                        {/* Trabajadores - Select */}
-                                        <div>
-                                            <label className={labelClass}>{t('contact.field_trabajadores')} *</label>
-                                            <select required name="trabajadores" defaultValue="" className={`${inputClass} cursor-pointer appearance-none`}>
-                                                <option value="" disabled className={selectOptionClass}>{t('contact.select_how').replace('opción', 'rango')}</option>
-                                                {(['50','250','1000','1000plus'] as const).map((val) => (
-                                                    <option key={val} value={val} className={selectOptionClass}>
-                                                        {t(`contact.trabajadores_${val}`)}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
-
-                                        {/* Lead Magnet Banner */}
-                                        <div className="p-5 bg-primary/10 rounded-2xl border border-primary/30 flex items-start gap-4">
-                                            <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
-                                                <Mail className="w-6 h-6 text-primary" />
-                                            </div>
-                                            <div>
-                                                <p className="text-primary font-black text-sm mb-1">{t('contact.lead_magnet_title')}</p>
-                                                <p className="text-white/50 text-xs font-medium leading-relaxed">{t('contact.lead_magnet_desc')}</p>
-                                            </div>
-                                        </div>
-
-                                        {/* Mensaje */}
-                                        <div>
-                                            <label className={labelClass}>{t('contact.field_message')} *</label>
-                                            <textarea
-                                                required
-                                                name="mensaje"
-                                                rows={4}
-                                                placeholder={t('contact.placeholder_message')}
-                                                className={inputClass}
-                                            />
-                                        </div>
-
-                                        {/* Privacy checkbox */}
-                                        <div className="flex items-start gap-4 p-5 bg-white/5 rounded-2xl border border-white/10">
-                                            <button
-                                                type="button"
-                                                role="checkbox"
-                                                aria-checked={agreed}
-                                                onClick={() => setAgreed(v => !v)}
-                                                className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all mt-0.5 ${agreed ? 'bg-primary border-primary' : 'border-white/30 hover:border-primary/60'}`}
-                                            >
-                                                {agreed && (
-                                                    <svg className="w-3.5 h-3.5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                )}
-                                            </button>
-                                            <p className="text-white/50 text-sm font-medium leading-relaxed">
-                                                {t('contact.privacy').split('<a>')[0]}
-                                                <a href="#" className="text-primary font-bold hover:underline">
-                                                    {t('contact.privacy').split('<a>')[1]?.split('</a>')[0]}
-                                                </a>
-                                                {t('contact.privacy').split('</a>')[1]}
-                                            </p>
-                                        </div>
-
-                                        {/* Submit */}
-                                        <button
-                                            type="submit"
-                                            disabled={!agreed}
-                                            className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-4 group transition-all shadow-[0_20px_50px_rgba(178,197,53,0.3)] font-heading ${agreed ? 'bg-primary text-secondary hover:bg-white hover:scale-[1.02] cursor-pointer' : 'bg-white/10 text-white/30 cursor-not-allowed'}`}
-                                        >
-                                            {t('contact.submit')}
-                                            <Send size={16} className={agreed ? "group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" : ""} />
-                                        </button>
-
-                                        <p className="text-center text-white/20 text-[10px] font-bold uppercase tracking-widest font-heading">
-                                            {t('contact.disclaimer')}
-                                        </p>
-                                    </form>
+                                            {/* ── Privacy + Submit ──────────────────────── */}
+                                            {renderPrivacyAndSubmit()}
+                                        </form>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -375,25 +586,38 @@ const Contact = () => {
                 </div>
             </section>
 
-            {/* ── Map: Calle José Gálvez 438, Miraflores ───────────────────── */}
-            <section className="h-[500px] w-full relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000">
-                <iframe
-                    src={MAPS_EMBED_URL}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="APM Group — Calle José Gálvez 438, Miraflores, Lima"
-                />
-                <div className="absolute top-10 left-10 bg-white p-8 rounded-3xl shadow-2xl max-w-sm pointer-events-none border border-black/5">
-                    <h5 className="text-secondary font-black uppercase tracking-tight mb-1 font-heading">{t('contact.office')}</h5>
-                    <p className="text-primary font-bold text-sm mb-2">Calle José Gálvez 438, Miraflores</p>
-                    <p className="text-secondary/60 text-sm font-medium">{t('contact.office_desc')}</p>
+            {/* ── Map Section ──────────────────────────────────────────────── */}
+            <section className="bg-tertiary py-20 relative">
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                <div className="container mx-auto px-6 text-center">
+                    <h3 className="text-3xl font-black text-white uppercase tracking-tight mb-8 font-heading">
+                        {t('contact.office')}
+                    </h3>
+                    <div className="max-w-4xl mx-auto h-[400px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+                        <div className="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+                            <div className="bg-secondary text-primary px-6 py-3 rounded-xl font-bold tracking-widest uppercase flex items-center gap-2">
+                                <MapPin size={18} />
+                                Ver en Google Maps
+                            </div>
+                        </div>
+                        <iframe
+                            src={MAPS_EMBED_URL}
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="filter grayscale-[20%] contrast-125 transition-all duration-700 group-hover:grayscale-0"
+                        />
+                    </div>
+                    <p className="text-secondary/60 text-sm font-medium mt-6">{t('contact.office_desc')}</p>
                 </div>
             </section>
         </div>
+        </div>
+        {showPrivacy && <Privacy onBack={() => { setShowPrivacy(false); window.scrollTo(0, 0); }} />}
+        </>
     );
 };
 

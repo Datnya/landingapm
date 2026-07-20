@@ -27,16 +27,34 @@ async function sendEmail(apiKey, payload) {
 }
 
 async function handleContactForm(data, apiKey) {
-    const { nombre, cargo, email, telefono, ciudad, ruc,
-        empresa, industria, servicio, como_se_entero,
-        normas_interes, etapa, trabajadores, mensaje } = data;
+    const {
+        tipo_servicio, nombre, cargo, email, telefono, ciudad, ruc,
+        empresa, industria, como_se_entero, trabajadores,
+        // Consultoría / Auditoría fields
+        normas_interes, normas_interes_otro, etapa, mensaje, mapa_procesos, organigrama,
+        // Formación fields
+        norma_formacion, norma_formacion_otro, objetivos_capacitacion,
+        objetivo_otro, colaboradores_capacitacion, areas_capacitacion,
+        area_otro, modalidad_capacitacion, sistema_gestion,
+        sistema_gestion_cual, fecha_inicio_capacitacion, requisitos_especificos,
+        // Medicina fields
+        mensaje_medicina
+    } = data;
 
     const fecha = new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' });
 
-    // 1) Notify APM team
-    const notifBody = `
-Nuevo Lead - Formulario de Contacto
+    const serviceName = {
+        consultoria: 'Consultoría',
+        auditoria: 'Auditoría',
+        formacion: 'Formación',
+        medicina: 'Medicina Ocupacional'
+    }[tipo_servicio] || tipo_servicio || 'No especificado';
 
+    // Build notification body based on service type
+    let notifBody = `
+Nuevo Lead - ${serviceName}
+
+── DATOS DEL CONTACTO ──
 📌 Nombre: ${nombre || '-'}
 💼 Cargo: ${cargo || '-'}
 📧 Email: ${email || '-'}
@@ -45,29 +63,46 @@ Nuevo Lead - Formulario de Contacto
 🔢 RUC: ${ruc || '-'}
 🏢 Empresa: ${empresa || '-'}
 🏭 Industria: ${industria || '-'}
-📋 Servicio: ${servicio || '-'}
 📡 Fuente: ${como_se_entero || '-'}
-
-── CALIFICACIÓN ──
-📐 Normas: ${normas_interes || '-'}
-⏱️ Etapa: ${etapa || '-'}
 👥 Trabajadores: ${trabajadores || '-'}
+`.trim();
 
-── MENSAJE ──
-${mensaje || 'Sin mensaje'}
+    if (tipo_servicio === 'consultoria' || tipo_servicio === 'auditoria') {
+        notifBody += `\n\n── CONSULTORÍA / AUDITORÍA ──
+📐 Normas de interés: ${normas_interes || '-'}${normas_interes_otro ? ' → ' + normas_interes_otro : ''}
+⏱️ Etapa: ${etapa || '-'}
+📝 Mensaje: ${mensaje || 'Sin mensaje'}`;
+        if (mapa_procesos) notifBody += `\n📎 Mapa de Procesos: ${mapa_procesos}`;
+        if (organigrama) notifBody += `\n📎 Organigrama: ${organigrama}`;
+    } else if (tipo_servicio === 'formacion') {
+        notifBody += `\n\n── FORMACIÓN / CAPACITACIÓN ──
+📚 Norma/Tema: ${norma_formacion || '-'}${norma_formacion_otro ? ' → ' + norma_formacion_otro : ''}
+🎯 Objetivos: ${objetivos_capacitacion || '-'}${objetivo_otro ? ' → ' + objetivo_otro : ''}
+👥 Colaboradores: ${colaboradores_capacitacion || '-'}
+🏢 Áreas: ${areas_capacitacion || '-'}${area_otro ? ' → ' + area_otro : ''}
+📋 Modalidad: ${modalidad_capacitacion || '-'}
+⚙️ Sistema de Gestión: ${sistema_gestion || '-'}${sistema_gestion_cual ? ' → ' + sistema_gestion_cual : ''}
+📅 Fecha estimada inicio: ${fecha_inicio_capacitacion || 'No especificada'}
+📝 Requisitos especiales: ${requisitos_especificos || 'Ninguno'}`;
+    } else if (tipo_servicio === 'medicina') {
+        notifBody += `\n\n── MEDICINA OCUPACIONAL ──
+📝 Mensaje: ${mensaje_medicina || 'Sin mensaje'}`;
+    }
 
-📅 ${fecha}
-🎁 Checklist ISO 9001 enviado automáticamente al lead.
-    `.trim();
+    notifBody += `\n\n📅 Fecha de envío: ${fecha}`;
+    if (tipo_servicio === 'consultoria' || tipo_servicio === 'auditoria') {
+        notifBody += `\n🎁 Checklist ISO 9001 enviado automáticamente al lead.`;
+    }
 
+    // 1) Notify APM team
     await sendEmail(apiKey, {
-        personalizations: [{ to: [{ email: 'consultas@apmgroup.pe' }], subject: `Nuevo Lead: ${nombre} - ${empresa}` }],
+        personalizations: [{ to: [{ email: 'consultas@apmgroup.pe' }], subject: `Nuevo Lead (${serviceName}): ${nombre} - ${empresa}` }],
         from: { email: 'consultas@apmgroup.pe', name: 'APM Group Web' },
         content: [{ type: 'text/plain', value: notifBody }]
     });
 
-    // 2) Send checklist PDF to user
-    if (email) {
+    // 2) Send checklist PDF to user (only for Consultoría/Auditoría)
+    if (email && (tipo_servicio === 'consultoria' || tipo_servicio === 'auditoria')) {
         let pdfBase64 = '';
         try {
             const pdfPath = path.resolve(__dirname, '..', '..', 'dist', 'Herramientas', 'Checklist descargable.pdf');
@@ -103,6 +138,28 @@ ${mensaje || 'Sin mensaje'}
         }
         await sendEmail(apiKey, emailPayload);
         console.log(`✅ Checklist sent to ${email}`);
+    }
+
+    // 3) Send confirmation email to user (for Formación and Medicina)
+    if (email && (tipo_servicio === 'formacion' || tipo_servicio === 'medicina')) {
+        const html = `
+<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
+<div style="background:#1a1a2e;padding:40px 30px;text-align:center"><h1 style="color:#B2C535;margin:0">APM Group</h1><p style="color:rgba(255,255,255,0.6);margin:10px 0 0;font-size:14px">Consultoría · Auditoría · Formación</p></div>
+<div style="padding:40px 30px">
+<h2 style="color:#1a1a2e;font-size:22px">Estimado/a ${nombre || 'profesional'},</h2>
+<p style="color:#555;line-height:1.8">Gracias por su interés en nuestros servicios de <strong style="color:#B2C535">${serviceName}</strong>. Hemos recibido su solicitud correctamente.</p>
+<p style="color:#555;line-height:1.8">Un especialista de nuestro equipo se comunicará con usted en máximo <strong>24 horas hábiles</strong> para brindarle una propuesta personalizada.</p>
+<p style="color:#555;line-height:1.8;margin-top:25px">Cordialmente,<br><strong style="color:#1a1a2e">El equipo de APM Group</strong><br><span style="color:#B2C535;font-size:13px">consultas@apmgroup.pe · +51 967 170 627</span></p>
+</div>
+<div style="background:#1a1a2e;padding:20px;text-align:center"><p style="color:rgba(255,255,255,0.4);font-size:11px;margin:0">© 2026 APM Group. Todos los derechos reservados.</p></div>
+</div>`;
+
+        await sendEmail(apiKey, {
+            personalizations: [{ to: [{ email }], subject: `Solicitud de ${serviceName} recibida - APM Group` }],
+            from: { email: 'consultas@apmgroup.pe', name: 'APM Group' },
+            content: [{ type: 'text/html', value: html }]
+        });
+        console.log(`✅ Confirmation sent to ${email} for ${serviceName}`);
     }
 }
 
