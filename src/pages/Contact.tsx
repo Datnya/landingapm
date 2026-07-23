@@ -32,6 +32,20 @@ const Contact = () => {
     const [sistemaGestion, setSistemaGestion] = useState('');
     const [sistemaGestionCual, setSistemaGestionCual] = useState('');
 
+    // Medicina Ocupacional
+    const [selectedServiciosMedicina, setSelectedServiciosMedicina] = useState<string[]>([]);
+    const [otroServicioMedicina, setOtroServicioMedicina] = useState('');
+    const [colaboradoresMedicina, setColaboradoresMedicina] = useState('');
+    const [selectedPuestos, setSelectedPuestos] = useState<string[]>([]);
+    const [otroPuesto, setOtroPuesto] = useState('');
+    const [selectedRiesgos, setSelectedRiesgos] = useState<string[]>([]);
+    const [otroRiesgo, setOtroRiesgo] = useState('');
+    const [modalidadServicio, setModalidadServicio] = useState('');
+    const [ciudadServicio, setCiudadServicio] = useState('');
+    const [cuentaMedico, setCuentaMedico] = useState('');
+    const [selectedObjetivosMedicina, setSelectedObjetivosMedicina] = useState<string[]>([]);
+    const [otroObjetivoMedicina, setOtroObjetivoMedicina] = useState('');
+
     // ── Helpers ──────────────────────────────────────────────────────────
     const handleServiceChange = (service: ServiceType) => {
         setSelectedService(service);
@@ -275,14 +289,149 @@ const Contact = () => {
     // ── RENDER: Medicina Ocupacional specific fields ──────────────────
     // ═══════════════════════════════════════════════════════════════════
     const renderMedicinaFields = () => (
-        <div>
-            <label className={labelClass}>{t('contact.field_mensaje_medicina')}</label>
-            <textarea
-                name="mensaje_medicina"
-                rows={4}
-                placeholder={t('contact.placeholder_mensaje_medicina')}
-                className={inputClass}
-            />
+        <div className="space-y-6">
+            <input type="hidden" name="medicina_servicios" value={selectedServiciosMedicina.join(', ')} />
+            <input type="hidden" name="medicina_puestos" value={selectedPuestos.join(', ')} />
+            <input type="hidden" name="medicina_riesgos" value={selectedRiesgos.join(', ')} />
+            <input type="hidden" name="medicina_modalidad" value={modalidadServicio} />
+            <input type="hidden" name="medicina_cuenta_medico" value={cuentaMedico} />
+            <input type="hidden" name="medicina_objetivos" value={selectedObjetivosMedicina.join(', ')} />
+
+            {/* Servicio Requerido */}
+            <div>
+                <label className={labelClass}>¿Qué servicio de Medicina Ocupacional requiere? *</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    {['Exámenes Médicos Ocupacionales (Ingreso)', 'Exámenes Médicos Periódicos', 'Exámenes Médicos de Retiro', 'Vigilancia Médica Ocupacional', 'Médico Ocupacional', 'Psicología Ocupacional', 'Ergonomía', 'Campañas de Salud', 'Capacitaciones en Salud Ocupacional', 'Otro'].map((serv) => (
+                        <label key={serv} className="flex items-center gap-3 cursor-pointer group">
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedServiciosMedicina.includes(serv) ? 'bg-primary border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {selectedServiciosMedicina.includes(serv) && <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{serv}</span>
+                            <input type="checkbox" className="hidden" checked={selectedServiciosMedicina.includes(serv)} onChange={() => toggleItem(serv, setSelectedServiciosMedicina)} />
+                        </label>
+                    ))}
+                </div>
+                {selectedServiciosMedicina.includes('Otro') && (
+                    <input type="text" name="medicina_servicio_otro" value={otroServicioMedicina} onChange={(e) => setOtroServicioMedicina(e.target.value)} placeholder="Especifique el servicio requerido" className={`${inputClass} mt-3`} required />
+                )}
+            </div>
+
+            {/* Colaboradores y Ciudad */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label className={labelClass}>¿Cuántos colaboradores participarán? *</label>
+                    <input type="text" name="medicina_colaboradores" value={colaboradoresMedicina} onChange={(e) => setColaboradoresMedicina(e.target.value)} placeholder="Ej. 50" className={inputClass} required />
+                </div>
+                <div>
+                    <label className={labelClass}>¿En qué ciudad se ejecutará? *</label>
+                    <input type="text" name="medicina_ciudad" value={ciudadServicio} onChange={(e) => setCiudadServicio(e.target.value)} placeholder="Ej. Lima" className={inputClass} required />
+                </div>
+            </div>
+
+            {/* Tipos de Puesto */}
+            <div>
+                <label className={labelClass}>¿Qué tipo de puestos desempeñan los trabajadores? *</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    {['Administrativos', 'Operativos', 'Conductores', 'Trabajo en Altura', 'Espacios Confinados', 'Personal de Planta', 'Personal de Campo', 'Otro'].map((puesto) => (
+                        <label key={puesto} className="flex items-center gap-3 cursor-pointer group">
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedPuestos.includes(puesto) ? 'bg-primary border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {selectedPuestos.includes(puesto) && <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{puesto}</span>
+                            <input type="checkbox" className="hidden" checked={selectedPuestos.includes(puesto)} onChange={() => toggleItem(puesto, setSelectedPuestos)} />
+                        </label>
+                    ))}
+                </div>
+                {selectedPuestos.includes('Otro') && (
+                    <input type="text" name="medicina_puesto_otro" value={otroPuesto} onChange={(e) => setOtroPuesto(e.target.value)} placeholder="Especifique el puesto" className={`${inputClass} mt-3`} required />
+                )}
+            </div>
+
+            {/* Riesgos Ocupacionales */}
+            <div>
+                <label className={labelClass}>¿Existen riesgos ocupacionales asociados a estos puestos? *</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    {['Ruido', 'Polvo', 'Sustancias químicas', 'Trabajo en altura', 'Carga física', 'Riesgo ergonómico', 'Temperaturas extremas', 'Ninguno', 'Otro'].map((riesgo) => (
+                        <label key={riesgo} className="flex items-center gap-3 cursor-pointer group">
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedRiesgos.includes(riesgo) ? 'bg-primary border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {selectedRiesgos.includes(riesgo) && <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{riesgo}</span>
+                            <input type="checkbox" className="hidden" checked={selectedRiesgos.includes(riesgo)} onChange={() => toggleItem(riesgo, setSelectedRiesgos)} />
+                        </label>
+                    ))}
+                </div>
+                {selectedRiesgos.includes('Otro') && (
+                    <input type="text" name="medicina_riesgo_otro" value={otroRiesgo} onChange={(e) => setOtroRiesgo(e.target.value)} placeholder="Especifique el riesgo" className={`${inputClass} mt-3`} required />
+                )}
+            </div>
+
+            {/* Modalidad de Servicio & Médico Ocupacional */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label className={labelClass}>¿Cómo desea que se realice el servicio? *</label>
+                    <div className="flex flex-col gap-3 mt-2">
+                        {['En nuestras instalaciones', 'En las instalaciones de mi empresa (In House)', 'Aún no lo tengo definido'].map((mod) => (
+                            <label key={mod} className="flex items-center gap-3 cursor-pointer group" onClick={() => setModalidadServicio(mod)}>
+                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${modalidadServicio === mod ? 'border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                    {modalidadServicio === mod && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
+                                </div>
+                                <span className="text-white/70 text-sm font-medium">{mod}</span>
+                            </label>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <label className={labelClass}>¿Cuenta con Médico Ocupacional? *</label>
+                    <div className="flex flex-col gap-3 mt-2">
+                        {['Sí', 'No', 'En proceso de implementación'].map((cuenta) => (
+                            <label key={cuenta} className="flex items-center gap-3 cursor-pointer group" onClick={() => setCuentaMedico(cuenta)}>
+                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${cuentaMedico === cuenta ? 'border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                    {cuentaMedico === cuenta && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
+                                </div>
+                                <span className="text-white/70 text-sm font-medium">{cuenta}</span>
+                            </label>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Objetivos */}
+            <div>
+                <label className={labelClass}>¿Cuál es el objetivo principal? *</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    {['Cumplimiento legal', 'Inicio de operaciones', 'Auditoría', 'Certificación ISO', 'Vigilancia periódica', 'Requerimiento de cliente', 'Bienestar del personal', 'Otro'].map((obj) => (
+                        <label key={obj} className="flex items-center gap-3 cursor-pointer group">
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedObjetivosMedicina.includes(obj) ? 'bg-primary border-primary' : 'border-white/30 group-hover:border-primary/60'}`}>
+                                {selectedObjetivosMedicina.includes(obj) && <svg className="w-3 h-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                            </div>
+                            <span className="text-white/70 text-sm font-medium">{obj}</span>
+                            <input type="checkbox" className="hidden" checked={selectedObjetivosMedicina.includes(obj)} onChange={() => toggleItem(obj, setSelectedObjetivosMedicina)} />
+                        </label>
+                    ))}
+                </div>
+                {selectedObjetivosMedicina.includes('Otro') && (
+                    <input type="text" name="medicina_objetivo_otro" value={otroObjetivoMedicina} onChange={(e) => setOtroObjetivoMedicina(e.target.value)} placeholder="Especifique el objetivo" className={`${inputClass} mt-3`} required />
+                )}
+            </div>
+
+            {/* Fecha y Requerimientos Adicionales */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="md:col-span-2">
+                    <label className={labelClass}>¿Cuál es la fecha estimada de inicio? *</label>
+                    <input type="date" name="medicina_fecha_inicio" className={inputClass} required />
+                </div>
+            </div>
+            
+            <div>
+                <label className={labelClass}>¿Requerimiento o condición especial? </label>
+                <textarea
+                    name="medicina_requerimientos_especiales"
+                    rows={4}
+                    placeholder="Detalle cualquier información adicional que debamos considerar..."
+                    className={inputClass}
+                />
+            </div>
         </div>
     );
 
